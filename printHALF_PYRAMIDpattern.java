@@ -7,10 +7,10 @@ public class printHALF_PYRAMIDpattern {
 		int Num = scan.nextInt();
 
 		//Outer Loop
-		for (int line=1; line<=Num; line++) {
+		for (int line = 1; line <= Num; line++) {
 
 			//Inner Loop
-			for (int number = 1; number<=line; number++) {
+			for (int number = 1; number <= line; number++) {
 				System.out.print(number + "\t");
 			}
 			System.out.println();
