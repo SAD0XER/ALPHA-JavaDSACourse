@@ -10,8 +10,8 @@ public class DecimalToBinary {
 
 		while (decNum > 0) {
 			int rem = decNum % 2;
-			bin += rem * (int)Math.pow(10, Pow));
-			Pow++;(
+			bin += (rem * (int)Math.pow(10, Pow));
+			Pow++;
 			decNum /= 10;
 		}
 		System.out.println("Decimal Number " + Decnum + " in Binary is " + bin);
@@ -22,6 +22,7 @@ public class DecimalToBinary {
 
 		System.out.println("\n===CONVERT DECIMAL TO BINARY===");
 		System.out.print("Enter Decimal Number: ");
+
 		int Decimal = scan.nextInt();
 
 		DecToBi(Decimal); //function call.
