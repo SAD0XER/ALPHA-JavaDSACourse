@@ -1,9 +1,9 @@
 public class LinearSearch {
 
 	//Linear Search
-	public static int linearSearch(int[] array, int key) {
+	public static int linearSearch(String[] array, String key) {
 		for (int i = 0; i < array.length; i++) {
-			if (key == array[i]) {
+			if (array[i] == key) {
 				return i;
 			}
 		}
@@ -11,12 +11,20 @@ public class LinearSearch {
 	}
 
 	public static void main(String[] sadoxer) {
-		int[] array = {1, 34, 54, 66, 77, 88, 99};
-		int key = 8;
+//		int[] array = {1, 34, 54, 66, 77, 88, 99};
+//		int key = 8;
 
-		linearSearch(array, key); //function call
+//		Practice with String datatype
+		String[] software = {"dotNate", "vscode", "csgo", "IntelliJIdea", "git", "grammerly"};
+		String key = "git";
 
-		int index = linearSearch(array, key);
+//		linearSearch(array, key); //function call
+		linearSearch(software, key); //function call
+
+
+//		int index = linearSearch(array, key);
+		int index = linearSearch(software, key);
+
 		if (index == -1) {
 			System.out.println("KEY not found.");
 		} else {
