@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class FindLargNSmallNUm {
+public class FindLargNSmallNum {
 
 	public static int largestNum(int[] array) {
 		int largest = Integer.MIN_VALUE;
