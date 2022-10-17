@@ -3,7 +3,7 @@ public class ReverseOfArray {
 	public static void reverseArray(int[] array) {
 		int first = 0, last = array.length - 1;
 
-		while (first <= last) {
+		while (first < last) {
 
 			// using temporary variable
 			int temp = array[last];
