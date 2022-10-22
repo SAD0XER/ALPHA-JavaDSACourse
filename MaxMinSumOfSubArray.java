@@ -21,7 +21,7 @@ public class MaxMinSumOfSubArray {
 	}
 
 	public static void main(String[] sadoxer) {
-		int[] array = {56, 34, 78, 5, 49, 4, 33, 6};
+		int[] array = {-1, -2, 6, -1, 3};
 
 		sumOfSubArray(array);
 	}
