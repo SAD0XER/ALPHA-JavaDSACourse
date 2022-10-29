@@ -15,7 +15,10 @@ public class MaxSubarraySum3 {
 	}
 
 	public static void main(String[] sadoxer) {
-		int[] array = {-2, -3, -4, -1, -2, -1, -5, -3};
+		int[] array = {-2, -3, 4, -1, -2, 5, 3};
+		/*PS: here, if all the numbers of array is < 0, then the output will be 0.
+		* so, for enhanced solution check file "MaxSubarraySun.java" file.
+		* If you give all the numbers are 0, then the that program will give the maximum negative number from it.*/
 
 		MaxSumSubArray(array);
 	}
