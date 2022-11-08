@@ -1,6 +1,6 @@
-import java.util.*;
+import java.util.Scanner;
 
-public class PrintSolidRhombus {
+public class printHollowRhombusPattern {
 	public static void main(String[] sadoxer) {
 		Scanner scan = new Scanner(System.in);
 		System.out.print("Enter the Number of Line: ");
@@ -11,8 +11,12 @@ public class PrintSolidRhombus {
 				System.out.print(" ");
 			}
 
-			for (int k = 1; k <= line; k++) {
-				System.out.print("*");
+			for (int j = 1; j <= line; j++) {
+				if (i==1 || i==line || j==1 || j==line) {
+					System.out.print("*");
+				} else {
+					System.out.print(" ");
+				}
 			}
 			System.out.println();
 		}

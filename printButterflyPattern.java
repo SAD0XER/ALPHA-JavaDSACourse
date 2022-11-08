@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class PrintButterflyPattern {
+public class printButterflyPattern {
 	public static void main(String[] sadoxer) {
 		Scanner scan = new Scanner(System.in);
 		System.out.print("Enter the Number of Line: ");

@@ -1,4 +1,4 @@
-public class PrintSubArrays {
+public class printSubArrays {
 
 	public static void printSubArray(int[] array) {
 		int ts = 0;
