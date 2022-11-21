@@ -93,8 +93,5 @@ IO:[1, 1, 3, 3, 4, 3, 2, 4, 2], OP:true //case 3 */
 
 //		int[] array = {4, 2, 0, 3, 2, 5};
 //		System.out.println(trappedRainWater(array));
-
-		int[] array = {};
-		System.out.println((array));
 	}
 }
