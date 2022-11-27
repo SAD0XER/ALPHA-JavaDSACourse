@@ -1,5 +1,4 @@
 public class InsertionSort {
-	//Change '>' to '<' for Sorted Reverse Array.
 		public static void insertionSort(int[] array) {
 			int n = array.length;
 			for (int i = 1; i < n-1; i++) {
