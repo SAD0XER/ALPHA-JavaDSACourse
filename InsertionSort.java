@@ -1,7 +1,7 @@
 public class InsertionSort {
 		public static void insertionSort(int[] array) {
 			int n = array.length;
-			for (int i = 1; i < n-1; i++) {
+			for (int i = 1; i <= n-1; i++) {
 				int current = array[i];
 				int previous = i-1;
 
@@ -16,9 +16,9 @@ public class InsertionSort {
 		}
 
 		public static void printArray(int[] array) {
-			for (int i = 0; i < array.length; i++) {
-				System.out.print(array[i] + " ");
-			}
+            for (int j : array) {
+                System.out.print(j + " ");
+            }
 		}
 
 		public static void main(String[] sadoxer) {
