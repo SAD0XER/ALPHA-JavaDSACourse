@@ -1,9 +1,8 @@
 public class ArrayAssignment {
-
-/* Question 1:
-IO:[1, 2, 3, 1], OP:true //case 1
-IO:[1, 2, 3, 4], OP:false //case 2
-IO:[1, 1, 3, 3, 4, 3, 2, 4, 2], OP:true //case 3 */
+	/* Question 1:
+	IO:[1, 2, 3, 1], OP:true //case 1
+	IO:[1, 2, 3, 4], OP:false //case 2
+	IO:[1, 1, 3, 3, 4, 3, 2, 4, 2], OP:true //case 3 */
 
 	public static boolean atLeastTwice(int[] array) {
 		for (int i = 0; i < array.length; i++) {
@@ -24,12 +23,12 @@ IO:[1, 1, 3, 3, 4, 3, 2, 4, 2], OP:true //case 3 */
 		int buyingPrice = Integer.MAX_VALUE; // comparing
 		int maxProfit = 0; // storing max profit
 
-		for (int i = 0; i < array.length; i++) {
-			if (buyingPrice < array[i]) {
-				int profit = array[i] - buyingPrice;
+		for (int j : array) {
+			if (buyingPrice < j) {
+				int profit = j - buyingPrice;
 				maxProfit = Math.max(maxProfit, profit);
 			} else {
-				buyingPrice = array[i];
+				buyingPrice = j;
 			}
 		}
 		return maxProfit;
@@ -63,8 +62,8 @@ IO:[1, 1, 3, 3, 4, 3, 2, 4, 2], OP:true //case 3 */
 		}
 		return trappedWater;
 
-		//New Very optimized solution on this problem.
-		int l = array.length;
+		//Very optimized solution on this problem.
+		/*int l = array.length;
 
 		int trappedWater = 0, left = 0, right = l - 1;
 		int[] rMax = new int[right], lMax = new int[left];
@@ -80,7 +79,7 @@ IO:[1, 1, 3, 3, 4, 3, 2, 4, 2], OP:true //case 3 */
 				trappedWater += rMax - array[right];
 			}
 		}
-		return trappedWater;
+		return trappedWater;*/
 	}
 
 
