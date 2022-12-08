@@ -1,4 +1,3 @@
-import java.util.*;
 public class BasicSortingQuestion {
 /* Question : Use the following sorting algorithms to sort an array in DESCENDING order:
 a. Bubble Sort
@@ -42,7 +41,7 @@ You can use this array as an example : [3, 6, 2, 1, 8, 7, 4, 5, 3, 1]*/
             int previous = i - 1;
 
 //				Finding the correct position for insertion.
-            while (previous >= 0 && array[previous] > current) {
+            while (previous >= 0 && array[previous] < current) {
                 array[previous + 1] = array[previous];
                 previous--;
             }
@@ -65,7 +64,7 @@ You can use this array as an example : [3, 6, 2, 1, 8, 7, 4, 5, 3, 1]*/
 
         //Sorting
         int j = 0;
-        for (int i = 0; i < count.length; i++) {
+        for (int i = count.length-1; i >= 0; i--) {
             while (count[i] > 0) {
                 array[j] = i;
                 j++;
@@ -86,12 +85,15 @@ You can use this array as an example : [3, 6, 2, 1, 8, 7, 4, 5, 3, 1]*/
         System.out.println("Buble Sort:");
         bubbleSort(array);
         printArray(array);
+
         System.out.println("\nSelection Sort:");
         selectionSort(array);
         printArray(array);
+
         System.out.println("\nInsurtion Sort:");
         insertionSort(array);
         printArray(array);
+
         System.out.println("\nCounting sort:");
         countingSort(array);
         printArray(array);
