@@ -1,6 +1,6 @@
 <!-- Readme Card-->
 
-[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=sad0xer&repo=ALPHAit-JavaCourse&theme=transparent&hide_border=true)](https://github.com/sad0xer/ALPHAit-JavaCourse)
+[![ALPHAit-JavaCourse](https://github-readme-stats.vercel.app/api/pin/?username=sad0xer&repo=ALPHAit-JavaCourse&theme=transparent&hide_border=true)](https://github.com/sad0xer/ALPHAit-JavaCourse)
 <br>
 <!-- theme=great-gatsby -->
 
