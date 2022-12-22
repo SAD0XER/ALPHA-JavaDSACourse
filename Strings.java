@@ -63,11 +63,13 @@ public class Strings {
 
     //Question 5:
     public static String strCompression(String str) {
+        int n = str.length();
         StringBuilder newstr = new StringBuilder("");
 
-        for (int i = 0; i < str.length();) {
+        for (int i = 0; i < n; i++) {
             Integer count = 1;
-            while ((str.charAt(i) == str.charAt(i+1)) && (i < str.length()-1)) {
+
+            while (i < n - 1 && str.charAt(i) == str.charAt(i + 1)) {
                 count++;
                 i++;
             }
@@ -79,14 +81,26 @@ public class Strings {
         return newstr.toString();
     }
 
+    //Assignment Question 1:
+    public static int lowerCaseCount(String str) {
+        int count = 0;
+        for (int i = 0; i < str.length(); i++) {
+            if (Character.isLowerCase(str.charAt(i))) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    //Assignment Question 4:
+    public static boolean isAnagram(String str1, String str2) {return true;}
+
     public static void main(String[] para_coder) {
         Scanner scan = new Scanner(System.in);
 
         //String declartion.
-//        String str = "sarvesh";
-//        System.out.println("str = " + str);
-//        String str2 = new String("sarvesh"); /*we can declare like this to but it has diffrent purpose.*/
-//        System.out.println("str2 = " + str2);
+//        String str1 = "sarvesh", str2 = new String("sarvesh");
+//        System.out.println("str1 = " + str1 + "\nstr2 = " + str2);
 
         //next() Function.
 //        String fname = scan.next(); /*takes only single word.*/
@@ -113,11 +127,11 @@ public class Strings {
 //        System.out.println(getDisplacement(path));
 
         //String Comparison
-//        String s1 = "sad", s2 = "sad", s3 = new String("sad");
-//        if (s1 == s2) System.out.println(1); //For String '==' equals to operator compares at object level.
-//        else System.out.println(0);
-//        if (s1.equals(s3)) System.out.println(1); //equal(obj) function compares objects.
-//        else System.out.println(0);
+        /*String s1 = "sad", s2 = "sad", s3 = new String("sad");
+        if (s1 == s2) System.out.println(1); //For String '==' equals to operator compares at object level.
+        else System.out.println(0);
+        if (s1.equals(s3)) System.out.println(1); //equal(obj) function compares objects.
+        else System.out.println(0);*/
 
         //Substring
 //        String str = "sarvesh ashok devrukhakar";
@@ -132,7 +146,27 @@ public class Strings {
 //        System.out.println(toCamelCase(str));
 
         //Question 5:
-        String str = "abbcccdddd";
-        System.out.println(strCompression(str));
+//        String str = "abbcccdddd";
+//        System.out.println(strCompression(str));
+
+        //Assignment Question: 1
+        /*System.out.print("Enter String: ");
+        String str = scan.nextLine();
+        System.out.println(lowerCaseCount(str) + " Lower Case Characters in your string.");*/
+
+        //Assignment Question: 2
+//        String str = "ShradhaDidi", str1 = "ApnaCollege", str2 = "ShradhaDidi";
+//        System.out.println(str.equals(str1) + " " + str.equals(str2));
+
+        //Assignment Question: 3
+//        String str = "ApnaCollege".replace("l", "");
+//        System.out.println(str);
+
+        //Assignment Question 4: Determine if 2 Strings are Anagrams of each other.
+//        System.out.print("Enter String 1: ");
+//        String str1 = scan.next();
+//        System.out.print("Enter String 2: ");
+//        String str2 = scan.next();
+//        System.out.println();
     }
 }
