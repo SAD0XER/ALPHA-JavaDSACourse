@@ -82,6 +82,17 @@ public class Strings {
     }
 
     //Assignment Question 1:
+    public static void lowerCaseVOWELCount(String str) {
+        int count = 0;
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+            if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {
+                count++;
+            }
+        }
+        System.out.println(count + " VOWELS in your string.");
+    }
+
     public static int lowerCaseCount(String str) {
         int count = 0;
         for (int i = 0; i < str.length(); i++) {
@@ -93,7 +104,38 @@ public class Strings {
     }
 
     //Assignment Question 4:
-    public static boolean isAnagram(String str1, String str2) {return true;}
+    public static boolean isAnagram(String str1, String str2) {
+        // Convert Strings to lowercase. Why? so that we don't have to check separately for lower & uppercase.
+//        str1 = str1.toLowerCase();
+//        str2 = str2.toLowerCase();
+
+        // First check - if the lengths are the same
+        if (str1.length() == str2.length()) {
+
+            // convert strings into char array
+            char[] str1charArray = str1.toCharArray();
+            char[] str2charArray = str2.toCharArray();
+
+            // sort the char array
+            Arrays.sort(str1charArray);
+            Arrays.sort(str2charArray);
+
+            // if the sorted char arrays are same or identical then the strings are anagram
+            boolean result = Arrays.equals(str1charArray, str2charArray);
+
+            if (result) {
+                System.out.println(str1 + " and " + str2 + " are anagrams of each other.");
+                return true;
+            } else {
+                System.out.println(str1 + " and " + str2 + " are not anagrams of each other.");
+                return false;
+            }
+        } else {
+            // case when lengths are not equal
+            System.out.println(str1 + " and " + str2 + " are not anagrams of each other.");
+            return false;
+        }
+    }
 
     public static void main(String[] para_coder) {
         Scanner scan = new Scanner(System.in);
@@ -152,6 +194,11 @@ public class Strings {
         //Assignment Question: 1
         /*System.out.print("Enter String: ");
         String str = scan.nextLine();
+        lowerCaseVOWELCount(str);*/
+
+        //Count Lower Case Character in your String.
+        /*System.out.print("Enter String: ");
+        String str = scan.nextLine();
         System.out.println(lowerCaseCount(str) + " Lower Case Characters in your string.");*/
 
         //Assignment Question: 2
@@ -163,10 +210,10 @@ public class Strings {
 //        System.out.println(str);
 
         //Assignment Question 4: Determine if 2 Strings are Anagrams of each other.
-//        System.out.print("Enter String 1: ");
-//        String str1 = scan.next();
-//        System.out.print("Enter String 2: ");
-//        String str2 = scan.next();
-//        System.out.println();
+        System.out.print("Enter String 1: ");
+        String str1 = scan.next();
+        System.out.print("Enter String 2: ");
+        String str2 = scan.next();
+        System.out.println(isAnagram(str1, str2));
     }
 }
