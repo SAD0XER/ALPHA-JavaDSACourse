@@ -210,10 +210,10 @@ public class Strings {
 //        System.out.println(str);
 
         //Assignment Question 4: Determine if 2 Strings are Anagrams of each other.
-        System.out.print("Enter String 1: ");
+        /*System.out.print("Enter String 1: ");
         String str1 = scan.next();
         System.out.print("Enter String 2: ");
         String str2 = scan.next();
-        System.out.println(isAnagram(str1, str2));
+        System.out.println(isAnagram(str1, str2));*/
     }
 }
