@@ -1,29 +1,67 @@
-Public class ObjectOrientedProgramming {
-Public static void main(String[] para_coder) {
-//Creating object of class Pen.
-Pen Obj1 = new Pen();
-/*Now, obj1 had taken space in heap memory.
-Pen()-This is a constructor of class Pen.*/
+public class ObjectOrientedProgramming {
 
-//Change the properties of class using dot operator(.)
-Obj1.setColor("Magenda");
-Obj1.setThikness(8);
+    public static void main(String[] para_coder) {
+        //Creating object of class Pen.
+        Pen Obj1 = new Pen(); /*Now, obj1 had taken space in heap memory. Pen()-This is a constructor of class Pen.*/
 
-System.out.println(Obj1.color);
-System.out.println(Obj1.thikness);
-}
+        //Change the properties of class using dot operator(.)
+        Obj1.setColor("Magenda"); //Setters
+        Obj1.setThikness(8); //Setters
+        Obj1.setPwd("sarvseh_Password"); //Setters
+        Obj1.marks[0] = 12;
+        Obj1.marks[1] = 13;
+        Obj1.marks[2] = 14;
+        //Accessing properties of Class
+//        System.out.println(Obj1.color);
+//        System.out.println(Obj1.thikness);
+        /*Obj1.getColor(); //Getters
+        Obj1.getThikness(); //Getters
+        Obj1.getPwd(); //Getters*/
+        /*for (int i = 0; i < Obj1.marks.length; i++) {
+            System.out.println(Obj1.marks[i]);
+        }*/
+        Pen Obj2 = new Pen();
+        /*for (int i = 0; i < Obj2.marks.length; i++) {
+            System.out.println(Obj2.marks[i]);
+        }*/
+
+    }
 }
 
 //default class
 class Pen {
-String color;
-int thikness;
+    String color;
+    int thikness;
+    private String pwd;
+    int age;
+    int[] marks = new int[3];
 
-void setColor(String newColor) {
-color = newColor;
-}
+    //Non-Parameterised Constructor
+    Pen() {System.out.println("I am Non-Parameterised Constructor");}
 
-void setThikness(int newthikness) {
-thikness = newthikness;
-}
+    //Parameterised Constructor
+    Pen(int age) {this.age = age; /*'this' keyword used to refer current obj.*/}
+
+    //Copy Constructor
+    Pen(Pen obj) {
+        this.color = obj.color;
+        this.thikness = obj.thikness;
+        this.marks = obj.marks;
+    }
+
+    //Getters- To return the value
+    void getColor() {System.out.println(this.color);}
+
+    void getThikness() {System.out.println(this.thikness);}
+
+    void getPwd() {System.out.println(this.pwd);}
+
+    void getAge() {System.out.println(this.age);}
+
+    //Setters- To modify a value.
+    void setPwd(String newpwd) {pwd = newpwd;}
+
+    void setColor(String newColor) {color = newColor;}
+
+    void setThikness(int newthikness) {thikness = newthikness;}
 }
