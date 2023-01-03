@@ -1,6 +1,13 @@
+import java.util.*;
+
 public class ObjectOrientedProgramming {
 
     public static void main(String[] para_coder) {
+        //Built-in Package Example
+        /*Scanner scan = new Scanner(System.in);
+        long a = scan.nextLong();
+        System.out.println("a = " + a);*/
+
         //Creating object of class Pen.
         //Pen Obj1 = new Pen(); /*Now, obj1 had taken space in heap memory. Pen()-This is a constructor of class Pen.*/
         //Change the properties of class using dot operator(.)
@@ -23,10 +30,38 @@ public class ObjectOrientedProgramming {
         //Printing the array values of Obj2.
         //System.out.println("Values After changing.");
         //for (int i = 0; i < Obj2.marks.length; i++) System.out.println(Obj2.marks[i]);
+
+        //Polymorphism: Method Overloading
+        /*Calculator calc = new Calculator();
+        System.out.println(calc.sum(1, 2));
+        System.out.println(calc.sum(1.5f, 2.5f));
+        System.out.println(calc.sum(1, 3, 4));*/
+
+        //Polymorphism: Method Overriding.
+        /*Deer d = new Deer();
+        d.eat();
+        Animal a = new Animal();
+        a.eat();*/
+
+        //Abstraction.
+        /*Horse h = new Horse();
+        h.eats();
+        h.walk();
+        System.out.println(h.color);*/
+
+        /*Chicken c = new Chicken();
+        c.eats();
+        c.walk();
+        System.out.println(c.color);
+        c.changeColor();*/
+
+        //Hierarchy of constructor calling.
+        //Mustang m = new Mustang();
+        //Hierarchy: Animals -> Horse -> Mustang
     }
 }
 
-//default class
+//Access Modifiers: Default class
 class Pen {
     String color;
     int thikness;
@@ -68,4 +103,80 @@ class Pen {
 //    void setPwd(String newpwd) {pwd = newpwd;}
 //    void setColor(String newColor) {color = newColor;}
 //    void setThikness(int newthikness) {thikness = newthikness;}
+}
+
+//Polymorphism: Method Overloading
+class Calculator {
+    int sum(int a, int b) {
+        return a + b;
+    }
+
+    float sum(float a, float b) {
+        return a + b;
+    }
+
+    int sum(int a, int b, int c) {
+        return a + b + c;
+    }
+}
+
+//Polymorphism: Method Overriding.
+class Animal {
+    void eat() {
+        System.out.println("Eats Everything");
+    }
+}
+
+class Deer extends Animal {
+    void eat() {
+        System.out.println("Eats Grass.");
+    }
+}
+
+//Abstraction: Abstract Classes.
+abstract class Animals {
+    String color;
+
+    Animals() {
+        color = "brown";
+        System.out.println("Animal constructor called.");
+    }
+
+    //Non-abstract Methods
+    void eats() {
+        System.out.println("animal eats");
+    }
+
+    //Abstract Methods
+    abstract void walk();
+}
+
+class Horse extends Animals {
+    Horse() {
+        System.out.println("Horse constructor called.");
+    }
+
+    void changeColor() {
+        color = "black";
+    }
+
+    void walk() {
+        System.out.println("walks on 4 legs.");
+    }
+}
+
+class Mustang extends Horse {
+    Mustang() {
+        System.out.println("Mustang constructor called.");
+    }
+}
+
+class Chicken extends Animals {
+    void changeColor() {
+        color = "Golden";
+    }
+
+    void walk() {
+        System.out.println("walks on 2 legs.");
+    }
 }
