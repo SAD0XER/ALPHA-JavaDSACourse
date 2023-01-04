@@ -58,6 +58,17 @@ public class ObjectOrientedProgramming {
         //Hierarchy of constructor calling.
         //Mustang m = new Mustang();
         //Hierarchy: Animals -> Horse -> Mustang
+
+        //Interface
+//        Queen a = new Queen();
+//        a.moves();
+
+        //Static and Super Keyword.
+//        B b = new B();
+//        b.setCo("lal");
+//        C c = new C();
+//        c.color = "red";
+//        c.getCo();
     }
 }
 
@@ -178,5 +189,49 @@ class Chicken extends Animals {
 
     void walk() {
         System.out.println("walks on 2 legs.");
+    }
+}
+
+//Interface
+interface ChessPlayer {
+    void moves();
+}
+
+class Queen implements ChessPlayer {
+    public void moves() {
+        System.out.println("up, down, left, right, diagonal.");
+    }
+}
+
+class Rook implements ChessPlayer {
+    public void moves() {
+        System.out.println("vertical and horizontal.");
+    }
+}
+
+class King implements ChessPlayer {
+    public void moves() {
+        System.out.println("up, down, left, right, diagonal by one step.");
+    }
+}
+
+class A {
+    static String color;
+    int a = 10;
+}
+
+class B extends A {
+    void setCo(String nC) {
+        color = nC;
+    }
+}
+
+class C extends A {
+    void getCo() {
+        System.out.println(color);
+    }
+
+    C() {
+        System.out.println(super.color);
     }
 }
