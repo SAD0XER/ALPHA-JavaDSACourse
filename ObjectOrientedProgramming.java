@@ -69,6 +69,21 @@ public class ObjectOrientedProgramming {
 //        C c = new C();
 //        c.color = "red";
 //        c.getCo();
+
+        //Assignment Questions: Q1.
+//        Complex c = new Complex();
+//        c.sum(3, 5, 4, -3);
+//        c.diff(3, 2, 1, 7);
+//        c.prod(3, 2, 1, 7);
+
+        /*Complex c = new Complex(4, 5);
+        Complex d = new Complex(9, 4);
+        Complex e = Complex.add(c, d);
+        Complex f = Complex.diff(c, d);
+        Complex g = Complex.product(c, d);
+        e.printComplex();
+        f.printComplex();
+        g.printComplex();*/
     }
 }
 
@@ -233,5 +248,57 @@ class C extends A {
 
     C() {
         System.out.println(super.color);
+    }
+}
+
+//Assignment Question: Q1. Print the sum, difference and product of two complex numbers by creating a class named 'Complex' with separate methods for each operation whose real and imaginary parts are entered by the user.
+class Complex {
+
+    /*final int i = (int) Math.sqrt(-1);
+    final int ii = -1;
+
+    void sum(int r1, int i1, int r2, int i2) {
+//(a+bi) + (c+di) = (a+c) + (b+d)i
+        System.out.printf("The sum of %d + %di and %d + %di is %d + %di.\n", r1, i1, r2, i2, (r1 + r2), (i1 + i2));
+    }
+
+    void diff(int r1, int i1, int r2, int i2) {
+        System.out.printf("The Difference of %d + %di and %d + %di is %d + %di.\n", r1, i1, r2, i2, (r1 - r2), (i1 - i2));
+    }
+
+    void prod(int r1, int i1, int r2, int i2) {
+//        (a+bi)(c+di) = (ac−bd) + (ad+bc)i
+//        ((r1*r2) - (i1*i2))  +  ((r1*i2) + (i1*r2))i
+        System.out.printf("The Product of %d + %di and %d + %di is %d + %di.\n", r1, i1, r2, i2, ((r1 * r2) - (i1 * i2)), ((r1 * i2) + (i1 * r2))*ii);
+    }*/
+
+    int real;
+    int imag;
+
+    public Complex(int r, int i) {
+        this.real = r;
+        this.imag = i;
+    }
+
+    public static Complex add(Complex a, Complex b) {
+        return new Complex((a.real + b.real), (a.imag + b.imag));
+    }
+
+    public static Complex diff(Complex a, Complex b) {
+        return new Complex((a.real - b.real),(a.imag - b.imag));
+    }
+
+    public static Complex product(Complex a, Complex b) {
+        return new Complex(((a.real * b.real) - (a.imag * b.imag)), ((a.real * b.imag) + (a.imag * b.real)));
+    }
+
+    public void printComplex() {
+        if (real == 0 && imag != 0) {
+            System.out.println(imag + "i");
+        } else if (imag == 0 && real != 0) {
+            System.out.println(real);
+        } else {
+            System.out.println(real + "+" + imag + "i");
+        }
     }
 }
