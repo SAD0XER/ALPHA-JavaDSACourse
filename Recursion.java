@@ -43,7 +43,20 @@ public class Recursion {
     public static boolean isSorted(int[] arr, int i) {
         if (i == arr.length - 1) return true;
         if (arr[i] > arr[i + 1]) return false;
-        return isSorted(arr, i+1);
+        return isSorted(arr, i + 1);
+    }
+
+    public static int firstOccurence(int[] arr, int key, int i) {
+        if (i == arr.length) return -1;
+        if (arr[i] == key) return i;
+        return firstOccurence(arr, key, i + 1);
+    }
+
+    public static int lastOccurence(int[] arr, int key, int i) {
+        if (i == arr.length) return -1;
+        int isfound = lastOccurence(arr, key, i + 1);
+        if (isfound == -1 && arr[i] == key) return i;
+        return isfound;
     }
 
     public static void main(String[] para_coder) {
@@ -54,5 +67,8 @@ public class Recursion {
 //        System.out.println(fibonacci(5));
 /*        int[] arr = {1, 2, 3, 4, 5};
         System.out.println(isSorted(arr, 0));*/
+        /*int[] arr = {8, 3, 7, 6, 9, 7, 5, 10, 6};
+        //System.out.println(firstOccurence(arr, 0, 0));
+        System.out.println(lastOccurence(arr, 7, 0));*/
     }
 }
