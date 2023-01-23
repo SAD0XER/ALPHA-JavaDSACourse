@@ -46,17 +46,51 @@ public class Recursion {
         return isSorted(arr, i + 1);
     }
 
-    public static int firstOccurence(int[] arr, int key, int i) {
+    public static int firstOccurrence(int[] arr, int key, int i) {
         if (i == arr.length) return -1;
         if (arr[i] == key) return i;
-        return firstOccurence(arr, key, i + 1);
+        return firstOccurrence(arr, key, i + 1);
     }
 
-    public static int lastOccurence(int[] arr, int key, int i) {
+    public static int lastOccurrence(int[] arr, int key, int i) {
         if (i == arr.length) return -1;
-        int isfound = lastOccurence(arr, key, i + 1);
+        int isfound = lastOccurrence(arr, key, i + 1);
         if (isfound == -1 && arr[i] == key) return i;
         return isfound;
+    }
+
+    public static int pow(int x, int n) {
+        if (n == 0) return 1;
+        return x * pow(x, n - 1);
+    }
+
+    public static int optimizedPow(int x, int n) {
+        if (n == 0) return 1;
+        int halfPow = optimizedPow(x, n / 2);
+        if (n % 2 == 0) return halfPow * halfPow;
+        else return x * halfPow * halfPow;
+
+        /*
+        //1st time I wrote like this.
+        if (n == 0) return 1;
+        int halfPow = optimizedPow(x, n / 2);
+        if (n % 2 != 0) return x * halfPow * halfPow;
+        return (int) Math.pow(optimizedPow(x, n / 2), 2);
+        */
+    }
+
+    public static int tilingProblem(int N) {
+        if (N == 0 || N == 1) return 1; //Base case
+        return tilingProblem(N - 1) + tilingProblem(N - 2);
+
+        /*
+        //Didi's code
+        if (N == 0 || N == 1) return 1; //Base case
+        int vertical = tilingProblem(N - 1); //Vertical approach/choice
+        int horizontal = tilingProblem(N - 2); //Horizontal approach/choice
+        int totalWays = vertical + horizontal;
+        return totalWays;
+        */
     }
 
     public static void main(String[] para_coder) {
@@ -68,7 +102,10 @@ public class Recursion {
 /*        int[] arr = {1, 2, 3, 4, 5};
         System.out.println(isSorted(arr, 0));*/
         /*int[] arr = {8, 3, 7, 6, 9, 7, 5, 10, 6};
-        //System.out.println(firstOccurence(arr, 0, 0));
-        System.out.println(lastOccurence(arr, 7, 0));*/
+        //System.out.println(firstOccurrence(arr, 0, 0));
+        System.out.println(lastOccurrence(arr, 7, 0));*/
+//        System.out.println(pow(2, 1));
+//        System.out.println(optimizedPow(2, 100));
+//        System.out.println(tilingProblem(5));
     }
 }
