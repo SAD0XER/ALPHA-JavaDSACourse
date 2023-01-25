@@ -93,13 +93,33 @@ public class Recursion {
         */
     }
 
+    public static void removeDuplicates(String str, int idx, StringBuilder newstr, boolean[] map) {
+        if (idx == str.length()) { /*Base condition*/
+            System.out.println(newstr);
+            return;
+        }
+
+        int currChar = str.charAt(idx);
+        if (map[currChar - 'a']) { /*for duplicate char*/
+            removeDuplicates(str, idx + 1, newstr, map);
+        } else { /*for new char*/
+            map[currChar - 'a'] = true;
+            removeDuplicates(str, idx + 1, newstr.append((char)currChar), map);
+        }
+    }
+
+    public static int FriendsParing(int N) {
+        if (N == 1 || N == 2) return N;
+        return FriendsParing(N-1) + ((N-1) * FriendsParing(N-2));
+    }
+
     public static void main(String[] para_coder) {
 //        printDec(10);
 //        printInc(10);
 //        System.out.println(factorial(5));
 //        System.out.println(sumNatural(5));
 //        System.out.println(fibonacci(5));
-/*        int[] arr = {1, 2, 3, 4, 5};
+        /*int[] arr = {1, 2, 3, 4, 5};
         System.out.println(isSorted(arr, 0));*/
         /*int[] arr = {8, 3, 7, 6, 9, 7, 5, 10, 6};
         //System.out.println(firstOccurrence(arr, 0, 0));
@@ -107,5 +127,8 @@ public class Recursion {
 //        System.out.println(pow(2, 1));
 //        System.out.println(optimizedPow(2, 100));
 //        System.out.println(tilingProblem(5));
-    }
+        /*String str = "appannacollege";
+        removeDuplicates(str, 0, new StringBuilder(""), new boolean[26]);*/
+//        System.out.println(FriendsParing(3));
+        }
 }
