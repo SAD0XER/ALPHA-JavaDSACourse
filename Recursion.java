@@ -113,6 +113,15 @@ public class Recursion {
         return FriendsParing(N-1) + ((N-1) * FriendsParing(N-2));
     }
 
+    public static void printBinaryString(int N, int lastPlace, String str) {
+        if (N == 0) {
+            System.out.println(str);
+            return;
+        }
+        printBinaryString(N - 1, 0, str + "0");
+        if (lastPlace == 0) printBinaryString(N-1, 1, str+"1");
+    }
+
     public static void main(String[] para_coder) {
 //        printDec(10);
 //        printInc(10);
@@ -130,5 +139,6 @@ public class Recursion {
         /*String str = "appannacollege";
         removeDuplicates(str, 0, new StringBuilder(""), new boolean[26]);*/
 //        System.out.println(FriendsParing(3));
+//        printBinaryString(3, 0, "");
         }
 }
