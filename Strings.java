@@ -137,7 +137,7 @@ public class Strings {
         }
     }
 
-    public static void main(String[] para_coder) {
+    public static void main(String[] para_coder) s{
         Scanner scan = new Scanner(System.in);
 
         //String declartion.

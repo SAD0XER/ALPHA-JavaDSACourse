@@ -123,24 +123,24 @@ public class Recursion {
     }
 
     //Assignment Questions 1
-    public static void keyOccurs(int[] arr, int idx, int key) {
+    public static void allOccurence(int[] arr, int idx, int key) {
         if (idx == arr.length) return;
         if (arr[idx] == key) System.out.print(idx + "\t");
-        keyOccurs(arr, idx + 1, key);
+        allOccurence(arr, idx + 1, key);
     }
 
     //Assignment Question 2
-    public static String convertNumToStr(int N, String str) {
-//        if (N % 10 == 0) return str;
+    public static void printNumToStr(int N) {
         String[] numStr = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
-        StringBuilder newstr = new StringBuilder("");
-        int lastDigit = N % 10;
-        if (lastDigit == 0) return newstr.toString();
-        else {
-//            newstr = numStr[N % 10] + str;
-            newstr.append(numStr[N % 10]);
-        }
-            convertNumToStr(N / 10, str);
+        if (N == 0) return;
+        printNumToStr(N / 10);
+        System.out.print(numStr[N % 10] + " ");
+    }
+
+    //Assignment Question 3
+    public static int length(String str) {
+        if (str == "") return 0;
+        return length(str.substring(1)) + 1;
     }
 
     public static void main(String[] para_coder) {
@@ -161,16 +161,15 @@ public class Recursion {
         removeDuplicates(str, 0, new StringBuilder(""), new boolean[26]);*/
 //        System.out.println(FriendsParing(3));
 //        printBinaryString(3, 0, "");
-        /*//Assignment Question 1
-        int arr[] = {3, 2, 4, 5, 6, 2, 7, 2, 2};
-        keyOccurs(arr, 0, 2);*/
+
+        //Assignment Question 1
+//        int arr[] = {3, 2, 4, 5, 6, 2, 7, 2, 2};
+//        keyOccurs(arr, 0, 2);
 
         //Assignment Question 2
-        System.out.println(convertNumToStr(1947, new String("")));
+//        printNumToStr(1920);
 
         //Assignment Question 3
-        //Assignment Question 4
-        //Assignment Question 5
-
+//        System.out.println(length(""));
     }
 }
