@@ -1,5 +1,10 @@
 import java.util.Scanner; //impoting scanner class.
 public class Basic {
+	public static void printArray(int[] array) {
+		for (int i = 0; i < array.length; i++) {
+			System.out.print(array[i] + " ");
+		}
+	}
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
