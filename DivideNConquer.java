@@ -53,20 +53,20 @@ public class DivideNConquer {
     }
 
     public static void quickSort(int arr[], int si, int ei) {
-        if (si >= ei) return;
+        if (si >= ei) return; //Base Case
 
         int pIdx = partition(arr, si, ei);
 
-        quickSort(arr, si, pIdx - 1); //left
-        quickSort(arr, pIdx + 1, ei); //right
+        quickSort(arr, si, pIdx - 1); //Partition in Left
+        quickSort(arr, pIdx + 1, ei); //Partition in Right
     }
 
     public static int partition(int[] arr, int si, int ei) {
-        int pivot = arr[ei];
-        int i = si - 1;
+        int pivot = arr[ei]; //Choose Last number as a Pivot
+        int i = si - 1; //Index pointer
 
         for (int j = si; j < ei; j++) {
-            if (arr[j] <= pivot) {
+            if (arr[j] <= pivot) { //Comparing pivot with elements of array
                 i++;
                 //swapping
                 int temp = arr[j];
@@ -74,10 +74,10 @@ public class DivideNConquer {
                 arr[i] = temp;
             }
         }
-        //
+        //Swapping for pivot
         i++;
         int temp = pivot;
-        arr[ei] = arr[i]; //Don't write `pivot = arr[i];`
+        arr[ei] = arr[i]; //Don't pivot = arr[i];
         arr[i] = temp;
         return i;
     }
@@ -86,7 +86,7 @@ public class DivideNConquer {
         int[] arr = {6, 3, 9, 5, 2, 8, -2};
 //        mergeSort(arr, 0, arr.length - 1);
 //        printArray(arr);
-        quickSort(arr, 0, arr.length - 1);
-        printArray(arr);
+//        quickSort(arr, 0, arr.length - 1);
+//        printArray(arr);
     }
 }
