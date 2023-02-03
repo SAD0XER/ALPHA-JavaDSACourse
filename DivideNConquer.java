@@ -82,11 +82,44 @@ public class DivideNConquer {
         return i;
     }
 
+    public static int search(int[] arr, int tar, int si, int ei) {
+        //Base Case
+        if (si > ei) return -1;
+
+        //Finding Mid of Line
+        int mid = si - (ei - si) / 2;
+
+        //Target found at mid
+        if (tar == arr[mid]) return mid;
+
+        //Mid on line 1
+        if (arr[si] <= arr[mid]) {
+            if (arr[si] <= tar && tar <= arr[mid]) {
+                return search(arr, tar, si, mid - 1);
+            } //Left side
+            else {
+                return search(arr, tar, mid + 1, ei);
+            } //Right side
+        } else {
+            //Mid on line 2
+            if (arr[mid] <= tar && tar <= arr[ei]) {
+                return search(arr, tar, mid + 1, ei);
+            } //Right side
+            else {
+                return search(arr, tar, si, mid - 1);
+            }//Left side
+        }
+    }
+
     public static void main(String[] para_coder) {
-        int[] arr = {6, 3, 9, 5, 2, 8, -2};
+//        int[] arr = {6, 3, 9, 5, 2, 8, -2};
 //        mergeSort(arr, 0, arr.length - 1);
 //        printArray(arr);
 //        quickSort(arr, 0, arr.length - 1);
 //        printArray(arr);
+        int[] arr = {4, 5, 6, 7, 0, 1, 2};
+        int target = 0;
+        int idx = search(arr, target, 0, arr.length - 1);
+        System.out.println(idx);
     }
 }
