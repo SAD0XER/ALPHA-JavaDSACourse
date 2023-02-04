@@ -52,7 +52,7 @@ public class DivideNConquer {
         }
     }
 
-    public static void quickSort(int arr[], int si, int ei) {
+    public static void quickSort(int[] arr, int si, int ei) {
         if (si >= ei) return; //Base Case
 
         int pIdx = partition(arr, si, ei);
@@ -76,9 +76,8 @@ public class DivideNConquer {
         }
         //Swapping for pivot
         i++;
-        int temp = pivot;
         arr[ei] = arr[i]; //Don't pivot = arr[i];
-        arr[i] = temp;
+        arr[i] = pivot;
         return i;
     }
 
@@ -87,28 +86,57 @@ public class DivideNConquer {
         if (si > ei) return -1;
 
         //Finding Mid of Line
-        int mid = si - (ei - si) / 2;
+        int mid = si + (ei - si) / 2;
 
         //Target found at mid
         if (tar == arr[mid]) return mid;
 
         //Mid on line 1
         if (arr[si] <= arr[mid]) {
-            if (arr[si] <= tar && tar <= arr[mid]) {
-                return search(arr, tar, si, mid - 1);
-            } //Left side
-            else {
-                return search(arr, tar, mid + 1, ei);
-            } //Right side
+            if (arr[si] <= tar && tar <= arr[mid]) return search(arr, tar, si, mid - 1); //Left side
+            else return search(arr, tar, mid + 1, ei); //Right side
         } else {
             //Mid on line 2
-            if (arr[mid] <= tar && tar <= arr[ei]) {
-                return search(arr, tar, mid + 1, ei);
-            } //Right side
-            else {
-                return search(arr, tar, si, mid - 1);
-            }//Left side
+            if (arr[mid] <= tar && tar <= arr[ei]) return search(arr, tar, mid + 1, ei); //Right side
+            else return search(arr, tar, si, mid - 1); //Left side
         }
+    }
+
+    public static int search(int[] arr, int target) {
+        /*This is an official code from Alpha.
+        Approach: Iterative
+        In this code bring your element at mid so, it will return by mid.*/
+
+        int si = 0;
+        int ei = arr.length - 1;
+
+        while (si <= ei) {
+            int mid = (si + ei) / 2;
+            if (arr[mid] == target) {
+                return mid;
+            }
+            //falls on L1
+            if (arr[si] <= arr[mid]) {
+                if (arr[si] <= target && target <= arr[mid]) {
+                    //go left
+                    ei = mid - 1;
+                } else {
+                    //go right
+                    si = mid + 1;
+                }
+            }
+            //falls on L2
+            else {
+                if (arr[mid] <= target && target <= arr[ei]) {
+                    //go right
+                    si = mid + 1;
+                } else {
+                    //go left
+                    ei = mid - 1;
+                }
+            }
+        }
+        return -1;
     }
 
     public static void main(String[] para_coder) {
@@ -117,9 +145,8 @@ public class DivideNConquer {
 //        printArray(arr);
 //        quickSort(arr, 0, arr.length - 1);
 //        printArray(arr);
-        int[] arr = {4, 5, 6, 7, 0, 1, 2};
-        int target = 0;
-        int idx = search(arr, target, 0, arr.length - 1);
-        System.out.println(idx);
+//        int[] arr = {4, 5, 6, 7, 0, 1, 2};
+//        System.out.println(search(arr, 1, 0, arr.length - 1));
+//        System.out.println(search(arr, 0));
     }
 }
