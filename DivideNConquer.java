@@ -139,6 +139,61 @@ public class DivideNConquer {
         return -1;
     }
 
+//    This is Official Solution. Not Me.
+    public static String[] sortString(String[] str, int si, int ei) {
+        if (si == ei) {
+            String[] A = {str[si]};
+            return A;
+        }
+
+        int mid = si + (ei - si) / 2;
+        String[] str1 = sortString(str, si, mid);
+        String[] str2 = sortString(str, mid + 1, ei);
+        String[] str3 = merge(str1, str2);
+        return str3;
+    }
+
+    static String[] merge(String[] str1, String[] str2) {
+        int m = str1.length;
+        int n = str2.length;
+        String[] arr3 = new String[m + n];
+        int idx = 0;
+        int i = 0;
+        int j = 0;
+
+        while (i < m && j < n) {
+            if (isAlphabeticallySmaller(str1[i], str2[j])) {
+                arr3[idx] = str1[i];
+                i++;
+                idx++;
+            } else {
+                arr3[idx] = str2[j];
+                j++;
+                idx++;
+            }
+        }
+
+        while (i < m) {
+            arr3[idx] = str1[i];
+            i++;
+            idx++;
+        }
+        while (j < n) {
+            arr3[idx] = str2[j];
+            j++;
+            idx++;
+        }
+        return arr3;
+    }
+
+    // Return true if str1 appears before str2 in alphabetical order
+    static boolean isAlphabeticallySmaller(String str1, String str2) {
+        if (str1.compareTo(str2) < 0) {
+            return true;
+        }
+        return false;
+    }
+
     public static void main(String[] para_coder) {
 //        int[] arr = {6, 3, 9, 5, 2, 8, -2};
 //        mergeSort(arr, 0, arr.length - 1);
@@ -148,5 +203,8 @@ public class DivideNConquer {
 //        int[] arr = {4, 5, 6, 7, 0, 1, 2};
 //        System.out.println(search(arr, 1, 0, arr.length - 1));
 //        System.out.println(search(arr, 0));
+        String[] str = {"sun", "earth", "mars", "mercury"};
+        String[] A = sortString(str, 0, str.length - 1);
+        for (int i = 0; i < str.length; i++) System.out.println(A[i]);
     }
 }
