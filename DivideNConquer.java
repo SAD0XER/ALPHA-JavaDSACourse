@@ -139,7 +139,7 @@ public class DivideNConquer {
         return -1;
     }
 
-//    This is Official Solution. Not Me.
+    //This is Official Solution. Not by Me.
     public static String[] sortString(String[] str, int si, int ei) {
         if (si == ei) {
             String[] A = {str[si]};
@@ -149,8 +149,7 @@ public class DivideNConquer {
         int mid = si + (ei - si) / 2;
         String[] str1 = sortString(str, si, mid);
         String[] str2 = sortString(str, mid + 1, ei);
-        String[] str3 = merge(str1, str2);
-        return str3;
+        return merge(str1, str2);
     }
 
     static String[] merge(String[] str1, String[] str2) {
@@ -203,8 +202,8 @@ public class DivideNConquer {
 //        int[] arr = {4, 5, 6, 7, 0, 1, 2};
 //        System.out.println(search(arr, 1, 0, arr.length - 1));
 //        System.out.println(search(arr, 0));
-        String[] str = {"sun", "earth", "mars", "mercury"};
-        String[] A = sortString(str, 0, str.length - 1);
-        for (int i = 0; i < str.length; i++) System.out.println(A[i]);
+//        String[] str = {"sun", "earth", "mars", "mercury"};
+//        String[] A = sortString(str, 0, str.length - 1);
+//        for (int i = 0; i < str.length; i++) System.out.println(A[i]);
     }
 }
