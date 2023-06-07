@@ -12,6 +12,22 @@ public class BacktrackingArray {
         arr[i] = arr[i] - 2; //backtracking step
     }
 
+    public static void findSubset(String str, String ans, int i){
+        //base case
+        if(i == str.length()){
+            if(ans.length() == 0){
+                System.out.println("null");
+            } else {
+                System.out.println(ans);
+            }
+            return;
+        }
+
+        //recursion
+        findSubset(str, ans+str.charAt(i), i+1); //Choice is YES
+        findSubset(str, ans, i+1); // Choice is NO
+    }
+
     public static void printArr(int arr[]){
         for (int i = 0; i < arr.length; i++){
             System.out.print(arr[i] + " ");
@@ -19,8 +35,10 @@ public class BacktrackingArray {
         System.out.println();
     }
     public static void main(String[] para_coder){
-        int arr[] = new int[5];
-        changeArr(arr, 0, 1);
-        printArr(arr);
+//        int arr[] = new int[5];
+//        changeArr(arr, 0, 1);
+//        printArr(arr);
+        String str = "abc";
+        findSubset(str, "", 0);
     }
 }
