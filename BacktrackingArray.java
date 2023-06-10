@@ -39,8 +39,59 @@ public class BacktrackingArray {
         for (int i = 0; i < str.length(); i++) {
             char curr = str.charAt(i);
             //Remove 1 char from str: "abcde" => "ab" + "de" = "abde"
-            String NewStr = str.substring(0, i) + str.substring(i+1);
-            findPermutation(NewStr, ans+curr);
+            String NewStr = str.substring(0, i) + str.substring(i + 1);
+            findPermutation(NewStr, ans + curr);
+        }
+    }
+
+    public static void nQueens(char[][] board, int row) {
+        //base case
+        if (row == board.length) {
+            printBoard(board);
+            return;
+        }
+
+        //recursion for col
+        for (int j = 0; j < board.length; j++) {
+            if (isSafe(board, row, j)) {
+                board[row][j] = 'Q';
+                nQueens(board, row + 1); //recursive call
+                board[row][j] = 'x'; //backtracking step
+            }
+        }
+    }
+
+    public static boolean isSafe(char[][] board, int row, int col) {
+        //up side
+        for (int i = row - 1; i >= 0; i--) {
+            if (board[i][col] == 'Q') {
+                return false;
+            }
+        }
+
+        //up left diagonal
+        for (int i = row - 1, j = col - 1; i >= 0 && j >= 0; i--, j--) {
+            if (board[i][j] == 'Q') {
+                return false;
+            }
+        }
+
+        //up right diagonal
+        for (int i = row - 1, j = col + 1; i >= 0 && j < board.length; i--, j++) {
+            if (board[i][j] == 'Q') {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void printBoard(char[][] board) {
+        System.out.println("--------Safe Chess Board--------");
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board.length; j++) {
+                System.out.print(board[i][j] + " ");
+            }
+            System.out.println();
         }
     }
 
@@ -55,8 +106,17 @@ public class BacktrackingArray {
 //        int arr[] = new int[5];
 //        changeArr(arr, 0, 1);
 //        printArr(arr);
-        String str = "abc";
+//        String str = "abc";
 //        findSubset(str, "", 0);
-        findPermutation(str, "");
+//        findPermutation(str, "");
+        int n = 5;
+        char[][] board = new char[n][n];
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                board[i][j] = 'x';
+            }
+        }
+        nQueens(board, 0);
     }
 }
