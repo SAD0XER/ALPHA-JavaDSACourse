@@ -56,7 +56,7 @@ public class BacktrackingArray {
         for (int j = 0; j < board.length; j++) {
             if (isSafe(board, row, j)) {
                 board[row][j] = 'Q';
-                if (nQueens(board, row + 1)){
+                if (nQueens(board, row + 1)) {
                     return true;
                 }
 //                board[row][j] = 'x'; //backtracking step
@@ -108,6 +108,52 @@ public class BacktrackingArray {
         System.out.println();
     }
 
+    public static boolean ratMaze(int[][] maze, int[][] solution) {
+        if (!solveMazeUtil(maze, 0, 0, solution)) {
+            System.out.print("Solution doesn't exist");
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean solveMazeUtil(int[][] maze, int x, int y, int[][] solution) {
+        //base case
+        if (x == maze.length - 1 && y == maze.length - 1 && maze[x][y] == 1) {
+            solution[x][y] = 1;
+            return true;
+        }
+        //Recursion: Check if maze[x][y] is valid
+        if (isSafe(maze, x, y)) {
+            if (solution[x][y] == 1) {
+                return false;
+            }
+            solution[x][y] = 1;
+            if (solveMazeUtil(maze, x + 1, y, solution)) {
+                return true;
+            }
+            if (solveMazeUtil(maze, x, y + 1, solution)) {
+                return true;
+            }
+            solution[x][y] = 0;
+            return false;
+        }
+        return false;
+    }
+
+    public static boolean isSafe(int[][] maze, int x, int y) {
+        // if (x, y outside maze) return false
+        return (x >= 0 && x < maze.length && y >= 0 && y < maze.length && maze[x][y] == 1);
+    }
+
+    public static void printMaze(int[][] maze) {
+        for (int i = 0; i < maze.length; i++) {
+            for (int j = 0; j < maze.length; j++) {
+                System.out.print(maze[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
     public static void main(String[] para_coder) {
 //        int arr[] = new int[5];
 //        changeArr(arr, 0, 1);
@@ -115,7 +161,7 @@ public class BacktrackingArray {
 //        String str = "abc";
 //        findSubset(str, "", 0);
 //        findPermutation(str, "");
-        int n = 5;
+        /*int n = 5;
         char[][] board = new char[n][n];
 
         for (int i = 0; i < n; i++) {
@@ -129,7 +175,23 @@ public class BacktrackingArray {
             printBoard(board);
         } else {
             System.out.println("Solution is NOT possible.");
-        }
+        }*/
 //        System.out.println("Total ways to solve N-Queen problem is " + count); //count ways
+
+        /*Question 1: Rat in maze, N*N maze, where the cells with value 0 represent the maze’s blocked locations while value 1 is the open/available path that the rat can take to reach its destination. Destination is (N-1, N-1). Your task is to find all the possible paths that the rat can take to reach from source to destination in the maze. Possible directions are Up, Down, Left, Right.*/
+        int[][] maze = {
+                {1, 0, 0, 0},
+                {1, 1, 0, 1},
+                {0, 1, 0, 0},
+                {1, 1, 1, 1}
+        };
+
+        int N = maze.length;
+        int[][] solution = new int[N][N];
+
+        if (ratMaze(maze, solution)) {
+            System.out.println("Solution exists.");
+            printMaze(maze);
+        }
     }
 }
