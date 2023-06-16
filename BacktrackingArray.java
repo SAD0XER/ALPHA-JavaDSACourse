@@ -145,15 +145,6 @@ public class BacktrackingArray {
         return (x >= 0 && x < maze.length && y >= 0 && y < maze.length && maze[x][y] == 1);
     }
 
-    public static void printMaze(int[][] maze) {
-        for (int i = 0; i < maze.length; i++) {
-            for (int j = 0; j < maze.length; j++) {
-                System.out.print(maze[i][j] + " ");
-            }
-            System.out.println();
-        }
-    }
-
     final static char[][] L = {
             {}, {}, {'a', 'b', 'c'}, {'d', 'e', 'f'}, {'g', 'h', 'i'},
             {'j', 'k', 'l'}, {'m', 'n', 'o'}, {'p', 'q', 'r', 's'},
@@ -176,6 +167,65 @@ public class BacktrackingArray {
             char[] letters = L[Character.getNumericValue(D.charAt(pos))];
             for (int i = 0; i < letters.length; i++)
                 bfs(pos + 1, len, new StringBuilder(sb).append(letters[i]), D);
+        }
+    }
+
+    static int N = 8;
+
+    public static boolean isSafe(int x, int y, int[][] sol) {
+        return (x >= 0 && x < N && y >= 0 && y < N && sol[x][y] == -1);
+    }
+
+    public static boolean solveKnightTour() {
+        int[][] solution = new int[8][8];
+
+        for (int x = 0; x < N; x++) {
+            for (int y = 0; y < N; y++) {
+                solution[x][y] = -1;
+            }
+        }
+
+        int[] xMove = {2, 1, -1, -2, -2, -1, 1, 2};
+        int[] yMove = {1, 2, 2, 1, -1, -2, -2, -1};
+
+        //As the Knight starts from cell(0,0)
+        solution[0][0] = 0;
+
+        if (!solveKTUtil(0, 0, 1, solution, xMove, yMove)) {
+            System.out.println("Solution does not exist");
+            return false;
+        } else {
+            printSolution(solution);
+        }
+        return true;
+    }
+
+    public static boolean solveKTUtil(int x, int y, int movei, int[][] solution, int[] xMove, int[] yMove) {
+        int k, next_x, next_y;
+
+        if (movei == N * N) return true;
+
+        for (k = 0; k < 8; k++) {
+            next_x = x + xMove[k];
+            next_y = y + yMove[k];
+            if (isSafe(next_x, next_y, solution)) {
+                solution[next_x][next_y] = movei;
+                if (solveKTUtil(next_x, next_y, movei + 1, solution, xMove, yMove)) {
+                    return true;
+                } else {
+                    solution[next_x][next_y] = -1; // backtracking
+                }
+            }
+        }
+        return false;
+    }
+
+    public static void printSolution(int[][] maze) {
+        for (int i = 0; i < maze.length; i++) {
+            for (int j = 0; j < maze.length; j++) {
+                System.out.print(maze[i][j] + " ");
+            }
+            System.out.println();
         }
     }
 
@@ -216,10 +266,13 @@ public class BacktrackingArray {
 
         if (ratMaze(maze, solution)) {
             System.out.println("Solution exists.");
-            printMaze(maze);
+            printSolution(maze);
         }*/
 
         /*Question 2: Keypad Combination, Given a string containing digits from 2-9 inclusive, print all possible letter combinations that the number could represent. You can print the answer in any order. A mapping of digits to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters.*/
-        letterCombinations("23");
+//        letterCombinations("23");
+
+        /*Question 3: Knight’s Tour, Given a N*N board with the Knight placed on the first block of an empty board. Moving according to the rules of chess, knights must visit each square exactly once. Print the order of each cell in which they are visited.*/
+        solveKnightTour();
     }
 }
