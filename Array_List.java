@@ -80,7 +80,7 @@ public class Array_List {
         list9.add(3, true);*/
 
         //Print reverse of ArrayList. O(n)
-        ArrayList<Integer> list = new ArrayList<>();
+        /*ArrayList<Integer> list = new ArrayList<>();
         //Adding elements in ArrayList using loop.
         for (int i = 1; i < 6; i++) {
             list.add(i);
@@ -89,6 +89,23 @@ public class Array_List {
         for (int i = list.size() - 1; i >= 0; i--) {
             System.out.print(list.get(i) + " ");
         }
-        System.out.println();
+        System.out.println();*/
+
+        //Find Maximum number from ArrayList. O(n)
+        ArrayList<Integer> list = new ArrayList<>();
+        Scanner scan = new Scanner(System.in);
+        int max = Integer.MIN_VALUE;
+
+        for (int i = 1; i < 6; i++) {
+            System.out.print("Enter Number: ");
+            int n = scan.nextInt();
+            list.add(n);
+        }
+
+        for (int i = 0; i < list.size(); i++) {
+            if (max < list.get(i)) max = list.get(i);
+            max = Math.max(max, list.get(i));
+        }
+        System.out.println("Max element of ArrayList is = " + max);
    }
 }
