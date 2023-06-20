@@ -1,6 +1,13 @@
 import java.util.*;
 
 public class Array_List {
+
+    public static void swap(ArrayList<Integer> list, int idx1, int idx2) {
+        int temp = list.get(idx1);
+        list.set(idx1, list.get(idx2));
+        list.set(idx2, temp);
+    }
+
     public static void main(String[] para_coder) {
         //Defining all the ArrayList variable
         /*ArrayList<Byte> list1 = new ArrayList<>();
@@ -92,7 +99,7 @@ public class Array_List {
         System.out.println();*/
 
         //Find Maximum number from ArrayList. O(n)
-        ArrayList<Integer> list = new ArrayList<>();
+        /*ArrayList<Integer> list = new ArrayList<>();
         Scanner scan = new Scanner(System.in);
         int max = Integer.MIN_VALUE;
 
@@ -106,6 +113,15 @@ public class Array_List {
             if (max < list.get(i)) max = list.get(i);
             max = Math.max(max, list.get(i));
         }
-        System.out.println("Max element of ArrayList is = " + max);
-   }
+        System.out.println("Max element of ArrayList is = " + max);*/
+
+        //Swap 2 Numbers
+        ArrayList<Integer> list = new ArrayList<>();
+        list.add(1234567); list.add(5); list.add(323452); list.add(3); list.add(3736);
+
+        int idx1 = 1, idx2 = 3;
+        System.out.println(list);
+        swap(list, idx1, idx2);
+        System.out.println(list);
+    }
 }
