@@ -115,13 +115,17 @@ public class Array_List {
         }
         System.out.println("Max element of ArrayList is = " + max);*/
 
-        //Swap 2 Numbers
+        //Sorting an ArrayList
         ArrayList<Integer> list = new ArrayList<>();
-        list.add(1234567); list.add(5); list.add(323452); list.add(3); list.add(3736);
+        list.add(2); list.add(5); list.add(3); list.add(1); list.add(4);
 
-        int idx1 = 1, idx2 = 3;
-        System.out.println(list);
-        swap(list, idx1, idx2);
-        System.out.println(list);
+        System.out.println("Given ArrayList: " + list);
+
+        Collections.sort(list); //Ascending Sort
+        System.out.println("Ascending Sorted ArrayList: " + list);
+
+        Collections.sort(list, Collections.reverseOrder()); //Descending Sort
+        //list.sort(Collections.reverseOrder()); //Descending Sort
+        System.out.println("Descending Sorted ArrayList: " + list);
     }
 }
