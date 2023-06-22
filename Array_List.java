@@ -115,8 +115,17 @@ public class Array_List {
         }
         System.out.println("Max element of ArrayList is = " + max);*/
 
-        //Sorting an ArrayList
-        ArrayList<Integer> list = new ArrayList<>();
+        //Swap 2 Numbers.
+        /*ArrayList<Integer> list = new ArrayList<>();
+        list.add(1234567); list.add(5); list.add(323452); list.add(3); list.add(3736);
+
+        int idx1 = 1, idx2 = 3;
+        System.out.println(list);
+        swap(list, idx1, idx2);
+        System.out.println(list);*/
+
+        //Sorting an ArrayList.
+        /*ArrayList<Integer> list = new ArrayList<>();
         list.add(2); list.add(5); list.add(3); list.add(1); list.add(4);
 
         System.out.println("Given ArrayList: " + list);
@@ -126,6 +135,28 @@ public class Array_List {
 
         Collections.sort(list, Collections.reverseOrder()); //Descending Sort
         //list.sort(Collections.reverseOrder()); //Descending Sort
-        System.out.println("Descending Sorted ArrayList: " + list);
+        System.out.println("Descending Sorted ArrayList: " + list);*/
+
+        //Multi-Dimensional ArrayList.
+        ArrayList<ArrayList<Integer>> mainList = new ArrayList<>(); //Defining 2D ArrayList
+        ArrayList<Integer> list1 = new ArrayList<>(); //Defined nested list 1
+        ArrayList<Integer> list2 = new ArrayList<>(); //Defined nested list 2
+        ArrayList<Integer> list3 = new ArrayList<>(); //Defined nested list 2
+        mainList.add(list1); mainList.add(list2); mainList.add(list3); //Adding all lists in mainList
+
+        //Add elements in each list through loop.
+        for (int i = 1; i <= 10; i++) {
+            list1.add(1 * i); list2.add(2 * i); list3.add(3 * i);
+        }
+
+        //Print all nested list.
+        for (int i = 0; i < mainList.size(); i++) {
+            ArrayList<Integer> currList = mainList.get(i);
+            for (int j = 0; j < currList.size(); j++) {
+                System.out.print(currList.get(j) + " ");
+            }
+            System.out.println();
+        }
+        System.out.println("mainList = " + mainList);
     }
 }
