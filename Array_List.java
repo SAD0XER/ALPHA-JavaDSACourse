@@ -8,6 +8,20 @@ public class Array_List {
         list.set(idx2, temp);
     }
 
+    public static int storeWater(ArrayList<Integer> height) {
+        int maxWater = 0;
+        //brute force
+        for (int i = 0; i < height.size(); i++) {
+            for (int j = i + 1; j < height.size(); j++) {
+                int ht = Math.min(height.get(i), height.get(j));
+                int width = j - i;
+                int currWater = ht * width;
+                maxWater = Math.max(maxWater, currWater);
+            }
+        }
+        return maxWater;
+    }
+
     public static void main(String[] para_coder) {
         //Defining all the ArrayList variable
         /*ArrayList<Byte> list1 = new ArrayList<>();
@@ -138,7 +152,7 @@ public class Array_List {
         System.out.println("Descending Sorted ArrayList: " + list);*/
 
         //Multi-Dimensional ArrayList.
-        ArrayList<ArrayList<Integer>> mainList = new ArrayList<>(); //Defining 2D ArrayList
+        /*ArrayList<ArrayList<Integer>> mainList = new ArrayList<>(); //Defining 2D ArrayList
         ArrayList<Integer> list1 = new ArrayList<>(); //Defined nested list 1
         ArrayList<Integer> list2 = new ArrayList<>(); //Defined nested list 2
         ArrayList<Integer> list3 = new ArrayList<>(); //Defined nested list 2
@@ -157,6 +171,13 @@ public class Array_List {
             }
             System.out.println();
         }
-        System.out.println("mainList = " + mainList);
+        System.out.println("mainList = " + mainList);*/
+
+        //Container with Most Water. Brute Force: O(n^2)
+        ArrayList<Integer> height = new ArrayList<>();
+        //height = [1, 8, 6, 2, 5, 4, 8, 3, 7] //ArrayList
+        height.add(1); height.add(8); height.add(6); height.add(2); height.add(5); height.add(4); height.add(8); height.add(3); height.add(7);
+
+        System.out.println(storeWater(height));
     }
 }
