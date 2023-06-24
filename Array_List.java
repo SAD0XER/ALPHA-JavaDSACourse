@@ -2,21 +2,45 @@ import java.util.*;
 
 public class Array_List {
 
-    public static void swap(ArrayList<Integer> list, int idx1, int idx2) {
+    /*public static void swap(ArrayList<Integer> list, int idx1, int idx2) {
         int temp = list.get(idx1);
         list.set(idx1, list.get(idx2));
         list.set(idx2, temp);
-    }
+    }*/
 
-    public static int storeWater(ArrayList<Integer> height) {
+    //Brute Force Approach Function.
+    /*public static int storeWater(ArrayList<Integer> height) {
         int maxWater = 0;
-        //brute force
+
         for (int i = 0; i < height.size(); i++) {
             for (int j = i + 1; j < height.size(); j++) {
                 int ht = Math.min(height.get(i), height.get(j));
                 int width = j - i;
                 int currWater = ht * width;
                 maxWater = Math.max(maxWater, currWater);
+            }
+        }
+        return maxWater;
+    }*/
+
+    //2 Pointer Approach Function.
+    public static int storeWater(ArrayList<Integer> height) {
+        int maxWater = 0;
+        int lp = 0; //Left Pointer.
+        int rp = height.size() - 1; //Right Pointer.
+
+        while (lp < rp) {
+            //Calculating Water Area.
+            int ht = Math.min(height.get(lp), height.get(rp));
+            int width = rp - lp;
+            int currWater = ht * width;
+            maxWater = Math.max(currWater, maxWater);
+
+            //Updating Pointer.
+            if (height.get(lp) < height.get(rp)) {
+                lp++;
+            } else {
+                rp--;
             }
         }
         return maxWater;
@@ -173,7 +197,7 @@ public class Array_List {
         }
         System.out.println("mainList = " + mainList);*/
 
-        //Container with Most Water. Brute Force: O(n^2)
+        //Container with Most Water. 2 Pointer Approach: O(n)
         ArrayList<Integer> height = new ArrayList<>();
         //height = [1, 8, 6, 2, 5, 4, 8, 3, 7] //ArrayList
         height.add(1); height.add(8); height.add(6); height.add(2); height.add(5); height.add(4); height.add(8); height.add(3); height.add(7);
