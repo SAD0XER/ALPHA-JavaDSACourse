@@ -47,6 +47,7 @@ public class Array_List {
         return maxWater;
     }*/
 
+    //Brute Force Approach Function.
     /*public static boolean pairSum1(ArrayList<Integer> list, int target) {
         for (int i = 0; i < list.size(); i++) {
             for (int j = i + 1; j < list.size(); j++) {
@@ -58,7 +59,8 @@ public class Array_List {
         return false;
     }*/
 
-    public static boolean pairSum2(ArrayList<Integer> list, int target) {
+    //2 Pointer Approach Function.
+    public static boolean pairSum1(ArrayList<Integer> list, int target) {
         int lp = 0, rp = list.size() - 1;
 
         while (lp != rp) {
@@ -240,6 +242,6 @@ public class Array_List {
             list.add(i);
         }
         int target = 11;
-        System.out.println(pairSum2(list, target));
+        System.out.println(pairSum1(list, target));
     }
 }
