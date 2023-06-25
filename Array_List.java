@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class Array_List {
@@ -24,7 +25,7 @@ public class Array_List {
     }*/
 
     //2 Pointer Approach Function.
-    public static int storeWater(ArrayList<Integer> height) {
+    /*public static int storeWater(ArrayList<Integer> height) {
         int maxWater = 0;
         int lp = 0; //Left Pointer.
         int rp = height.size() - 1; //Right Pointer.
@@ -44,6 +45,17 @@ public class Array_List {
             }
         }
         return maxWater;
+    }*/
+
+    public static boolean pairSum1(ArrayList<Integer> list, int target) {
+        for (int i = 0; i < list.size(); i++) {
+            for (int j = i + 1; j < list.size(); j++) {
+                if (list.get(i) + list.get(j) == target) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public static void main(String[] para_coder) {
@@ -198,10 +210,18 @@ public class Array_List {
         System.out.println("mainList = " + mainList);*/
 
         //Container with Most Water. 2 Pointer Approach: O(n)
-        ArrayList<Integer> height = new ArrayList<>();
+        /*ArrayList<Integer> height = new ArrayList<>();
         //height = [1, 8, 6, 2, 5, 4, 8, 3, 7] //ArrayList
         height.add(1); height.add(8); height.add(6); height.add(2); height.add(5); height.add(4); height.add(8); height.add(3); height.add(7);
 
-        System.out.println(storeWater(height));
+        System.out.println(storeWater(height));*/
+
+        //Pair Sum 1: Brute Force Approach O(n^2)
+        ArrayList<Integer> list = new ArrayList<>();
+        for (int i = 1; i <= 6; i++) {
+            list.add(i);
+        }
+        int target = 5;
+        System.out.println(pairSum1(list, target));
     }
 }
