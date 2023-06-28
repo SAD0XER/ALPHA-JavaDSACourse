@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class Array_List {
@@ -79,7 +78,7 @@ public class Array_List {
     }*/
 
     //2 Pointer Approach Function.
-    public static boolean pairSum2(ArrayList<Integer> list, int target) {
+    /*public static boolean pairSum2(ArrayList<Integer> list, int target) {
         int n = list.size(), bp = -1; //Breaking Point
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i) > list.get(i + 1)) {
@@ -105,6 +104,28 @@ public class Array_List {
             }
         }
         return false;
+    }*/
+
+    public static boolean isMonotonic(ArrayList<Integer> list) {
+
+        if (list.get(0) <= list.get(1)) {
+            for (int i = 0; i < list.size(); i++) {
+                for (int j = i + 1; j < list.size(); j++) {
+                    if (!(list.get(i) <= list.get(j))) { //for increasing monotone
+                        return false;
+                    }
+                }
+            }
+        } else {
+            for (int i = 0; i < list.size(); i++) {
+                for (int j = i + 1; j < list.size(); j++) {
+                    if (!(list.get(i) >= list.get(j))) { //for decreasing monotone
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
     }
 
     public static void main(String[] para_coder) {
@@ -266,10 +287,16 @@ public class Array_List {
         System.out.println(storeWater(height));*/
 
         //Pair Sum 2: 2 Pointer Approach O(n)
-        ArrayList<Integer> list = new ArrayList<>();
+        /*ArrayList<Integer> list = new ArrayList<>();
         list.add(11); list.add(15); list.add(6); list.add(8); list.add(9); list.add(10);
         int target = 16;
 
-        System.out.println(pairSum2(list, target));
+        System.out.println(pairSum2(list, target));*/
+
+        //Assignment Question 1: Monotonic ArrayList O(n^2)
+        ArrayList<Integer> list = new ArrayList<>();
+        list.add(1); list.add(3); list.add(2); list.add(4); list.add(3);
+
+        System.out.println(isMonotonic(list));
     }
 }
