@@ -106,9 +106,10 @@ public class Array_List {
         return false;
     }*/
 
+    //Assignment Question 1: Monotonic
     public static boolean isMonotonic(ArrayList<Integer> list) {
-
-        if (list.get(0) <= list.get(1)) {
+        //with O(n^2) complexity
+        /*if (list.get(0) <= list.get(1)) {
             for (int i = 0; i < list.size(); i++) {
                 for (int j = i + 1; j < list.size(); j++) {
                     if (!(list.get(i) <= list.get(j))) { //for increasing monotone
@@ -125,7 +126,34 @@ public class Array_List {
                 }
             }
         }
-        return true;
+        return true;*/
+
+        //with O(n) complexity
+        /*boolean increase = true, decrease = true;
+
+        for (int i = 0; i < list.size() - 1; i++) {
+            if (list.get(i) > list.get(i + 1)) {
+                increase = false;
+            }
+            if (list.get(i) < list.get(i + 1)) {
+                decrease = false;
+            }
+        }
+
+        return increase || decrease;*/
+    }
+
+    //Assignment Question 3: Most Frequent Number of Following Key
+    public static int frequentNumber(ArrayList<Integer> list, int key) {
+        int target = list.get(key), count = 0;
+
+        for (int i = key; i < list.size(); i++) {
+            if (list.get(i) == target) {
+                count++;
+            }
+        }
+        System.out.println("Count of target occurrence is " + count);
+        return target;
     }
 
     public static void main(String[] para_coder) {
@@ -294,9 +322,16 @@ public class Array_List {
         System.out.println(pairSum2(list, target));*/
 
         //Assignment Question 1: Monotonic ArrayList O(n^2)
-        ArrayList<Integer> list = new ArrayList<>();
+        /*ArrayList<Integer> list = new ArrayList<>();
         list.add(1); list.add(3); list.add(2); list.add(4); list.add(3);
 
-        System.out.println(isMonotonic(list));
+        System.out.println(isMonotonic(list));*/
+
+        //Assignment Question 3: Most Frequent Number of Following Key
+        ArrayList<Integer> list = new ArrayList<>();
+        list.add(2); list.add(2); list.add(2); list.add(2); list.add(3); list.add(2);
+        int key = 2;
+
+        System.out.println("Target was " + frequentNumber(list, key));
     }
 }
