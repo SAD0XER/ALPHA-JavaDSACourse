@@ -144,7 +144,7 @@ public class Array_List {
     }
 
     //Assignment Question 3: Most Frequent Number of Following Key
-    public static int frequentNumber(ArrayList<Integer> list, int key) {
+    /*public static int frequentNumber(ArrayList<Integer> list, int key) {
         int target = list.get(key), count = 0;
 
         for (int i = key; i < list.size(); i++) {
@@ -154,6 +154,30 @@ public class Array_List {
         }
         System.out.println("Count of target occurrence is " + count);
         return target;
+    }*/
+
+    //Assignment Question 2: Lonely Numbers in ArrayList
+    public static ArrayList<Integer> aloneNumbers(ArrayList<Integer> list) {
+        //Actual Solution
+        /*Collections.sort(list);
+        ArrayList<Integer> list = new ArrayList<>();
+        for (int i=1; i < list.size()-1; i++) {
+            if (list.get(i-1) + 1 < list.get(i) && list.get(i) + 1 < list.get(i+1))
+            {
+                list.add(list.get(i));
+            }
+        }
+        if (list.size() == 1) {
+            list.add(list.get(0));
+        }
+        if (list.size() > 1) {
+            if (list.get(0) + 1 < list.get(1)) {
+                list.add(list.get(0));
+            }
+            if (list.get(list.size()-2) + 1 < list.get(list.size()-1)) {ist.add(nums.get(nums.size()-1));
+            }
+        }
+        return list;*/
     }
 
     public static void main(String[] para_coder) {
@@ -328,10 +352,16 @@ public class Array_List {
         System.out.println(isMonotonic(list));*/
 
         //Assignment Question 3: Most Frequent Number of Following Key
-        ArrayList<Integer> list = new ArrayList<>();
+        /*ArrayList<Integer> list = new ArrayList<>();
         list.add(2); list.add(2); list.add(2); list.add(2); list.add(3); list.add(2);
         int key = 2;
 
-        System.out.println("Target was " + frequentNumber(list, key));
+        System.out.println("Target was " + frequentNumber(list, key));*/
+
+        //Assignment Question 3: Lonely Numbers in ArrayList
+        ArrayList<Integer> list = new ArrayList<>();
+        list.add(10); list.add(5); list.add(6); list.add(8); list.add(11);
+
+        System.out.println(aloneNumbers(list));
     }
 }
