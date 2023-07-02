@@ -129,7 +129,7 @@ public class Array_List {
         return true;*/
 
         //with O(n) complexity
-        /*boolean increase = true, decrease = true;
+        boolean increase = true, decrease = true;
 
         for (int i = 0; i < list.size() - 1; i++) {
             if (list.get(i) > list.get(i + 1)) {
@@ -140,7 +140,7 @@ public class Array_List {
             }
         }
 
-        return increase || decrease;*/
+        return increase || decrease;
     }
 
     //Assignment Question 3: Most Frequent Number of Following Key
@@ -157,27 +157,63 @@ public class Array_List {
     }*/
 
     //Assignment Question 2: Lonely Numbers in ArrayList
-    public static ArrayList<Integer> aloneNumbers(ArrayList<Integer> list) {
+    /*public static ArrayList<Integer> aloneNumbers(ArrayList<Integer> list) {
         //Actual Solution
-        /*Collections.sort(list);
-        ArrayList<Integer> list = new ArrayList<>();
-        for (int i=1; i < list.size()-1; i++) {
-            if (list.get(i-1) + 1 < list.get(i) && list.get(i) + 1 < list.get(i+1))
-            {
-                list.add(list.get(i));
+        Collections.sort(list);
+        ArrayList<Integer> ans = new ArrayList<>();
+        for (int i = 1; i < list.size() - 1; i++) {
+            if (list.get(i - 1) + 1 < list.get(i) && list.get(i) + 1 < list.get(i + 1)) {
+                ans.add(list.get(i));
             }
         }
+
         if (list.size() == 1) {
-            list.add(list.get(0));
+            ans.add(list.get(0));
         }
+
         if (list.size() > 1) {
             if (list.get(0) + 1 < list.get(1)) {
-                list.add(list.get(0));
+                ans.add(list.get(0));
             }
-            if (list.get(list.size()-2) + 1 < list.get(list.size()-1)) {ist.add(nums.get(nums.size()-1));
+            if (list.get(list.size() - 2) + 1 < list.get(list.size() - 1)) {
+                ans.add(list.get(list.size() - 1));
             }
         }
-        return list;*/
+        return ans;
+    }*/
+
+    //Assignment Question 4: Beautiful ArrayList - Approach 1: Divide and Conquer
+    /*public static ArrayList<Integer> beautifulArray(int n) {
+        ArrayList<Integer> res = new ArrayList<>();
+        dividenConquer(1, 1, res, n);
+        return res;
+    }
+
+    private static void dividenConquer(int start, int increment, ArrayList<Integer> res, int n) {
+        if (start + increment > n) {
+            res.add(start);
+            return;
+        }
+        dividenConquer(start, 2 * increment, res, n);
+        dividenConquer(start + increment, 2 * increment, res, n);
+    }*/
+
+    //Assignment Question 4: Beautiful ArrayList - Approach 2: Iterative
+    public static ArrayList<Integer> beautifulArray(int n) {
+        ArrayList<Integer> ans = new ArrayList<>();
+        ans.add(1);
+
+        for (int i = 2; i <= n; i++) {
+            ArrayList<Integer> temp = new ArrayList<>();
+            for (Integer e : ans) {
+                if (2 * e <= n) temp.add(e * 2);
+            }
+            for (Integer e : ans) {
+                if (2 * e - 1 <= n) temp.add(e * 2 - 1);
+            }
+            ans = temp;
+        }
+        return ans;
     }
 
     public static void main(String[] para_coder) {
@@ -359,9 +395,15 @@ public class Array_List {
         System.out.println("Target was " + frequentNumber(list, key));*/
 
         //Assignment Question 3: Lonely Numbers in ArrayList
-        ArrayList<Integer> list = new ArrayList<>();
+        /*ArrayList<Integer> list = new ArrayList<>();
         list.add(10); list.add(5); list.add(6); list.add(8); list.add(11);
 
-        System.out.println(aloneNumbers(list));
+        System.out.println(aloneNumbers(list));*/
+
+        //Assignment Question 4: Beautiful ArrayList
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Enter size of ArrayList: ");
+        int n = scan.nextInt();
+        System.out.println(beautifulArray(n));
     }
 }
