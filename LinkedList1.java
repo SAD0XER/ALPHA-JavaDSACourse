@@ -54,7 +54,7 @@ public class LinkedList1 {
         if (head == null) {
             System.out.println("LL is Empty.");
             return;
-        } //Removing this case will result in printing "Null" when the L L is empty.
+        } //Removing this case will result in printing "Null" when the LL is empty.
 
         Node temp = head;
         while (temp != null) {
@@ -64,16 +64,35 @@ public class LinkedList1 {
         System.out.println("Null");
     }
 
+    //Adding in Middle of LL that is at given index.
+    public void add(int idx, int data) {
+        if (idx == 0) {
+            addFirst(data);
+            return;
+        }
+
+        Node newNode = new Node(data);
+        Node temp = head;
+        int i = 0;
+
+        while (i < idx - 1) {
+            temp = temp.next;
+            i++;
+        }
+
+        //i = idx-1, temp -> prev
+        newNode.next = temp.next;
+        temp.next = newNode;
+    }
+
     public static void main(String[] para_coder) {
         LinkedList1 ll = new LinkedList1();
-        ll.printLL();
         ll.addFirst(2);
-        ll.printLL();
         ll.addFirst(1);
-        ll.printLL();
         ll.addLast(3);
-        ll.printLL();
         ll.addLast(4);
+        ll.printLL();
+        ll.add(2, 9);
         ll.printLL();
     }
 }
