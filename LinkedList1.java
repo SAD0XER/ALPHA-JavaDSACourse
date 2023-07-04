@@ -49,11 +49,31 @@ public class LinkedList1 {
         tail = newNode;
     }
 
+    //Printing the LL.
+    public void printLL() {
+        if (head == null) {
+            System.out.println("LL is Empty.");
+            return;
+        } //Removing this case will result in printing "Null" when the L L is empty.
+
+        Node temp = head;
+        while (temp != null) {
+            System.out.print(temp.data + "->");
+            temp = temp.next;
+        }
+        System.out.println("Null");
+    }
+
     public static void main(String[] para_coder) {
         LinkedList1 ll = new LinkedList1();
+        ll.printLL();
         ll.addFirst(2);
+        ll.printLL();
         ll.addFirst(1);
-        ll.addFirst(3);
-        ll.addFirst(4);
+        ll.printLL();
+        ll.addLast(3);
+        ll.printLL();
+        ll.addLast(4);
+        ll.printLL();
     }
 }
