@@ -135,6 +135,33 @@ public class LinkedList1 {
         return -1;
     }
 
+    //Search in LL: Recursive Approach. O(n)
+    public int recursiveSearch(int key) {
+        return helper(head, key);
+    }
+
+    //TC = O(n) and SC = O(n)
+    public int helper(Node head, int key) {
+        //Base Case
+        if (head == null) {
+            return -1;
+        }
+
+        //Recursion/work
+        if (head.data == key) {
+            return 0;
+        }
+
+        //While Backtracking.
+        int idx = helper(head.next, key);
+
+        if (idx == -1) {
+            return -1;
+        }
+
+        return idx + 1;
+    }
+
     //Printing the LL.
     public void printLL() {
         if (head == null) {
@@ -166,7 +193,7 @@ public class LinkedList1 {
 //        ll.removeLast();
 //        ll.printLL();
 //        System.out.println("LL size = " + size);
-        System.out.println(ll.iterativeSearch(3));
-        System.out.println(ll.iterativeSearch(10));
+        System.out.println(ll.recursiveSearch(3));
+        System.out.println(ll.recursiveSearch(10));
     }
 }
