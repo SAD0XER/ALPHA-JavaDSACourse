@@ -118,6 +118,23 @@ public class LinkedList1 {
         return value;
     }
 
+    //Search in LL: Iterative Approach. O(n)
+    public int iterativeSearch(int key) {
+        Node temp = head;
+
+        int i = 0;
+        while (temp != null) {
+            //If Key found then return Index.
+            if (temp.data == key) {
+                return i;
+            }
+            temp = temp.next;
+            i++;
+        }
+        //Key Not found.
+        return -1;
+    }
+
     //Printing the LL.
     public void printLL() {
         if (head == null) {
@@ -143,11 +160,13 @@ public class LinkedList1 {
 
         ll.printLL(); //1->2->3->4->5->null
 //        System.out.println("LL size = " + size);
-        ll.removeFirst();
-        ll.printLL();
-
-        ll.removeLast();
-        ll.printLL();
-        System.out.println("LL size = " + size);
+//        ll.removeFirst();
+//        ll.printLL();
+//
+//        ll.removeLast();
+//        ll.printLL();
+//        System.out.println("LL size = " + size);
+        System.out.println(ll.iterativeSearch(3));
+        System.out.println(ll.iterativeSearch(10));
     }
 }
