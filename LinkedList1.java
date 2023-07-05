@@ -73,6 +73,7 @@ public class LinkedList1 {
         temp.next = newNode;
     }
 
+    //Removing First Node of LL.
     public int removeFirst() {
         //Special cases
         if (size == 0) {
@@ -87,6 +88,32 @@ public class LinkedList1 {
 
         int value = head.data;
         head = head.next;
+        size--;
+        return value;
+    }
+
+    //Removing Last Node of LL.
+    public int removeLast() {
+        //Special Cases
+        if (size == 0) {
+            System.out.println("LL is Empty.");
+            return Integer.MIN_VALUE;
+        } else if (size == 1) {
+            int value = tail.data;
+            head = tail = null;
+            size = 0;
+            return value;
+        }
+
+        //Finding Previous Node of Tail: i = size - 2;
+        Node prev = head;
+        for (int i = 0; i < size - 2; i++) {
+            prev = prev.next;
+        }
+
+        int value = prev.next.data; //tail.data;
+        prev.next = null;
+        tail = prev;
         size--;
         return value;
     }
@@ -108,11 +135,19 @@ public class LinkedList1 {
 
     public static void main(String[] para_coder) {
         LinkedList1 ll = new LinkedList1();
-        ll.addFirst(2); ll.addFirst(1); ll.addLast(4); ll.addLast(5); ll.add(2, 3);
+        ll.addFirst(2);
+        ll.addFirst(1);
+        ll.addLast(4);
+        ll.addLast(5);
+        ll.add(2, 3);
 
         ll.printLL(); //1->2->3->4->5->null
-//        System.out.println(size);
+//        System.out.println("LL size = " + size);
         ll.removeFirst();
         ll.printLL();
+
+        ll.removeLast();
+        ll.printLL();
+        System.out.println("LL size = " + size);
     }
 }
