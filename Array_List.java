@@ -294,7 +294,7 @@ public class Array_List {
         list8.add(3, "Aa!1");
         list9.add(3, true);*/
 
-        //Print reverse of ArrayList. O(n)
+        //Print reverseLL of ArrayList. O(n)
         /*ArrayList<Integer> list = new ArrayList<>();
         //Adding elements in ArrayList using loop.
         for (int i = 1; i < 6; i++) {

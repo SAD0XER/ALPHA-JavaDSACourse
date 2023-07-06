@@ -162,6 +162,21 @@ public class LinkedList1 {
         return idx + 1;
     }
 
+    //Reverse a LL: Iterative Approach O(n)
+    public void reverseLL() {
+        Node prev = null;
+        Node curr = tail = head;
+        Node next;
+
+        while (curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        head = prev;
+    }
+
     //Printing the LL.
     public void printLL() {
         if (head == null) {
@@ -189,11 +204,13 @@ public class LinkedList1 {
 //        System.out.println("LL size = " + size);
 //        ll.removeFirst();
 //        ll.printLL();
-//
+
 //        ll.removeLast();
 //        ll.printLL();
 //        System.out.println("LL size = " + size);
-        System.out.println(ll.recursiveSearch(3));
-        System.out.println(ll.recursiveSearch(10));
+//        System.out.println(ll.recursiveSearch(3));
+//        System.out.println(ll.recursiveSearch(10));
+        ll.reverseLL();
+        ll.printLL();
     }
 }
