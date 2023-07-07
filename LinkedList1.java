@@ -177,6 +177,33 @@ public class LinkedList1 {
         head = prev;
     }
 
+    //Find & Remove Nth Node from End: Iterative Approach O(n)
+    public void deleteNthFromEnd(int n) {
+        //calulate size
+        int size = 0;
+        Node temp = head;
+
+        while (temp != null) {
+            temp = temp.next;
+            size++;
+        }
+
+        //Remove first Node operation
+        if (n == size) {
+            head = head.next;
+            return;
+        }
+
+        //Finding Node size - n
+        int i = 1, iToFind = size - n;
+        Node prev = head;
+        while (i < iToFind) {
+            prev = prev.next;
+            i++;
+        }
+        prev.next = prev.next.next;
+    }
+
     //Printing the LL.
     public void printLL() {
         if (head == null) {
@@ -210,7 +237,9 @@ public class LinkedList1 {
 //        System.out.println("LL size = " + size);
 //        System.out.println(ll.recursiveSearch(3));
 //        System.out.println(ll.recursiveSearch(10));
-        ll.reverseLL();
+//        ll.reverseLL();
+//        ll.printLL();
+        ll.deleteNthFromEnd(3);
         ll.printLL();
     }
 }
