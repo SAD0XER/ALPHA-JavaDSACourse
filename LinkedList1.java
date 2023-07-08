@@ -179,7 +179,7 @@ public class LinkedList1 {
 
     //Find & Remove Nth Node from End: Iterative Approach O(n)
     public void deleteNthFromEnd(int n) {
-        //calulate size
+        //calculate size
         int size = 0;
         Node temp = head;
 
@@ -204,6 +204,53 @@ public class LinkedList1 {
         prev.next = prev.next.next;
     }
 
+    //Check if LL is Palindrome or Not.
+    public boolean checkPalindrone() {
+        //Base Case
+        if (head == null || head.next == null) {
+            return true;
+        }
+
+        //step 1: Find Middle Node
+        Node midNode = findMiddle(head);
+
+        //step 2: Reverse 2nd Half from Middle.
+        Node prev = null;
+        Node curr = midNode;
+        Node next;
+
+        while (curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+
+        //step 3: Compare Left Half == Right Half.
+        Node right = prev; //Right Half Head.
+        Node left = head; //Left Half Head.
+
+        while (right != null) {
+            if (left.data != right.data) {
+                return false;
+            }
+            left = left.next;
+            right = right.next;
+        }
+        return true;
+    }
+
+    //Slow-Fast Approach to find Middle Node.
+    public Node findMiddle(Node head) {
+        Node slow = head, fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next; //+1
+            fast = fast.next.next; //+2
+        }
+        return slow; //slow is middle node.
+    }
+
     //Printing the LL.
     public void printLL() {
         if (head == null) {
@@ -221,13 +268,13 @@ public class LinkedList1 {
 
     public static void main(String[] para_coder) {
         LinkedList1 ll = new LinkedList1();
+        ll.addFirst(1);
+        ll.addFirst(2);
         ll.addFirst(2);
         ll.addFirst(1);
-        ll.addLast(4);
-        ll.addLast(5);
-        ll.add(2, 3);
+//        ll.add(2, 3);
 
-        ll.printLL(); //1->2->3->4->5->null
+        ll.printLL(); //1->2->2->1->null
 //        System.out.println("LL size = " + size);
 //        ll.removeFirst();
 //        ll.printLL();
@@ -239,7 +286,8 @@ public class LinkedList1 {
 //        System.out.println(ll.recursiveSearch(10));
 //        ll.reverseLL();
 //        ll.printLL();
-        ll.deleteNthFromEnd(3);
-        ll.printLL();
+//        ll.deleteNthFromEnd(3);
+//        ll.printLL();
+        System.out.println(ll.checkPalindrone());
     }
 }
