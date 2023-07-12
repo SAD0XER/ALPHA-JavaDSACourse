@@ -240,7 +240,7 @@ public class LinkedList1 {
         return true;
     }
 
-    //Slow-Fast Approach to find Middle Node.
+    //Slow-Fast Approach to find Middle Node. (Helper Function for chechPalindrone() method)
     public Node findMiddle(Node head) {
         Node slow = head, fast = head;
 
@@ -249,6 +249,19 @@ public class LinkedList1 {
             fast = fast.next.next; //+2
         }
         return slow; //slow is middle node.
+    }
+
+    public static boolean isCycle() {
+        Node slow = head, fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next; //+1
+            fast = fast.next.next; //+2
+            if (slow == fast) {
+                return true; //cycle exist.
+            }
+        }
+        return false; //cycle doesn't exist.
     }
 
     //Printing the LL.
@@ -267,14 +280,14 @@ public class LinkedList1 {
     }
 
     public static void main(String[] para_coder) {
-        LinkedList1 ll = new LinkedList1();
-        ll.addFirst(1);
-        ll.addFirst(2);
-        ll.addFirst(2);
-        ll.addFirst(1);
+//        LinkedList1 ll = new LinkedList1();
+//        ll.addFirst(1);
+//        ll.addFirst(2);
+//        ll.addFirst(2);
+//        ll.addFirst(1);
 //        ll.add(2, 3);
 
-        ll.printLL(); //1->2->2->1->null
+//        ll.printLL(); //1->2->2->1->null
 //        System.out.println("LL size = " + size);
 //        ll.removeFirst();
 //        ll.printLL();
@@ -288,6 +301,12 @@ public class LinkedList1 {
 //        ll.printLL();
 //        ll.deleteNthFromEnd(3);
 //        ll.printLL();
-        System.out.println(ll.checkPalindrone());
+        head = new Node(1);
+        head.next = new Node(2);
+        head.next.next = new Node(3);
+        head.next.next.next = new Node(4);
+//        head.next.next.next = head;
+        //1-> 2-> 3-> 1
+        System.out.println(isCycle());
     }
 }
