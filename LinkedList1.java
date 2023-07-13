@@ -205,7 +205,7 @@ public class LinkedList1 {
     }
 
     //Check if LL is Palindrome or Not.
-    public boolean checkPalindrone() {
+    public boolean checkPalindrome() {
         //Base Case
         if (head == null || head.next == null) {
             return true;
@@ -240,7 +240,7 @@ public class LinkedList1 {
         return true;
     }
 
-    //Slow-Fast Approach to find Middle Node. (Helper Function for chechPalindrone() method)
+    //Slow-Fast Approach to find Middle Node. (Helper Function for checkPalindrome() method)
     public Node findMiddle(Node head) {
         Node slow = head, fast = head;
 
@@ -251,6 +251,7 @@ public class LinkedList1 {
         return slow; //slow is middle node.
     }
 
+    //Detect Cyclic/Loop in LL using Floyd's Cyclic Find Algorithm.
     public static boolean isCycle() {
         Node slow = head, fast = head;
 
@@ -262,6 +263,37 @@ public class LinkedList1 {
             }
         }
         return false; //cycle doesn't exist.
+    }
+
+    //Remove Cycle/Loop in LL.
+    /*Note: This code is not written 4 full cyclic LL. (Full cyclic means the last node of LL pointing towards head node)
+    If you want code 4 cyclic LL then change the initialization of `prev` (Node prev = head)*/
+    public static void removeCycle() {
+        //Detect cycle
+        Node slow = head;
+        Node fast = head;
+        boolean cycle = false;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+            if (fast == slow) {
+                cycle = true;
+                break;
+            }
+        }
+        if (!cycle) return;
+
+        //Find meeting point
+        slow = head;
+        Node prev = null; //Last Node
+        while (fast != slow) {
+            prev = fast;
+            slow = slow.next;
+            fast = fast.next;
+        }
+
+        // remove cycle -> last.next = null
+        prev.next = null;
     }
 
     //Printing the LL.
@@ -302,11 +334,15 @@ public class LinkedList1 {
 //        ll.deleteNthFromEnd(3);
 //        ll.printLL();
         head = new Node(1);
-        head.next = new Node(2);
+        Node temp = new Node(2);
+        head.next = temp;
         head.next.next = new Node(3);
         head.next.next.next = new Node(4);
-//        head.next.next.next = head;
-        //1-> 2-> 3-> 1
+        head.next.next.next.next = temp;
+        //1-> 2-> 3-> 4-> 2
         System.out.println(isCycle());
+        removeCycle();
+        System.out.println(isCycle());
+
     }
 }
