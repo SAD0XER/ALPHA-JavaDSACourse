@@ -1,3 +1,5 @@
+import java.util.LinkedList; //Here we are using Java Collection Framework (JCF)
+
 public class LinkedList1 {
     //Created single node in LL.
     public static class Node {
@@ -273,6 +275,7 @@ public class LinkedList1 {
         Node slow = head;
         Node fast = head;
         boolean cycle = false;
+
         while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
@@ -333,16 +336,31 @@ public class LinkedList1 {
 //        ll.printLL();
 //        ll.deleteNthFromEnd(3);
 //        ll.printLL();
-        head = new Node(1);
-        Node temp = new Node(2);
-        head.next = temp;
-        head.next.next = new Node(3);
-        head.next.next.next = new Node(4);
-        head.next.next.next.next = temp;
-        //1-> 2-> 3-> 4-> 2
-        System.out.println(isCycle());
-        removeCycle();
-        System.out.println(isCycle());
+//        head = new Node(1);
+//        Node temp = new Node(2);
+//        head.next = temp;
+//        head.next.next = new Node(3);
+//        head.next.next.next = new Node(4);
+//        head.next.next.next.next = temp;
+//        //1-> 2-> 3-> 4-> 2
+//        System.out.println(isCycle());
+//        removeCycle();
+//        System.out.println(isCycle());
 
+        //Create LL
+        LinkedList<Integer> ll = new LinkedList<>();
+
+        //Add into LL
+        ll.addLast(1);
+        ll.addLast(2);
+        ll.addFirst(0); //0->1->2
+
+        System.out.println(ll); //Printing the LL
+
+        //Remove from LL
+        ll.removeLast();
+        ll.removeFirst();
+
+        System.out.println(ll); //Printing the LL
     }
 }
