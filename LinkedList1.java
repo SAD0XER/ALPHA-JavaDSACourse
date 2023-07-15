@@ -373,6 +373,46 @@ public class LinkedList1 {
         return mergedLL.next;
     }
 
+    //Zig-Zag Linked List.
+    public void zigZag() {
+        //Find Middle Node.
+        Node slow = head;
+        Node fast = head.next;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next; //+1
+            fast = fast.next.next; //+2
+        }
+        Node mid = slow;
+
+        //Reverse the 2nd Half.
+        Node curr = mid.next;
+        mid.next = null;
+        Node prev = null;
+        Node next;
+        while (curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+
+        Node left = head;
+        Node right = prev;
+        Node nextL, nextR;
+
+        //Alternate Merge (zigzag merge)
+        while (left != null && right != null) {
+            nextL = left.next; //Zig-Zag Code
+            left.next = right;
+            nextR = right.next;
+            right.next = nextL;
+
+            right = nextR; //Update Loop Code
+            left = nextL;
+        }
+    }
+
     public static void main(String[] para_coder) {
 //        LinkedList1 ll = new LinkedList1();
 //        ll.addFirst(1);
@@ -424,15 +464,16 @@ public class LinkedList1 {
 
         //Creating LL
         LinkedList1 ll = new LinkedList1();
-        ll.addFirst(1);
-        ll.addFirst(2);
-        ll.addFirst(3);
-        ll.addFirst(4);
-        ll.addFirst(5);
-        //5->4->3->2->1->Null
+        ll.addLast(1);
+        ll.addLast(2);
+        ll.addLast(3);
+        ll.addLast(4);
+        ll.addLast(5);
+        ll.addLast(6);
+        //1->2->3->4->5->6->Null
 
         ll.printLL();
-        head = ll.mergeSort(head);
+        ll.zigZag();
         ll.printLL();
     }
 }
