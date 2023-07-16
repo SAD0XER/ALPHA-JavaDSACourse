@@ -104,18 +104,29 @@ public class DoubleLinkedList {
         return val;
     }
 
+    //Reverse a DLL.
+    public void reverse() {
+        Node curr = head, prev = null, next;
+
+        while (curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            curr.prev = next;
+            prev = curr; //Updating..
+            curr = next;
+        }
+        head = prev;
+    }
+
     public static void main(String[] para_coder) {
         DoubleLinkedList dll = new DoubleLinkedList();
 
-        dll.addLast(3);
-        dll.addLast(2);
-        dll.addLast(1);
+        dll.addFirst(3);
+        dll.addFirst(2);
+        dll.addFirst(1);
 
         dll.printDLL();
-        System.out.println(size);
-
-        dll.removeLast();
+        dll.reverse();
         dll.printDLL();
-        System.out.println(size);
     }
 }
