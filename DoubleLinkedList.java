@@ -1,6 +1,6 @@
 public class DoubleLinkedList {
     //Create Single Node in DLL.
-    public class Node {
+    public static class Node {
         int data;
         Node next;
         Node prev;
@@ -66,17 +66,55 @@ public class DoubleLinkedList {
         return val;
     }
 
+    //Add element at Last in DLL.
+    public void addLast(int data) {
+        Node newNode = new Node(data);
+        size++;
+
+        //If List is Empty
+        if (head == null) {
+            head = tail = newNode;
+            return;
+        }
+
+        newNode.prev = tail;
+        tail.next = newNode;
+        tail = newNode;
+    }
+
+    //Remove Last.
+    public int removeLast() {
+        //If LL is Empty.
+        if (head == null) {
+            System.out.println("DLL is Empty.");
+            return Integer.MIN_VALUE;
+        }
+        //If only one Node in LL.
+        if (size == 1) {
+            int val = head.data;
+            head = tail = null;
+            size--;
+            return val;
+        }
+
+        int val = tail.data;
+        tail = tail.prev;
+        tail.next = null;
+        size--;
+        return val;
+    }
+
     public static void main(String[] para_coder) {
         DoubleLinkedList dll = new DoubleLinkedList();
 
-        dll.addFirst(3);
-        dll.addFirst(2);
-        dll.addFirst(1);
+        dll.addLast(3);
+        dll.addLast(2);
+        dll.addLast(1);
 
         dll.printDLL();
         System.out.println(size);
 
-        dll.removeFirst();
+        dll.removeLast();
         dll.printDLL();
         System.out.println(size);
     }
