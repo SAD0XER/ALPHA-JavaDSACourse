@@ -1,5 +1,6 @@
 public class DoubleLinkedList {
-    //Create Single Node in DLL.
+
+    //Create Single Node in Double Linked List.
     public static class Node {
         int data;
         Node next;
