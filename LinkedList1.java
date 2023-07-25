@@ -1,5 +1,4 @@
 import java.util.LinkedList; //Here we are using Java Collection Framework (JCF)
-import java.util.*;
 
 public class LinkedList1 {
     //Created single node in LL.
@@ -7,10 +6,10 @@ public class LinkedList1 {
         int data;
         Node next;
 
-        /*public Node(int data) {
+        public Node(int data) {
             this.data = data;
             this.next = null;
-        }*/
+        }
     }
 
     public static Node head;
@@ -430,13 +429,13 @@ public class LinkedList1 {
     }
 
     //Question 2: Delete N Nodes After M Nodes of a Linked List
-    static Node push(Node head_ref, int new_data) {
+    /*static Node push(Node head_ref, int new_data) {
         Node new_node = new Node();
         new_node.data = new_data;
-        new_node.next = (head_ref);
-        (head_ref) = new_node;
+        new_node.next = head_ref;
+        head_ref = new_node;
         return head_ref;
-    }
+    }*/
 
     static void printList(Node head) {
         Node temp = head;
@@ -464,6 +463,54 @@ public class LinkedList1 {
             curr = t;
         }
     }
+
+    //Question 3: Swapping Nodes in a Linked List
+    public void swapNodes(int x, int y) {
+        if (x == y)
+            return;
+
+        Node prevX = null, currX = head;
+        while (currX != null && currX.data != x) {
+            prevX = currX;
+            currX = currX.next;
+        }
+
+        Node prevY = null, currY = head;
+        while (currY != null && currY.data != y) {
+            prevY = currY;
+            currY = currY.next;
+        }
+
+        if (currX == null || currY == null)
+            return;
+        if (prevX != null)
+            prevX.next = currY;
+        else
+            head = currY;
+        if (prevY != null)
+            prevY.next = currX;
+        else
+            head = currX;
+
+        Node temp = currX.next;
+        currX.next = currY.next;
+        currY.next = temp;
+    }
+
+    public void push(int new_data) {
+        Node new_Node = new Node(new_data);
+        new_Node.next = head;
+        head = new_Node;
+    }
+
+    public void printList() {
+        Node tNode = head;
+        while (tNode != null) {
+            System.out.print(tNode.data + " ");
+            tNode = tNode.next;
+        }
+    }
+
 
     public static void main(String[] para_coder) {
         LinkedList1 ll = new LinkedList1();
@@ -561,7 +608,7 @@ public class LinkedList1 {
         /*Question 2: Delete N Nodes After M Nodes of a Linked List
         Time Complexity : o(n)
         Space Complexity: o(1)*/
-        Node head = null;
+        /*Node head = null;
         int M = 2, N = 3;
 
         head = push(head, 10);
@@ -579,6 +626,25 @@ public class LinkedList1 {
         printList(head);
         skipMdeleteN(head, M, N);
         System.out.printf("Output Linked list: ");
-        printList(head);
+        printList(head);*/
+
+        /*Question 3: Swapping Nodes in a Linked List
+        Time Complexity : o(n)
+        Space Complexity: o(1)*/
+        ll.push(7);
+        ll.push(6);
+        ll.push(5);
+        ll.push(4);
+        ll.push(3);
+        ll.push(2);
+        ll.push(1);
+
+        int x = 4, y = 3;
+        System.out.printf("X = %d, Y = %d\n", x, y);
+        System.out.print("Linked list before Swapping: ");
+        ll.printList();
+        ll.swapNodes(x, y); //Swap node x=4 and y=3.
+        System.out.print("\nLinked list after Swapping: ");
+        ll.printList();
     }
 }
