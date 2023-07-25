@@ -15,7 +15,7 @@ public class LinkedList1 {
     public static int size;
 
 //    Methods of Linked List:
-    
+
     //Adding Node at first place.
     /*public void addFirst(int data) {
         //Step 1: Create New Node.
@@ -298,7 +298,7 @@ public class LinkedList1 {
     }
 
     //Printing the LL.
-    public void printLL() {
+    public static void printLL() {
         if (head == null) {
             System.out.println("LL is Empty.");
             return;
@@ -411,7 +411,7 @@ public class LinkedList1 {
         }
     }
 
-    //Question 1: Intersection of Two Linked Lists
+    //Question 1: Intersection of Two Linked Lists.
     public Node getIntersectionNode(Node head1, Node head2) {
         while (head2 != null) {
             Node temp = head1;
@@ -426,7 +426,7 @@ public class LinkedList1 {
         return null;
     }
 
-    //Question 2: Delete N Nodes After M Nodes of a Linked List
+    //Question 2: Delete N Nodes After M Nodes of a Linked List.
     /*static Node push(Node head_ref, int new_data) {
         Node new_node = new Node();
         new_node.data = new_data;
@@ -462,7 +462,7 @@ public class LinkedList1 {
         }
     }
 
-    //Question 3: Swapping Nodes in a Linked List
+    //Question 3: Swapping Nodes in a Linked List.
     public void swapNodes(int x, int y) {
         if (x == y)
             return;
@@ -540,6 +540,38 @@ public class LinkedList1 {
         }
     }
 
+    //Question 5: Merge k Sorted Lists.
+    public static Node SortedMerge(Node a, Node b) {
+        Node result = null;
+
+        if (a == null)
+            return b;
+        else if (b == null)
+            return a;
+
+        if (a.data <= b.data) {
+            result = a;
+            result.next = SortedMerge(a.next, b);
+        } else {
+            result = b;
+            result.next = SortedMerge(a, b.next);
+        }
+        return result;
+    }
+
+    public static Node mergeKLists(Node[] arr, int last) {
+        while (last != 0) {
+            int i = 0, j = last;
+            while (i < j) {
+                arr[i] = SortedMerge(arr[i], arr[j]);
+                i++;
+                j--;
+                if (i >= j) last = j;
+            }
+        }
+        return arr[0];
+    }
+
     public static void main(String[] para_coder) {
         LinkedList1 ll = new LinkedList1();
 //        ll.addFirst(1);
@@ -603,7 +635,7 @@ public class LinkedList1 {
 //        ll.printLL();
 
         /*Assignment Question:
-        Question 1: Intersection of Two Linked Lists
+        Question 1: Intersection of Two Linked Lists.
         Time Complexity : o(m*n)
         Space Complexity: o(1)*/
         /*Node head1, head2;
@@ -633,7 +665,7 @@ public class LinkedList1 {
             System.out.print("Intersection Point: " + intersectionPoint.data);
         }*/
 
-        /*Question 2: Delete N Nodes After M Nodes of a Linked List
+        /*Question 2: Delete N Nodes After M Nodes of a Linked List.
         Time Complexity : o(n)
         Space Complexity: o(1)*/
         /*Node head = null;
@@ -656,7 +688,7 @@ public class LinkedList1 {
         System.out.printf("Output Linked list: ");
         printList(head);*/
 
-        /*Question 3: Swapping Nodes in a Linked List
+        /*Question 3: Swapping Nodes in a Linked List.
         Time Complexity : o(n)
         Space Complexity: o(1)*/
         /*ll.push(7);
@@ -675,10 +707,10 @@ public class LinkedList1 {
         System.out.print("\nLinked list after Swapping: ");
         ll.printList();*/
 
-        /*Question 4: Odd Even Linked List
+        /*Question 4: Odd Even Linked List.
         Time Complexity : o(n)
         Space Complexity: o(1)*/
-        ll.push(11);
+        /*ll.push(11);
         ll.push(10);
         ll.push(8);
         ll.push(6);
@@ -690,6 +722,31 @@ public class LinkedList1 {
         ll.printLL();
         ll.segregateEvenOdd();
         System.out.print("Output: Updated Linked List: ");
-        ll.printLL();
+        ll.printLL();*/
+
+        /*Question 5: Merge k Sorted Lists.
+        Time Complexity : o(n log k)
+        Space Complexity: o(n)*/
+        int k = 3, n = 4;
+        Node[] arr = new Node[k];
+        //First LL
+        arr[0] = new Node(1);
+        arr[0].next = new Node(3);
+        arr[0].next.next = new Node(5);
+        arr[0].next.next.next = new Node(7);
+        //Second LL
+        arr[1] = new Node(2);
+        arr[1].next = new Node(4);
+        arr[1].next.next = new Node(6);
+        arr[1].next.next.next = new Node(8);
+        //Third LL
+        arr[2] = new Node(0);
+        arr[2].next = new Node(9);
+        arr[2].next.next = new Node(10);
+        arr[2].next.next.next = new Node(11);
+        //Merge LL
+        System.out.print("After Merging LL: ");
+        Node head = mergeKLists(arr, k - 1);
+        printList(head);
     }
 }
