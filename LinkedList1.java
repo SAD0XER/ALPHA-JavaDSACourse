@@ -1,5 +1,3 @@
-import java.util.LinkedList; //Here we are using Java Collection Framework (JCF)
-
 public class LinkedList1 {
     //Created single node in LL.
     public static class Node {
@@ -17,7 +15,7 @@ public class LinkedList1 {
     public static int size;
 
 //    Methods of Linked List:
-
+    
     //Adding Node at first place.
     /*public void addFirst(int data) {
         //Step 1: Create New Node.
@@ -300,7 +298,7 @@ public class LinkedList1 {
     }
 
     //Printing the LL.
-    /*public void printLL() {
+    public void printLL() {
         if (head == null) {
             System.out.println("LL is Empty.");
             return;
@@ -308,14 +306,14 @@ public class LinkedList1 {
 
         Node temp = head;
         while (temp != null) {
-            System.out.print(temp.data + "->");
+            System.out.print(temp.data + "-> ");
             temp = temp.next;
         }
         System.out.println("Null");
     }
 
     //Merge Sort on LL O(nLog n)
-    public Node mergeSort(Node head) {
+    /*public Node mergeSort(Node head) {
         //Base Case
         if (head == null || head.next == null) {
             return head;
@@ -503,14 +501,44 @@ public class LinkedList1 {
         head = new_Node;
     }
 
-    public void printList() {
-        Node tNode = head;
-        while (tNode != null) {
-            System.out.print(tNode.data + " ");
-            tNode = tNode.next;
+    //Question 4: Odd Even Linked List.
+    void segregateEvenOdd() {
+        Node end = head;
+        Node prev = null;
+        Node curr = head;
+
+        while (end.next != null) end = end.next;
+
+        Node new_end = end;
+        while (curr.data % 2 != 0 && curr != end) {
+            new_end.next = curr;
+            curr = curr.next;
+            new_end.next.next = null;
+            new_end = new_end.next;
+        }
+
+        if (curr.data % 2 == 0) {
+            head = curr;
+            while (curr != end) {
+                if (curr.data % 2 == 0) {
+                    prev = curr;
+                    curr = curr.next;
+                } else {
+                    prev.next = curr.next;
+                    curr.next = null;
+                    new_end.next = curr;
+                    new_end = curr;
+                    curr = prev.next;
+                }
+            }
+        } else prev = curr;
+
+        if (new_end != end && end.data % 2 != 0) {
+            prev.next = end.next;
+            end.next = null;
+            new_end.next = end;
         }
     }
-
 
     public static void main(String[] para_coder) {
         LinkedList1 ll = new LinkedList1();
@@ -631,7 +659,7 @@ public class LinkedList1 {
         /*Question 3: Swapping Nodes in a Linked List
         Time Complexity : o(n)
         Space Complexity: o(1)*/
-        ll.push(7);
+        /*ll.push(7);
         ll.push(6);
         ll.push(5);
         ll.push(4);
@@ -645,6 +673,23 @@ public class LinkedList1 {
         ll.printList();
         ll.swapNodes(x, y); //Swap node x=4 and y=3.
         System.out.print("\nLinked list after Swapping: ");
-        ll.printList();
+        ll.printList();*/
+
+        /*Question 4: Odd Even Linked List
+        Time Complexity : o(n)
+        Space Complexity: o(1)*/
+        ll.push(11);
+        ll.push(10);
+        ll.push(8);
+        ll.push(6);
+        ll.push(4);
+        ll.push(2);
+        ll.push(0);
+        
+        System.out.print("Input Linked List: ");
+        ll.printLL();
+        ll.segregateEvenOdd();
+        System.out.print("Output: Updated Linked List: ");
+        ll.printLL();
     }
 }
