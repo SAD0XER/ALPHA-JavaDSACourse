@@ -413,8 +413,23 @@ public class LinkedList1 {
         }
     }
 
+    //Question 1: Intersection of Two Linked Lists
+    public Node getIntersectionNode(Node head1, Node head2) {
+        while (head2 != null) {
+            Node temp = head1;
+            while (temp != null) {
+                if (temp == head2) {
+                    return head2;
+                }
+                temp = temp.next;
+            }
+            head2 = head2.next;
+        }
+        return null;
+    }
+
     public static void main(String[] para_coder) {
-//        LinkedList1 ll = new LinkedList1();
+        LinkedList1 ll = new LinkedList1();
 //        ll.addFirst(1);
 //        ll.addFirst(2);
 //        ll.addFirst(2);
@@ -463,17 +478,47 @@ public class LinkedList1 {
 //        System.out.println(ll); //Printing the LL
 
         //Creating LL
-        LinkedList1 ll = new LinkedList1();
-        ll.addLast(1);
-        ll.addLast(2);
-        ll.addLast(3);
-        ll.addLast(4);
-        ll.addLast(5);
-        ll.addLast(6);
-        //1->2->3->4->5->6->Null
+//        ll.addLast(1);
+//        ll.addLast(2);
+//        ll.addLast(3);
+//        ll.addLast(4);
+//        ll.addLast(5);
+//        ll.addLast(6);
+//        //1->2->3->4->5->6->Null
+//
+//        ll.printLL();
+//        ll.zigZag();
+//        ll.printLL();
 
-        ll.printLL();
-        ll.zigZag();
-        ll.printLL();
+        /*Assignment Question:
+        Question 1: Intersection of Two Linked Lists
+        Time Complexity : o(m*n)
+        Space Complexity: o(1)*/
+        Node head1, head2;
+
+        head1 = new Node(10);
+        head2 = new Node(3);
+
+        Node newNode = new Node(6);
+        head2.next = newNode;
+
+        newNode = new Node(9);
+        head2.next.next = newNode;
+
+        newNode = new Node(15);
+        head1.next = newNode;
+        head2.next.next.next = newNode;
+
+        newNode = new Node(30);
+        head1.next.next = newNode;
+
+        head1.next.next.next = null;
+
+        Node intersectionPoint = ll.getIntersectionNode(head1, head2);
+        if (intersectionPoint == null) {
+            System.out.print(" No Intersection Point \n");
+        } else {
+            System.out.print("Intersection Point: " + intersectionPoint.data);
+        }
     }
 }
