@@ -1,4 +1,5 @@
 import java.util.LinkedList; //Here we are using Java Collection Framework (JCF)
+import java.util.*;
 
 public class LinkedList1 {
     //Created single node in LL.
@@ -6,10 +7,10 @@ public class LinkedList1 {
         int data;
         Node next;
 
-        public Node(int data) {
+        /*public Node(int data) {
             this.data = data;
             this.next = null;
-        }
+        }*/
     }
 
     public static Node head;
@@ -19,7 +20,7 @@ public class LinkedList1 {
 //    Methods of Linked List:
 
     //Adding Node at first place.
-    public void addFirst(int data) {
+    /*public void addFirst(int data) {
         //Step 1: Create New Node.
         Node newNode = new Node(data);
         size++;
@@ -34,10 +35,10 @@ public class LinkedList1 {
 
         //Step 3: head = newNode.
         head = newNode;
-    }
+    }*/
 
     //Adding Node at Last Place.
-    public void addLast(int data) {
+    /*public void addLast(int data) {
         //step 1: Create New Node.
         Node newNode = new Node(data);
         size++;
@@ -52,10 +53,10 @@ public class LinkedList1 {
 
         //Step 3: Make tail = newNode
         tail = newNode;
-    }
+    }*/
 
     //Adding in Middle of LL that is at given index.
-    public void add(int idx, int data) {
+    /*public void add(int idx, int data) {
         if (idx == 0) {
             addFirst(data);
             return;
@@ -73,7 +74,7 @@ public class LinkedList1 {
         //i = idx-1, temp -> prev
         newNode.next = temp.next;
         temp.next = newNode;
-    }
+    }*/
 
     //Removing First Node of LL.
     public int removeFirst() {
@@ -300,7 +301,7 @@ public class LinkedList1 {
     }
 
     //Printing the LL.
-    public void printLL() {
+    /*public void printLL() {
         if (head == null) {
             System.out.println("LL is Empty.");
             return;
@@ -332,7 +333,7 @@ public class LinkedList1 {
 
         //Merge
         return merge(newLeft, newRight);
-    }
+    }*/
 
     private Node getMid(Node head) {
         Node slow = head, fast = head.next;
@@ -344,7 +345,7 @@ public class LinkedList1 {
         return slow; //Mid Node
     }
 
-    private Node merge(Node head1, Node head2) {
+    /*private Node merge(Node head1, Node head2) {
         Node mergedLL = new Node(-1);
         Node temp = mergedLL;
 
@@ -371,7 +372,7 @@ public class LinkedList1 {
             temp = temp.next;
         }
         return mergedLL.next;
-    }
+    }*/
 
     //Zig-Zag Linked List.
     public void zigZag() {
@@ -426,6 +427,42 @@ public class LinkedList1 {
             head2 = head2.next;
         }
         return null;
+    }
+
+    //Question 2: Delete N Nodes After M Nodes of a Linked List
+    static Node push(Node head_ref, int new_data) {
+        Node new_node = new Node();
+        new_node.data = new_data;
+        new_node.next = (head_ref);
+        (head_ref) = new_node;
+        return head_ref;
+    }
+
+    static void printList(Node head) {
+        Node temp = head;
+        while (temp != null) {
+            System.out.printf("%d ", temp.data);
+            temp = temp.next;
+        }
+        System.out.printf("\n");
+    }
+
+    static void skipMdeleteN(Node head, int M, int N) {
+        Node curr = head, t;
+        int count;
+        while (curr != null) {
+            for (count = 1; count < M && curr != null; count++)
+                curr = curr.next;
+            if (curr == null)
+                return;
+            t = curr.next;
+            for (count = 1; count <= N && t != null; count++) {
+                Node temp = t;
+                t = t.next;
+            }
+            curr.next = t;
+            curr = t;
+        }
     }
 
     public static void main(String[] para_coder) {
@@ -494,7 +531,7 @@ public class LinkedList1 {
         Question 1: Intersection of Two Linked Lists
         Time Complexity : o(m*n)
         Space Complexity: o(1)*/
-        Node head1, head2;
+        /*Node head1, head2;
 
         head1 = new Node(10);
         head2 = new Node(3);
@@ -519,6 +556,29 @@ public class LinkedList1 {
             System.out.print(" No Intersection Point \n");
         } else {
             System.out.print("Intersection Point: " + intersectionPoint.data);
-        }
+        }*/
+
+        /*Question 2: Delete N Nodes After M Nodes of a Linked List
+        Time Complexity : o(n)
+        Space Complexity: o(1)*/
+        Node head = null;
+        int M = 2, N = 3;
+
+        head = push(head, 10);
+        head = push(head, 9);
+        head = push(head, 8);
+        head = push(head, 7);
+        head = push(head, 6);
+        head = push(head, 5);
+        head = push(head, 4);
+        head = push(head, 3);
+        head = push(head, 2);
+        head = push(head, 1);
+
+        System.out.printf("M = %d, N = %d \n" + "Input Linked list: ", M, N);
+        printList(head);
+        skipMdeleteN(head, M, N);
+        System.out.printf("Output Linked list: ");
+        printList(head);
     }
 }
