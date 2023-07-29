@@ -1,6 +1,6 @@
-import java.util.ArrayList;
+import java.util.*;
 
-public class Stack {
+public class Stacks {
 
     //Implementation of Stack using ArrayList.
     static class StackAL {
@@ -78,14 +78,15 @@ public class Stack {
 
         //Peek(): To see which elements on the top.
         public static int peek() {
-            if (isEmpty())  return -1;
+            if (isEmpty()) return -1;
 
             return head.data;
         }
     }
 
     public static void main(String[] para_coder) {
-        StackLL stack = new StackLL();
+//        StackLL stack = new StackLL();
+        Stack<Integer> stack = new Stack<>();
         stack.push(1);
         stack.push(2);
         stack.push(3);
