@@ -84,12 +84,27 @@ public class Stacks {
         }
     }
 
+    //Question 1: Push at the Bottom of the Stack.
+    public static void pushAtBottom(Stack<Integer> stack, int data) {
+        //Base Case: If Stack is Empty then Add/Push data directly.
+        if (stack.isEmpty()) {
+            stack.push(data);
+            return;
+        }
+        //Work
+        int top = stack.pop(); //Storing Top most element.
+        pushAtBottom(stack, data); //Recursive Calling for next element.
+        stack.push(top); //Adding those removed element again.
+    }
+
     public static void main(String[] para_coder) {
 //        StackLL stack = new StackLL();
         Stack<Integer> stack = new Stack<>();
         stack.push(1);
         stack.push(2);
         stack.push(3);
+
+        pushAtBottom(stack, 4);
 
         while (!stack.isEmpty()) {
             System.out.println(stack.peek()); //Printing the TOP element.
