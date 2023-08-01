@@ -124,6 +124,28 @@ public class Stacks {
         pushAtBottom(stack, top); //3rd. Pushing elements at Bottom.
     }
 
+    //Question 4: Stock Span Problem. O(n)
+    public static void stocksSpan(int[] stocks, int[] span) {
+        Stack<Integer> stack = new Stack<>();
+        span[0] = 1;
+        stack.push(0);
+
+        for (int i = 1; i < stocks.length; i++) {
+            int currPrice = stocks[i];
+            while (!stack.isEmpty() && currPrice > stocks[stack.peek()]) {
+                stack.pop();
+            }
+            if (stack.isEmpty()) {
+                span[i] = i + 1;
+            } else {
+                int prevHigh = stack.peek();
+                span[i] = i - prevHigh;
+            }
+
+            stack.push(i);
+        }
+    }
+
     public static void printStack(Stack<Integer> stack) {
         while (!stack.isEmpty()) {
             System.out.println(stack.pop());
@@ -132,13 +154,13 @@ public class Stacks {
 
     public static void main(String[] para_coder) {
 //        StackLL stack = new StackLL();
-        Stack<Integer> stack = new Stack<>();
+        /*Stack<Integer> stack = new Stack<>();
         stack.push(1);
         stack.push(2);
         stack.push(3);
 
         reverseStack(stack);
-        printStack(stack);
+        printStack(stack);*/
 
 //        pushAtBottom(stack, 4);
 
@@ -150,5 +172,13 @@ public class Stacks {
         /*String str = "SAD";
         String result = reverseString(str);
         System.out.println("Result = " + result);*/
+
+        int[] stocks = {100, 80, 60, 70, 60, 85, 100};
+        int[] span = new int[stocks.length];
+        stocksSpan(stocks, span);
+
+        for(int i = 0; i < span.length; i++) {
+            System.out.println(span[i] + " ");
+        }
     }
 }
