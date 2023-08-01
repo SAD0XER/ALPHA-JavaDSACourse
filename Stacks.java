@@ -84,7 +84,7 @@ public class Stacks {
         }
     }
 
-    //Question 1: Push at the Bottom of the Stack.
+    //Question 1: Push at the Bottom of the Stack. O(n)
     public static void pushAtBottom(Stack<Integer> stack, int data) {
         //Base Case: If Stack is Empty then Add/Push data directly.
         if (stack.isEmpty()) {
@@ -97,9 +97,26 @@ public class Stacks {
         stack.push(top); //Adding those removed element again.
     }
 
+    public static String reverseString(String str) {
+        Stack<Character> stack = new Stack<>();
+        int idx = 0;
+        while (idx < str.length()) {
+            stack.push(str.charAt(idx));
+            idx++;
+        }
+
+        StringBuilder result = new StringBuilder("");
+        while (!stack.isEmpty()) {
+            char curr = stack.pop();
+            result.append(curr);
+        }
+
+        return result.toString();
+    }
+
     public static void main(String[] para_coder) {
 //        StackLL stack = new StackLL();
-        Stack<Integer> stack = new Stack<>();
+        /*Stack<Integer> stack = new Stack<>();
         stack.push(1);
         stack.push(2);
         stack.push(3);
@@ -109,6 +126,10 @@ public class Stacks {
         while (!stack.isEmpty()) {
             System.out.println(stack.peek()); //Printing the TOP element.
             stack.pop(); //After printing, Removing TOP element.
-        }
+        }*/
+
+        String str = "SAD";
+        String result = reverseString(str);
+        System.out.println("Result = " + result);
     }
 }
