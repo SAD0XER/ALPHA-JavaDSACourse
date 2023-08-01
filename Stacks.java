@@ -97,6 +97,7 @@ public class Stacks {
         stack.push(top); //Adding those removed element again.
     }
 
+    //Question 2: Reverse a String using Stack.
     public static String reverseString(String str) {
         Stack<Character> stack = new Stack<>();
         int idx = 0;
@@ -114,22 +115,40 @@ public class Stacks {
         return result.toString();
     }
 
+    //Question 3: Reverse a Stack. O(n)
+    public static void reverseStack(Stack<Integer> stack) {
+        if (stack.isEmpty()) return; //If Stack is Empty.
+
+        int top = stack.pop(); //1st. popping all elements 1 by 1.
+        reverseStack(stack); //2nd. Recursive Calling.
+        pushAtBottom(stack, top); //3rd. Pushing elements at Bottom.
+    }
+
+    public static void printStack(Stack<Integer> stack) {
+        while (!stack.isEmpty()) {
+            System.out.println(stack.pop());
+        }
+    }
+
     public static void main(String[] para_coder) {
 //        StackLL stack = new StackLL();
-        /*Stack<Integer> stack = new Stack<>();
+        Stack<Integer> stack = new Stack<>();
         stack.push(1);
         stack.push(2);
         stack.push(3);
 
-        pushAtBottom(stack, 4);
+        reverseStack(stack);
+        printStack(stack);
 
-        while (!stack.isEmpty()) {
+//        pushAtBottom(stack, 4);
+
+        /*while (!stack.isEmpty()) {
             System.out.println(stack.peek()); //Printing the TOP element.
             stack.pop(); //After printing, Removing TOP element.
         }*/
 
-        String str = "SAD";
+        /*String str = "SAD";
         String result = reverseString(str);
-        System.out.println("Result = " + result);
+        System.out.println("Result = " + result);*/
     }
 }
