@@ -173,12 +173,43 @@ public class Stacks {
         String result = reverseString(str);
         System.out.println("Result = " + result);*/
 
-        int[] stocks = {100, 80, 60, 70, 60, 85, 100};
+        /*int[] stocks = {100, 80, 60, 70, 60, 85, 100};
         int[] span = new int[stocks.length];
         stocksSpan(stocks, span);
 
         for(int i = 0; i < span.length; i++) {
             System.out.println(span[i] + " ");
+        }*/
+
+        /*Next Greater Element: This question has 4 forms.
+        1. Next Greater at Right Side (Backward Loop and <=)
+        2. Next Greater at Left Side (Forward Loop and <=)
+        3. Next Smallest at Right Side (Backward Loop and >=)
+        4. Next Smallest at Left Side (Forward Loop and >=)*/
+        int[] arr = {98, 76, 54, 32, 10}, nextGreater = new int[arr.length];
+        Stack<Integer> stack = new Stack<>();
+//        int[] nextGreater = new int[arr.length];
+
+        //Backward loop.
+        for (int i = arr.length - 1; i >= 0; i--) {
+            //1. While loop
+            while (!stack.isEmpty() && arr[stack.peek()] <= arr[i]) {
+                stack.pop();
+            }
+
+            //if-else checking.
+            if (stack.isEmpty()) {
+                nextGreater[i] = -1;
+            } else {
+                nextGreater[i] = arr[stack.peek()];
+            }
+
+            //pushing in stack.
+            stack.push(i);
+        }
+
+        for (int i = 0; i < nextGreater.length; i++) {
+            System.out.print(nextGreater[i] + " ");
         }
     }
 }
