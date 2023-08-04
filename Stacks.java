@@ -152,6 +152,31 @@ public class Stacks {
         }
     }
 
+    //Valid Parentheses Code. O(n)
+    public static boolean isValid(String str) {
+        Stack<Character> stack = new Stack<>();
+
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+            // Opening condition
+            if (ch == '(' || ch == '[' || ch == '{') {
+                stack.push(ch);
+            } else {
+                // Closing condition
+                if (stack.isEmpty()) return false;
+
+                if ((stack.peek() == '(' && ch == ')') /*()*/
+                        || (stack.peek() == '[' && ch == ']') /*[]*/
+                        || (stack.peek() == '{' && ch == '}') /*{}*/) {
+                    stack.pop();
+                } else {
+                    return false;
+                }
+            }
+        }
+        return stack.isEmpty();
+    }
+
     public static void main(String[] para_coder) {
 //        StackLL stack = new StackLL();
         /*Stack<Integer> stack = new Stack<>();
@@ -186,7 +211,7 @@ public class Stacks {
         2. Next Greater at Left Side (Forward Loop and <=)
         3. Next Smallest at Right Side (Backward Loop and >=)
         4. Next Smallest at Left Side (Forward Loop and >=)*/
-        int[] arr = {98, 76, 54, 32, 10}, nextGreater = new int[arr.length];
+        /*int[] arr = {98, 76, 54, 32, 10}, nextGreater = new int[arr.length];
         Stack<Integer> stack = new Stack<>();
 //        int[] nextGreater = new int[arr.length];
 
@@ -210,6 +235,10 @@ public class Stacks {
 
         for (int i = 0; i < nextGreater.length; i++) {
             System.out.print(nextGreater[i] + " ");
-        }
+        }*/
+
+        //Valid Parentheses. O(n)
+        String str = "}{"; //true
+        System.out.println(isValid(str));
     }
 }
