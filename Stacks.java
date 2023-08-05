@@ -177,6 +177,26 @@ public class Stacks {
         return stack.isEmpty();
     }
 
+    //Duplicate Parentheses. O(n)
+    public static boolean isDuplicate(String str) {
+        Stack<Character> stack = new Stack<>();
+
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+            //Closing case.
+            if (ch == ')') {
+                int count = 0;
+                while (stack.pop() != '(') {
+                    count++;
+                }
+                if (count < 1) return true; //Duplicate exist.
+            } else { //Opening case.
+                stack.push(ch);
+            }
+        }
+        return false;
+    }
+
     public static void main(String[] para_coder) {
 //        StackLL stack = new StackLL();
         /*Stack<Integer> stack = new Stack<>();
@@ -238,7 +258,13 @@ public class Stacks {
         }*/
 
         //Valid Parentheses. O(n)
-        String str = "}{"; //true
-        System.out.println(isValid(str));
+        /*String str = "{()[{}]()}"; //true
+        String str2 = "{)([]{}}"; //false
+        System.out.println(isValid(str));*/
+
+        //Duplicate Parentheses. O(n)
+        String str = "((a+b))"; //true
+        String str2 = "(c+d)"; //false
+        System.out.println(isDuplicate(str2));
     }
 }
