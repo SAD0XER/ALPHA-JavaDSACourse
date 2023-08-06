@@ -197,6 +197,53 @@ public class Stacks {
         return false;
     }
 
+    //Max Area in Histogram. O(n)
+    public static void maxArea(int[] arr) {
+        int maxArea = 0;
+        int[] nsr = new int[arr.length]; //Next Smaller Right.
+        int[] nsl = new int[arr.length]; //Next Smaller Left.
+
+        //Next Smaller Right. O(n)
+        Stack<Integer> stack = new Stack<>();
+
+        for (int j = arr.length - 1; j >= 0; j--) {
+            while (!stack.isEmpty() && arr[stack.peek()] >= arr[j]) {
+                stack.pop();
+            }
+            if (stack.isEmpty()) {
+                nsr[j] = arr.length; //n/-1
+            } else {
+                nsr[j] = stack.peek(); //Top
+            }
+            stack.push(j);
+        }
+
+        //Next Smaller Left. O(n)
+        stack = new Stack<>();
+
+        for (int i = 0; i < arr.length; i++) {
+            while (!stack.isEmpty() && arr[stack.peek()] >= arr[i]) {
+                stack.pop();
+            }
+            if (stack.isEmpty()) {
+                nsl[i] = -1; //-1
+            } else {
+                nsl[i] = stack.peek(); //Top
+            }
+            stack.push(i);
+        }
+
+        //Current Area: width = j - i - 1 = nsr[i] - nsl[i] - 1; O(n)
+        for (int i = 0; i < arr.length; i++) {
+            int height = arr[i];
+            int width = nsr[i] - nsl[i] - 1;
+            int currArea = height * width;
+            maxArea = Math.max(currArea, maxArea);
+        }
+
+        System.out.println("Maximum Area in Histogram = " + maxArea);
+    }
+
     public static void main(String[] para_coder) {
 //        StackLL stack = new StackLL();
         /*Stack<Integer> stack = new Stack<>();
@@ -263,8 +310,12 @@ public class Stacks {
         System.out.println(isValid(str));*/
 
         //Duplicate Parentheses. O(n)
-        String str = "((a+b))"; //true
+        /*String str = "((a+b))"; //true
         String str2 = "(c+d)"; //false
-        System.out.println(isDuplicate(str2));
+        System.out.println(isDuplicate(str2));*/
+
+        //Max Area in Histogram. O(n)
+        int[] arr = {2, 1, 5, 6, 2, 3}; //Heights in Histogram.
+        maxArea(arr);
     }
 }
