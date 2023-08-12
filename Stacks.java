@@ -366,6 +366,30 @@ public class Stacks {
         return result;
     }
 
+    //Assignment Question 4: Trapping Rain Water. TC & SC O(n)
+    public static int maxWater(int[] height){
+        Stack<Integer> stack = new Stack<>();
+        int n = height.length;
+        int ans = 0;
+        for (int i = 0; i < n; i++) {
+            while ((!stack.isEmpty())
+                    && (height[stack.peek()] < height[i])) {
+                int pop_height = height[stack.peek()];
+                stack.pop();
+                if (stack.isEmpty())
+                    break;
+                int distance = i - stack.peek() - 1;
+                int min_height
+                        = Math.min(height[stack.peek()],
+                        height[i])
+                        - pop_height;
+                ans += distance * min_height;
+            }
+            stack.push(i);
+        }
+        return ans;
+    }
+
     public static void main(String[] para_coder) {
 //        StackLL stack = new StackLL();
         /*Stack<Integer> stack = new Stack<>();
@@ -469,8 +493,13 @@ public class Stacks {
         System.out.println(simplify(str));*/
 
         //Assignment Question 3: Decode a String. TC & SC O(n)
-        System.out.println(decode("3[b2[c]]"));
+        /*System.out.println(decode("3[b2[c]]"));
 //        System.out.println(decode("2[cv]\n")); //cvcv
-//        System.out.println(decode("3[b2[v]]L")); //bvvbvvbvvL
+//        System.out.println(decode("3[b2[v]]L")); //bvvbvvbvvL*/
+
+        //Assignment Question 4: Trapping Rain Water. TC & SC O(n)
+//        int arr[] = { 0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1 }; //6
+        int arr[] = { 7, 0, 4, 2, 5, 0, 6, 4, 0, 5 }; //25
+        System.out.println(maxWater(arr));
     }
 }
