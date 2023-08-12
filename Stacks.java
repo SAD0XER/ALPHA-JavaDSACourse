@@ -313,6 +313,59 @@ public class Stacks {
         return res;
     }
 
+    //Assignment Question 3: Decode a String. TC & SC O(n)
+    static String decode(String str) {
+        Stack<Integer> integerstack = new Stack<>();
+        Stack<Character> stringstack = new Stack<>();
+        String temp = "", result = "";
+
+        for (int i = 0; i < str.length(); i++) {
+            int count = 0;
+
+            if (Character.isDigit(str.charAt(i))) {
+                while (Character.isDigit(str.charAt(i))) {
+                    count = count * 10 + str.charAt(i) - '0';
+                    i++;
+                }
+                i--;
+                integerstack.push(count);
+            } else if (str.charAt(i) == ']') {
+                temp = "";
+                count = 0;
+
+                if (!integerstack.isEmpty()) {
+                    count = integerstack.peek();
+                    integerstack.pop();
+                }
+
+                while (!stringstack.isEmpty() && stringstack.peek() != '[') {
+                    temp = stringstack.peek() + temp;
+                    stringstack.pop();
+                }
+
+                if (!stringstack.empty() && stringstack.peek() == '[')
+                    stringstack.pop();
+                for (int j = 0; j < count; j++)
+                    result = result + temp;
+                for (int j = 0; j < result.length(); j++)
+                    stringstack.push(result.charAt(j));
+                result = "";
+            } else if (str.charAt(i) == '[') {
+                if (Character.isDigit(str.charAt(i - 1)))
+                    stringstack.push(str.charAt(i));
+                else {
+                    stringstack.push(str.charAt(i));
+                    integerstack.push(1);
+                }
+            } else stringstack.push(str.charAt(i));
+        }
+        while (!stringstack.isEmpty()) {
+            result = stringstack.peek() + result;
+            stringstack.pop();
+        }
+        return result;
+    }
+
     public static void main(String[] para_coder) {
 //        StackLL stack = new StackLL();
         /*Stack<Integer> stack = new Stack<>();
@@ -410,9 +463,14 @@ public class Stacks {
         }*/
 
         //Assignment Question 2: Simplify Path. TC: O(n) & SC: O(1)
-        String str = new String("/a/./b/../../c/");
+        /*String str = new String("/a/./b/../../c/");
 //        String str = new String("/apnacollege/"); // /apnacollege
 //        String str = new String("/a/.."); // /
-        System.out.println(simplify(str));
+        System.out.println(simplify(str));*/
+
+        //Assignment Question 3: Decode a String. TC & SC O(n)
+        System.out.println(decode("3[b2[c]]"));
+//        System.out.println(decode("2[cv]\n")); //cvcv
+//        System.out.println(decode("3[b2[v]]L")); //bvvbvvbvvL
     }
 }
