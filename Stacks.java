@@ -37,12 +37,12 @@ public class Stacks {
     //Implementation of Stack using Linked List.
     static class Node {
         int data;
-        Node next;
+        Node ptr;
 
         //Constructor.
         Node(int data) {
             this.data = data;
-            this.next = null;
+            this.ptr = null;
         }
     }
 
@@ -63,7 +63,7 @@ public class Stacks {
                 return;
             }
 
-            newNode.next = head;
+            newNode.ptr = head;
             head = newNode;
         }
 
@@ -72,7 +72,7 @@ public class Stacks {
             if (isEmpty()) return -1;
 
             int top = head.data;
-            head = head.next;
+            head = head.ptr;
             return top;
         }
 
@@ -244,6 +244,30 @@ public class Stacks {
         System.out.println("Maximum Area in Histogram = " + maxArea);
     }
 
+    //Palindrome Linked List.
+    static boolean isPalindrome(Node head) {
+        Node slow = head;
+        boolean ispalin = true;
+        Stack<Integer> stack = new Stack<Integer>();
+
+        while (slow != null) {
+            stack.push(slow.data);
+            slow = slow.ptr;
+        }
+
+        while (head != null) {
+            int i = stack.pop();
+            if (head.data == i) {
+                ispalin = true;
+            } else {
+                ispalin = false;
+                break;
+            }
+            head = head.ptr;
+        }
+        return ispalin;
+    }
+
     public static void main(String[] para_coder) {
 //        StackLL stack = new StackLL();
         /*Stack<Integer> stack = new Stack<>();
@@ -315,7 +339,29 @@ public class Stacks {
         System.out.println(isDuplicate(str2));*/
 
         //Max Area in Histogram. O(n)
-        int[] arr = {2, 1, 5, 6, 2, 3}; //Heights in Histogram.
-        maxArea(arr);
+        /*int[] arr = {2, 1, 5, 6, 2, 3}; //Heights in Histogram.
+        maxArea(arr);*/
+
+        //Palindrome Linked List. TC & SC: O(n)
+        Node one = new Node(1);
+        Node two = new Node(2);
+        Node three = new Node(3);
+        Node four = new Node(4);
+        Node five = new Node(3);
+        Node six = new Node(2);
+        Node seven = new Node(1);
+
+        one.ptr = two;
+        two.ptr = three;
+        three.ptr = four;
+        four.ptr = five;
+        five.ptr = six;
+        six.ptr = seven;
+
+        if (isPalindrome(one)) {
+            System.out.println("Yes, It is Palindrome.");
+        } else {
+            System.out.println("No, It is NOT a Palindrome.");
+        }
     }
 }
