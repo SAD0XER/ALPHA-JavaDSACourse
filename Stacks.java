@@ -244,7 +244,7 @@ public class Stacks {
         System.out.println("Maximum Area in Histogram = " + maxArea);
     }
 
-    //Palindrome Linked List.
+    //Assignment Question 1: Palindrome Linked List.
     static boolean isPalindrome(Node head) {
         Node slow = head;
         boolean ispalin = true;
@@ -266,6 +266,51 @@ public class Stacks {
             head = head.ptr;
         }
         return ispalin;
+    }
+
+    //Assignment Question 2: Simplify Path. TC: O(n) & SC: O(1)
+    static String simplify(String str) {
+        Stack<String> st = new Stack<String>();
+        String res = "";
+        res += "/";
+        int len_A = str.length();
+
+        for (int i = 0; i < len_A; i++) {
+            String dir = "";
+
+            while (i < len_A && str.charAt(i) == '/') {
+                i++;
+            }
+
+            while (i < len_A && str.charAt(i) != '/') {
+                dir += str.charAt(i);
+                i++;
+            }
+
+            if (dir.equals("..")) {
+                if (!st.empty()) {
+                    st.pop();
+                }
+            } else if (dir.equals(".")) {
+                continue;
+            } else if (dir.length() != 0) {
+                st.push(dir);
+            }
+        }
+
+        Stack<String> st1 = new Stack<String>();
+        while (!st.empty()) {
+            st1.push(st.pop());
+        }
+
+        while (!st1.empty()) {
+            if (st1.size() != 1) {
+                res += (st1.pop() + "/");
+            } else {
+                res += st1.pop();
+            }
+        }
+        return res;
     }
 
     public static void main(String[] para_coder) {
@@ -342,8 +387,8 @@ public class Stacks {
         /*int[] arr = {2, 1, 5, 6, 2, 3}; //Heights in Histogram.
         maxArea(arr);*/
 
-        //Palindrome Linked List. TC & SC: O(n)
-        Node one = new Node(1);
+        //Assignment Question 1: Palindrome Linked List. TC & SC: O(n)
+        /*Node one = new Node(1);
         Node two = new Node(2);
         Node three = new Node(3);
         Node four = new Node(4);
@@ -362,6 +407,12 @@ public class Stacks {
             System.out.println("Yes, It is Palindrome.");
         } else {
             System.out.println("No, It is NOT a Palindrome.");
-        }
+        }*/
+
+        //Assignment Question 2: Simplify Path. TC: O(n) & SC: O(1)
+        String str = new String("/a/./b/../../c/");
+//        String str = new String("/apnacollege/"); // /apnacollege
+//        String str = new String("/a/.."); // /
+        System.out.println(simplify(str));
     }
 }
