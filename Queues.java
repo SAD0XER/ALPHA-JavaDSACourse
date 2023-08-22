@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Queues {
     static class QueueArr {
         static int[] arr;
@@ -122,14 +124,16 @@ public class Queues {
     }
 
     public static void main(String[] para_coder) {
-        QueueLL q = new QueueLL(); //Here we've defined size of the array.
-        q.add(1);
-        q.add(2);
-        q.add(3);
-        System.out.println(q.remove());
-        q.add(4);
-        System.out.println(q.remove());
-        q.add(5);
+//        QueueLL q = new QueueLL(); //Here we've defined size of the array.
+
+        /*FYI: Queue is an Interface so, we cannot create object of it. So, we need any other class to implement it.
+         * There are two classes in Java who can implement Queue interfaces. One is Linked List and Second is ArrayDeque.*/
+
+//        Queue<Character> q = new LinkedList<>();
+        Queue<Character> q = new ArrayDeque<>();
+        q.add('a');
+        q.add('b');
+        q.add('c');
 
         while (!q.isEmpty()) {
             System.out.println(q.peek());
