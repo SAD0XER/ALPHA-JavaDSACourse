@@ -64,8 +64,65 @@ public class Queues {
         }
     }
 
+    static class Node {
+        int data;
+        Node next;
+
+        Node(int data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
+
+    static class QueueLL {
+        static Node head = null;
+        static Node tail = null;
+
+        //isEmpty Method: To check queue is Empty or NOT.
+        public static boolean isEmpty() {
+            return head == null && tail == null;
+        }
+
+        //Add (Enque) Method. O(1)
+        public static void add(int data) {
+            Node newNode = new Node(data);
+            //Case: When there is NO any Node in LL.
+            if (head == null) {
+                head = tail = newNode;
+                return;
+            }
+            tail.next = newNode;
+            tail = newNode;
+        }
+
+        //Remove (Dequeue) Method. O(1)
+        public static int remove() {
+            if (isEmpty()) {
+                System.out.print("Queue is Empty.");
+                return -1;
+            }
+            int front = head.data;
+            //Case: When there is single element in LL.
+            if (tail == head) {
+                head = tail = null;
+            } else {
+                head = head.next;
+            }
+            return front;
+        }
+
+        //Peek O(1)
+        public static int peek() {
+            if (isEmpty()) {
+                System.out.print("Queue is Empty.");
+                return -1;
+            }
+            return head.data;
+        }
+    }
+
     public static void main(String[] para_coder) {
-        QueueArr q = new QueueArr(3); //Here we've defined size of the array.
+        QueueLL q = new QueueLL(); //Here we've defined size of the array.
         q.add(1);
         q.add(2);
         q.add(3);
