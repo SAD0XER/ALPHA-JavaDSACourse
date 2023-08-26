@@ -234,6 +234,29 @@ public class Queues {
         }
     }
 
+    //First non-repeating letter in a stream of a character using queues.
+    public static void printNonRepeating(String str) {
+        int[] freq = new int[26]; //'a' - 'z'
+        Queue<Character> q = new LinkedList<>();
+
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+            q.add(ch);
+            freq[ch - 'a']++;
+
+            while (!q.isEmpty() && freq[q.peek() - 'a'] > 1) {
+                q.remove();
+            }
+
+            if (q.isEmpty()) {
+                System.out.println(-1 + " ");
+            } else {
+                System.out.println(q.peek() + " ");
+            }
+        }
+        System.out.println();
+    }
+
     public static void main(String[] para_coder) {
 //        QueueLL q = new QueueLL(); //Here we've defined size of the array.
 
@@ -243,7 +266,7 @@ public class Queues {
 //        Queue<Character> q = new LinkedList<>();
 //        Queue<Character> q = new ArrayDeque<>();
 //        Queues q = new Queues();
-        Stacks s = new Stacks();
+        /*Stacks s = new Stacks();
         s.push(1);
         s.push(2);
         s.push(3);
@@ -251,6 +274,9 @@ public class Queues {
         while (!s.isEmpty()) {
             System.out.println(s.peek());
             s.pop();
-        }
+        }*/
+
+        String str = "aabccxb";
+        printNonRepeating(str);
     }
 }
