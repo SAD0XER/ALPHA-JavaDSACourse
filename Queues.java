@@ -234,7 +234,7 @@ public class Queues {
         }
     }
 
-    //First non-repeating letter in a stream of a character using queues.
+    //First non-repeating letter in a stream of a character using queues. O(n)
     public static void printNonRepeating(String str) {
         int[] freq = new int[26]; //'a' - 'z'
         Queue<Character> q = new LinkedList<>();
@@ -257,6 +257,21 @@ public class Queues {
         System.out.println();
     }
 
+    //Interleave 2 Halves of a Queue (even length). TC: O(n) & SC: O(n)
+    public static void interLeave(Queue<Integer> q) {
+        Queue<Integer> firstHalf = new LinkedList<>();
+        int size = q.size();
+
+        for (int i = 0; i < size/2; i++) {
+            firstHalf.add(q.remove()); //Adding element in 2nd queue.
+        }
+
+        while (!firstHalf.isEmpty()) {
+            q.add(firstHalf.remove()); //Adding element from 2nd queue to main queue.
+            q.add(q.remove()); //Adding element from main queue to itself again.
+        }
+    }
+
     public static void main(String[] para_coder) {
 //        QueueLL q = new QueueLL(); //Here we've defined size of the array.
 
@@ -276,7 +291,27 @@ public class Queues {
             s.pop();
         }*/
 
-        String str = "aabccxb";
-        printNonRepeating(str);
+        //First non-repeating letter in a stream of a character using queues. O(n)
+//        String str = "aabccxb";
+//        printNonRepeating(str);
+
+        //Interleave 2 Halves of a Queue (even length). TC: O(n) & SC: O(n)
+        Queue<Integer> q = new LinkedList<>();
+        q.add(1);
+        q.add(2);
+        q.add(3);
+        q.add(4);
+        q.add(5);
+        q.add(6);
+        q.add(7);
+        q.add(8);
+        q.add(9);
+        q.add(10);
+
+        interLeave(q);
+
+        while (!q.isEmpty()) {
+            System.out.print(q.remove() + " ");
+        }
     }
 }
