@@ -183,14 +183,14 @@ public class Queues {
 
         //Pop: O(n)
         public static int pop() {
-            if (isEmpty()){
+            if (isEmpty()) {
                 System.out.println("Stack is Empty.");
                 return -1;
             }
 
             int top = -1;
 
-            if (!q1.isEmpty()){ //Case 1
+            if (!q1.isEmpty()) { //Case 1
                 while (!q1.isEmpty()) {
                     top = q1.remove();
                     if (q1.isEmpty()) {
@@ -212,14 +212,14 @@ public class Queues {
 
         //Peek: O(n)
         public static int peek() {
-            if (isEmpty()){
+            if (isEmpty()) {
                 System.out.println("Stack is Empty.");
                 return -1;
             }
 
             int top = -1;
 
-            if (!q1.isEmpty()){ //Case 1
+            if (!q1.isEmpty()) { //Case 1
                 while (!q1.isEmpty()) {
                     top = q1.remove();
                     q2.add(top);
@@ -262,7 +262,7 @@ public class Queues {
         Queue<Integer> firstHalf = new LinkedList<>();
         int size = q.size();
 
-        for (int i = 0; i < size/2; i++) {
+        for (int i = 0; i < size / 2; i++) {
             firstHalf.add(q.remove()); //Adding element in 2nd queue.
         }
 
@@ -291,17 +291,37 @@ public class Queues {
 
         //push: O(1)
         public void push(int data) {
-            deque.addLast(data);
+            deque.addLast(data); //adding data from last side.
         }
 
         //pop: O(1)
         public int pop() {
-            return deque.removeLast();
+            return deque.removeLast(); //removing data from last side.
         }
 
         //peek: O(1)
         public int peek() {
-            return deque.getLast();
+            return deque.getLast(); //getting data from first side.
+        }
+    }
+
+    //Implement Queue using Deque.
+    static class DequeQueue {
+        Deque<Integer> deque = new LinkedList<>();
+
+        //Add: O(1)
+        public void add(int data) {
+            deque.addLast(data); //adding data from last side.
+        }
+
+        //Remove: O(1)
+        public int remove() {
+            return deque.removeFirst(); //removing data from last side.
+        }
+
+        //Peek: O(1)
+        public int peek() {
+            return deque.getFirst(); //getting data from first side.
         }
     }
 
@@ -353,13 +373,23 @@ public class Queues {
         }*/
 
         //Implement Stack using Deque.
-        DequeStack s = new DequeStack();
+        /*DequeStack s = new DequeStack();
         s.push(1);
         s.push(2);
         s.push(3);
         System.out.println("Peek: " + s.peek());
         System.out.println(s.pop());
         System.out.println(s.pop());
-        System.out.println(s.pop());
+        System.out.println(s.pop());*/
+
+        //Implement Queue using Deque.
+        DequeQueue q = new DequeQueue();
+        q.add(1);
+        q.add(2);
+        q.add(3);
+        System.out.println("Peek: " + q.peek());
+        System.out.println(q.remove());
+        System.out.println(q.remove());
+        System.out.println(q.remove());
     }
 }
