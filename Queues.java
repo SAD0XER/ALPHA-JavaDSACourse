@@ -310,23 +310,25 @@ public class Queues {
 
         //Interleave 2 Halves of a Queue (even length). TC: O(n) & SC: O(n)
         //Queue Reversal. O(n)
-        Queue<Integer> q = new LinkedList<>();
-        q.add(1);
-        q.add(2);
-        q.add(3);
-        q.add(4);
-        q.add(5);
-        q.add(6);
-        q.add(7);
-        q.add(8);
-        q.add(9);
-        q.add(10);
+        Deque<Integer> deque = new LinkedList<>(); /*Remember: Deque is an Interface, which is implemented by other classes like Liked List.*/
+        deque.addFirst(1); //1
+        deque.addFirst(2); //2, 1
+        deque.addFirst(3); //3, 2, 1
+        deque.addLast(3); //3, 2, 1, 3
+        deque.addLast(4); //3, 2, 1, 3, 4
+        System.out.println(deque);
+        deque.removeLast(); //3, 2, 1, 3
+        System.out.println(deque);
+        deque.removeFirst(); //2, 1, 3
+        System.out.println(deque);
+        System.out.println("First Element: " + deque.getFirst()); //2
+        System.out.println("Last Element: " + deque.getLast()); //3
 
 //        interLeave(q);
-        reverse(q);
+//        reverse(q);
 
-        while (!q.isEmpty()) {
+        /*while (!q.isEmpty()) {
             System.out.print(q.remove() + " ");
-        }
+        }*/
     }
 }
