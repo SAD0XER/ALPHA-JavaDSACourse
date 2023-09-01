@@ -4,10 +4,8 @@ public class GreedyAlgorithms {
     public static void main(String[] args) {
 
         //Activity Selection.
-//        int[] start = {1, 3, 0, 5, 8, 5};
-//        int[] end = {2, 4, 6, 7, 9, 9};
-        /*int[] start = {0, 1, 3, 5, 5, 8};
-        int[] end = {6, 2, 4, 7, 9, 9};
+        /*int[] start = {1, 3, 0, 5, 8, 5}; //int[] start = {0, 1, 3, 5, 5, 8};
+        int[] end = {2, 4, 6, 7, 9, 9}; //int[] end = {6, 2, 4, 7, 9, 9};
 
         //Question: End time is NOT sorted. O(nLog n)
         int[][] activities = new int[start.length][3];
@@ -43,7 +41,7 @@ public class GreedyAlgorithms {
         }*/
 
         //Fractional Knapsack
-        int[] val = {60, 100, 120};
+        /*int[] val = {60, 100, 120};
         int[] weight = {10, 20, 30};
         int W = 50;
 
@@ -71,6 +69,21 @@ public class GreedyAlgorithms {
             }
         }
 
-        System.out.println("Final Value = " + finalval);
+        System.out.println("Final Value = " + finalval);*/
+
+        //Minimum Absolute Difference of Pairs. O(nLog n)
+        int[] A = {4, 1, 8, 7}; //int A[] = {1, 2, 3};
+        int[] B = {2, 3, 6, 5}; //int B[] = {2, 1, 3};
+
+        //Sorting Array Using Sort Function.
+        Arrays.sort(A);
+        Arrays.sort(B);
+
+        int minDiff = 0;
+        for (int i = 0; i < A.length; i++) {
+            minDiff += Math.abs(A[i] - B[i]);
+        }
+
+        System.out.print("Absolute Difference of Pairs is " + minDiff);
     }
 }
