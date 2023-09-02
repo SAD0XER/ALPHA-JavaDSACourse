@@ -87,7 +87,7 @@ public class GreedyAlgorithms {
         System.out.print("Absolute Difference of Pairs is " + minDiff);*/
 
         //Max Length Chain of Pairs. O(nLog n)
-        int pairs[][] = {{5, 24}, {39, 60}, {5, 28}, {27, 40}, {50, 90}};
+        /*int pairs[][] = {{5, 24}, {39, 60}, {5, 28}, {27, 40}, {50, 90}};
 
         Arrays.sort(pairs, Comparator.comparingDouble(o -> o[1]));
 
@@ -99,6 +99,28 @@ public class GreedyAlgorithms {
                 chainEnd = pairs[i][1];
             }
         }
-        System.out.println("Maximum Length of Chain is " + chainLen);
+        System.out.println("Maximum Length of Chain is " + chainLen);*/
+
+        //Indian Coins: Find a minimum number of coins and notes to make change for a value.
+        /*Integer[] coins = {1, 2, 5, 10, 20, 50, 100, 500, 2000};
+
+        Arrays.sort(coins, Comparator.reverseOrder());
+
+        int countOfCoins = 0, amount = 1059;
+        ArrayList<Integer> ans = new ArrayList<>();
+        for (int i = 0; i < coins.length; i++) {
+            if (coins[i] <= amount) {
+                while (coins[i] <= amount) {
+                    countOfCoins++;
+                    ans.add(coins[i]);
+                    amount -= coins[i]; //amount = amount - coins[i];
+                }
+            }
+        }
+        System.out.println("Total Minimum Coins Used = " + countOfCoins);
+
+        for (int i = 0; i < ans.size(); i++) {
+            System.out.print(ans.get(i) + " ");
+        }*/
     }
 }
