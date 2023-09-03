@@ -1,6 +1,20 @@
 import java.util.*;
 
 public class GreedyAlgorithms {
+
+    //Creating class for object.
+    static class Job {
+        int id; //0(A), 1(B), 2(C)...
+        int deadline;
+        int profit;
+
+        public Job(int i, int d, int p) {
+            id = i;
+            deadline = d;
+            profit = p;
+        }
+    }
+
     public static void main(String[] args) {
 
         //Activity Selection.
@@ -122,5 +136,34 @@ public class GreedyAlgorithms {
         for (int i = 0; i < ans.size(); i++) {
             System.out.print(ans.get(i) + " ");
         }*/
+
+        //Job Sequencing Problem. (In this question, we've sorted objects for first time.)
+        int[][] jobsInfo = {{4, 20}, {1, 10}, {1, 40}, {1, 30}};
+
+        ArrayList<Job> jobs = new ArrayList<>(); //This is Job(class) type array.
+
+        for (int i = 0; i < jobsInfo.length; i++) {
+            jobs.add(new Job(i, jobsInfo[i][0], jobsInfo[i][1]));
+        }
+
+        Collections.sort(jobs, (obj1, obj2) -> obj2.profit - obj1.profit); //Descending Order sorting.
+
+        ArrayList<Integer> seq = new ArrayList<>();
+
+        int time = 0; //counter for time.
+
+        for (int i = 0; i < jobs.size(); i++) {
+            Job curr = jobs.get(i);
+            if (curr.deadline > time) {
+                seq.add(curr.id);
+                time++;
+            }
+        }
+
+        //Print Sequence.
+        System.out.println("Max Jobs = " + seq.size());
+        for (int i = 0; i < seq.size(); i++) {
+            System.out.print(seq.get(i) + " ");
+        }
     }
 }
