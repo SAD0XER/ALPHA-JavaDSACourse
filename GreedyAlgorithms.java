@@ -138,7 +138,7 @@ public class GreedyAlgorithms {
         }*/
 
         //Job Sequencing Problem. (In this question, we've sorted objects for first time.)
-        int[][] jobsInfo = {{4, 20}, {1, 10}, {1, 40}, {1, 30}};
+        /*int[][] jobsInfo = {{4, 20}, {1, 10}, {1, 40}, {1, 30}};
 
         ArrayList<Job> jobs = new ArrayList<>(); //This is Job(class) type array.
 
@@ -164,6 +164,45 @@ public class GreedyAlgorithms {
         System.out.println("Max Jobs = " + seq.size());
         for (int i = 0; i < seq.size(); i++) {
             System.out.print(seq.get(i) + " ");
+        }*/
+
+        //Chocola (chocolate) Problem. Level: Hard
+        int n = 4, m = 6; //n: Rows, m: Columns
+        Integer[] costVer = {2, 1, 3, 1, 4}; //m - 1
+        Integer[] costHor = {4, 1, 2}; //n - 1
+
+        //Descending Order Sorting of Costs.
+        Arrays.sort(costVer, Collections.reverseOrder());
+        Arrays.sort(costHor, Collections.reverseOrder());
+
+        int h = 0, v = 0, hp = 1, vp = 1, cost = 0; //'v' and 'h' are the pointers to  the cost array.
+
+        while (h < costHor.length && v < costVer.length) {
+            if (costVer[v] <= costHor[h]) { //Horizontal Cut
+                cost += (costHor[h] * vp);
+                hp++;
+                h++;
+            } else { //Vertical Cut
+                cost += (costVer[v] * hp);
+                vp++;
+                v++;
+            }
         }
+
+        //Cuts for remaining Horizontal Pieces.
+        while (h < costHor.length) {
+            cost += (costHor[h] * vp);
+            hp++;
+            h++;
+        }
+
+        //Cuts for remaining Vertical Pieces.
+        while (v < costVer.length) {
+            cost += (costVer[v] * hp);
+            vp++;
+            v++;
+        }
+
+        System.out.print("Minimum cost of cuts is " + cost);
     }
 }
