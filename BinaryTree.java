@@ -1,9 +1,5 @@
 public class BinaryTree {
 
-    public class Asd {
-        int Mydata = 23;
-    }
-
     //Node Class for Binary Tree.
     static class Node {
         int data;
@@ -33,9 +29,9 @@ public class BinaryTree {
         return newNode;
     }
 
-    //Tree Traversal.
+    //Tree Traversal using Recursion.
     /*#1. Preorder Traversal. Linear Time Complexity: O(n)
-    - There are 3 Rules of Preorder Traversal using Recursion:
+    * - There are 3 Rules of Preorder Traversal:
     1st Print the Root.
     2nd Print Left subtree.
     3rd Print Right subtree.*/
@@ -45,9 +41,25 @@ public class BinaryTree {
             return;
         }
 
-        System.out.print(root.data + " "); //Printing Data.
-        preorder(root.left); //Printing Left subtree.
-        preorder(root.right); //Printing Right subtree.
+        System.out.print(root.data + " "); //Printing Data. Rule-1
+        preorder(root.left); //Printing Left subtree. Rule-2
+        preorder(root.right); //Printing Right subtree. Rule-3
+    }
+
+    /*#2. Inorder Traversal. Linear Time Complexity: O(n)
+    Why Inorder? Because, Root comes IN BETWEEN the left and right subtree.
+    * - There are 3 Rules of Inorder Traversal:
+    1st Print Left subtree.
+    2nd Print Root.
+    3rd Print Right subtree.*/
+    public static void inorder(Node root) {
+        if (root == null) { //Base Case
+            System.out.print(-1 + " "); //Add this line if you want to print -1 to show NULL node as well.
+            return;
+        }
+        inorder(root.left); //Printing Left subtree. Rule-1
+        System.out.print(root.data + " "); //Printing Root. Rule-2
+        inorder(root.right); //Printing Right subtree. Rule-3
     }
 
     public static void main(String[] args) {
@@ -57,6 +69,7 @@ public class BinaryTree {
         Node root = buildTree(nodes);
 //        System.out.println(root.data);
 
-        preorder(root);
+//        preorder(root);
+        inorder(root);
     }
 }
