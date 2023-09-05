@@ -62,6 +62,22 @@ public class BinaryTree {
         inorder(root.right); //Printing Right subtree. Rule-3
     }
 
+    /*#3. Postorder Traversal. Linear Time Complexity: O(n)
+    Post means बाद में (Later).
+    * - There are 3 Rules of Postorder Traversal:
+    1st Print Left subtree.
+    2nd Print Right subtree.
+    3rd Print Root.*/
+    public static void postorder(Node root) {
+        if (root == null) { //Base Case
+            System.out.print(-1 + " "); //Add this line if you want to print -1 to show NULL node as well.
+            return;
+        }
+        postorder(root.left); //Printing Left subtree. Rule-1
+        postorder(root.right); //Printing Right subtree. Rule-2
+        System.out.print(root.data + " "); //Printing Root. Rule-3
+    }
+
     public static void main(String[] args) {
         int[] nodes = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
 
@@ -70,6 +86,7 @@ public class BinaryTree {
 //        System.out.println(root.data);
 
 //        preorder(root);
-        inorder(root);
+//        inorder(root);
+        postorder(root);
     }
 }
