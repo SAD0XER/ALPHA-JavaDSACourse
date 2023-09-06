@@ -119,13 +119,26 @@ public class BinaryTree {
 
     //Height of Tree. O(n)
     public static int height(Node root) {
-        if (root == null) {
+        if (root == null) { //Base Case.
             return 0;
         }
 
-        int lh = height(root.left);
-        int rh = height(root.right);
-        return Math.max(lh, rh) + 1;
+        int lh = height(root.left); //Counting Height of Left Subtree.
+        int rh = height(root.right); //Counting Height of Right Subtree.
+
+        return Math.max(lh, rh) + 1; //Finally, choosing maximum between left height & right height of tree and adding +1 in it and return.
+    }
+
+    //Count the Nodes of a Binary Tree. O(n)
+    public static int count(Node root) {
+        if (root == null) { //Base Case.
+            return 0;
+        }
+
+        int leftCount = count(root.left); //Counting Nodes of Left Subtree.
+        int rightCount = count(root.right); //Counting Nodes of Right Subtree.
+
+        return leftCount + rightCount + 1; //Adding Counts of both side & adding +1 in it and Return.
     }
 
     public static void main(String[] args) {
@@ -158,6 +171,6 @@ public class BinaryTree {
         root.right.left = new Node(6);
         root.right.right = new Node(7);
 
-        System.out.print(height(root));
+        System.out.print(count(root));
     }
 }
