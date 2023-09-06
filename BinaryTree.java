@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class BinaryTree {
 
     //Node Class for Binary Tree.
@@ -68,6 +70,44 @@ public class BinaryTree {
     1st Print Left subtree.
     2nd Print Right subtree.
     3rd Print Root.*/
+
+    /*Level Order Traversal. Linear Time Complexity: O(n)
+    - we'll use Queue Data Structure for this traversal.
+    - we'll use BFS (Breadth First Search) approach in this traversal.
+    - This traversal we'll solve by Iterative approach.*/
+    public static void levelOrder(Node root) {
+        if (root == null) { //Checking Root is empty or not.
+            return;
+        }
+
+        Queue<Node> q = new LinkedList<>(); //Created Queue.
+        q.add(root); //Firstly add root.
+        q.add(null); //Added NULL to know print next line.
+
+        while (!q.isEmpty()) {
+            Node currNode = q.remove(); //Removing each element from Q and saving it in 'currNode'.
+            if (currNode == null) { //Case for when we encounter NULL in a Queue.
+                System.out.println();
+
+                if (q.isEmpty()) { //Checking Queue is empty or NOT.
+                    break;
+                } else {
+                    q.add(null); //If Queue is NOT empty then add NULL in Queue again.
+                }
+
+            } else {
+                System.out.print(currNode.data + " "); //Printing data after removing element from Queue.
+
+                if (currNode.left != null) { //Checking Left Child of Node is empty or NOT.
+                    q.add(currNode.left); //Adding Left Child Node in Queue.
+                }
+                if (currNode.right != null) { //Checking Right Child of Node is empty or NOT.
+                    q.add(currNode.right); //Adding Right Child Node in Queue.
+                }
+            }
+        }
+    }
+
     public static void postorder(Node root) {
         if (root == null) { //Base Case
             System.out.print(-1 + " "); //Add this line if you want to print -1 to show NULL node as well.
@@ -87,6 +127,7 @@ public class BinaryTree {
 
 //        preorder(root);
 //        inorder(root);
-        postorder(root);
+//        postorder(root);
+        levelOrder(root);
     }
 }
