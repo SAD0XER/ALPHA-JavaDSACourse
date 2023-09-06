@@ -70,6 +70,15 @@ public class BinaryTree {
     1st Print Left subtree.
     2nd Print Right subtree.
     3rd Print Root.*/
+    public static void postorder(Node root) {
+        if (root == null) { //Base Case
+            System.out.print(-1 + " "); //Add this line if you want to print -1 to show NULL node as well.
+            return;
+        }
+        postorder(root.left); //Printing Left subtree. Rule-1
+        postorder(root.right); //Printing Right subtree. Rule-2
+        System.out.print(root.data + " "); //Printing Root. Rule-3
+    }
 
     /*Level Order Traversal. Linear Time Complexity: O(n)
     - we'll use Queue Data Structure for this traversal.
@@ -108,26 +117,47 @@ public class BinaryTree {
         }
     }
 
-    public static void postorder(Node root) {
-        if (root == null) { //Base Case
-            System.out.print(-1 + " "); //Add this line if you want to print -1 to show NULL node as well.
-            return;
+    //Height of Tree. O(n)
+    public static int height(Node root) {
+        if (root == null) {
+            return 0;
         }
-        postorder(root.left); //Printing Left subtree. Rule-1
-        postorder(root.right); //Printing Right subtree. Rule-2
-        System.out.print(root.data + " "); //Printing Root. Rule-3
+
+        int lh = height(root.left);
+        int rh = height(root.right);
+        return Math.max(lh, rh) + 1;
     }
 
     public static void main(String[] args) {
-        int[] nodes = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
+//        int[] nodes = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
 
 //        BinaryTree tree = new BinaryTree();
-        Node root = buildTree(nodes);
+//        Node root = buildTree(nodes);
 //        System.out.println(root.data);
 
 //        preorder(root);
 //        inorder(root);
 //        postorder(root);
-        levelOrder(root);
+//        levelOrder(root);
+
+        //Height of Tree. O(n)
+        /*
+                    1
+                  /   \
+                 2     3
+                / \   / \
+               4   5 6   7
+
+               Height = 3
+         */
+        Node root = new Node(1);
+        root.left = new Node(2);
+        root.right = new Node(3);
+        root.left.left = new Node(4);
+        root.left.right = new Node(5);
+        root.right.left = new Node(6);
+        root.right.right = new Node(7);
+
+        System.out.print(height(root));
     }
 }
