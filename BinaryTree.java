@@ -141,6 +141,18 @@ public class BinaryTree {
         return leftCount + rightCount + 1; //Adding Counts of both side & adding +1 in it and Return.
     }
 
+    //Sum of Nodes. O(n)
+    public static int sum(Node root) {
+        if (root == null) { //Base Case.
+            return 0;
+        }
+
+        int leftSum = sum(root.left);
+        int rightSum = sum(root.right);
+
+        return leftSum + rightSum + root.data;
+    }
+
     public static void main(String[] args) {
 //        int[] nodes = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
 
@@ -171,6 +183,6 @@ public class BinaryTree {
         root.right.left = new Node(6);
         root.right.right = new Node(7);
 
-        System.out.print(count(root));
+        System.out.print(sum(root));
     }
 }
