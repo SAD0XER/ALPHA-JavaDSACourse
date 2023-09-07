@@ -153,6 +153,22 @@ public class BinaryTree {
         return leftSum + rightSum + root.data;
     }
 
+    //Diameter of Tree: Approach-1 O(n^2)
+    public static int diameter(Node root) {
+        if (root == null) { //Base Case.
+            return 0;
+        }
+
+        int leftDiameter = diameter(root.left); //1st
+        int leftHeight = height(root.left); //Calculating Left Height for Self Diameter.
+        int rightDiameter = diameter(root.right); //2nd
+        int rightHeight = height(root.right); //Calculating Right Height for Self Diameter.
+
+        int selfDiameter = leftHeight + rightHeight + 1; //3rd
+
+        return Math.max(selfDiameter, Math.max(leftDiameter, rightDiameter));
+    }
+
     public static void main(String[] args) {
 //        int[] nodes = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
 
@@ -183,6 +199,6 @@ public class BinaryTree {
         root.right.left = new Node(6);
         root.right.right = new Node(7);
 
-        System.out.print(sum(root));
+        System.out.print(diameter(root));
     }
 }
