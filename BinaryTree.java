@@ -154,7 +154,7 @@ public class BinaryTree {
     }
 
     //Diameter of Tree: Approach-1 O(n^2)
-    public static int diameter(Node root) {
+    /*public static int diameter(Node root) {
         if (root == null) { //Base Case.
             return 0;
         }
@@ -167,6 +167,31 @@ public class BinaryTree {
         int selfDiameter = leftHeight + rightHeight + 1; //3rd
 
         return Math.max(selfDiameter, Math.max(leftDiameter, rightDiameter));
+    }*/
+
+    //Diameter of Tree: Approach-2 O(n)
+    static class Info {
+        int diameter;
+        int height;
+
+        public Info(int diameter, int height) {
+            this.diameter = diameter;
+            this.height = height;
+        }
+    }
+
+    public static Info diameter(Node root) {
+        if (root == null) { //Base Case
+            return new Info(0, 0);
+        }
+
+        Info leftInfo = diameter(root.left);
+        Info rightInfo = diameter(root.right);
+
+        int diameter = Math.max(Math.max(leftInfo.diameter, rightInfo.diameter), leftInfo.height + rightInfo.height + 1);
+        int height = Math.max(leftInfo.height, rightInfo.height) + 1;
+
+        return new Info(diameter, height);
     }
 
     public static void main(String[] args) {
@@ -199,6 +224,6 @@ public class BinaryTree {
         root.right.left = new Node(6);
         root.right.right = new Node(7);
 
-        System.out.print(diameter(root));
+        System.out.print(diameter(root).diameter);
     }
 }
