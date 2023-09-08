@@ -194,6 +194,39 @@ public class BinaryTree {
         return new Info(diameter, height);
     }
 
+    //Subtree of another Tree. (Find SubTree is existed in your Tree or NOT.)
+    public static boolean isIdentical(Node node, Node subRoot) {
+        if (node == null && subRoot == null) { //Base Case.
+            return true;
+        } else if (node == null || subRoot == null || node.data != subRoot.data) { //Non-Identical Cases.
+            return false;
+        }
+
+        if (!isIdentical(node.left, subRoot.left)) {
+            return false;
+        }
+        if (!isIdentical(node.right, subRoot.right)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public static boolean isSubTree(Node root, Node subRoot) {
+        if (root == null) { //Base Case.
+            return false;
+        }
+
+        if (root.data == subRoot.data) { //Step 1
+            if (isIdentical(root, subRoot)) {
+                return true;
+            }
+        }
+
+        //Step 2: all in 1 place.
+        return isIdentical(root.left, subRoot) || isIdentical(root.right, subRoot);
+    }
+
     public static void main(String[] args) {
 //        int[] nodes = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
 
@@ -213,8 +246,6 @@ public class BinaryTree {
                  2     3
                 / \   / \
                4   5 6   7
-
-               Height = 3
          */
         Node root = new Node(1);
         root.left = new Node(2);
@@ -224,6 +255,17 @@ public class BinaryTree {
         root.right.left = new Node(6);
         root.right.right = new Node(7);
 
-        System.out.print(diameter(root).diameter);
+//        System.out.print(diameter(root).diameter);
+
+        /*
+                 2
+                / \
+               4   5
+         */
+        Node subRoot = new Node(2);
+        subRoot.left = new Node(4);
+//        subRoot.right = new Node(5);
+
+        System.out.println(isSubTree(root, subRoot));
     }
 }
