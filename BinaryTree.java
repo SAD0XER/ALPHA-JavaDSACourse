@@ -170,7 +170,7 @@ public class BinaryTree {
     }*/
 
     //Diameter of Tree: Approach-2 O(n)
-    static class Info {
+    /*static class Info {
         int diameter;
         int height;
 
@@ -192,7 +192,7 @@ public class BinaryTree {
         int height = Math.max(leftInfo.height, rightInfo.height) + 1;
 
         return new Info(diameter, height);
-    }
+    }*/
 
     //Subtree of another Tree. (Find SubTree is existed in your Tree or NOT.)
     public static boolean isIdentical(Node node, Node subRoot) {
@@ -225,6 +225,57 @@ public class BinaryTree {
 
         //Step 2: all in 1 place.
         return isIdentical(root.left, subRoot) || isIdentical(root.right, subRoot);
+    }
+
+    //Top View of a Tree. (Important Question)
+    static class Info  {
+        Node node;
+        int hd;
+
+        public Info(Node node, int hd) {
+            this.node = node;
+            this.hd = hd;
+        }
+    }
+
+    public static void topView(Node root) {
+        //Level Order
+        Queue<Info> q = new LinkedList<>();
+        HashMap<Integer, Node> map = new HashMap<>();
+
+        int min = 0, max = 0;
+
+        q.add(new Info(root, 0));
+        q.add(null);
+
+        while (!q.isEmpty()) {
+            Info curr = q.remove();
+            if (curr == null) {
+                if (q.isEmpty()) {
+                    break;
+                } else {
+                    q.add(null);
+                }
+            } else {
+                //True if it contains key, False if not.
+                if (!map.containsKey(curr.hd)) { //First Time my HD is occurring.
+                    map.put(curr.hd, curr.node); //Adding pair in within a map.
+                }
+
+                if (curr.node.left != null) {
+                    q.add(new Info(curr.node.left, curr.hd - 1));
+                    min = Math.min(min, curr.hd - 1);
+                }
+                if (curr.node.right != null) {
+                    q.add(new Info(curr.node.right, curr.hd + 1));
+                    max = Math.max(max, curr.hd + 1);
+                }
+            }
+        }
+
+        for (int i = min; i <= max; i++) {
+            System.out.print(map.get(i).data + " ");
+        }
     }
 
     public static void main(String[] args) {
@@ -262,10 +313,10 @@ public class BinaryTree {
                 / \
                4   5
          */
-        Node subRoot = new Node(2);
+        /*Node subRoot = new Node(2);
         subRoot.left = new Node(4);
-//        subRoot.right = new Node(5);
+        subRoot.right = new Node(5);*/
 
-        System.out.println(isSubTree(root, subRoot));
+        topView(root);
     }
 }
