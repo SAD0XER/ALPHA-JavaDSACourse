@@ -278,6 +278,21 @@ public class BinaryTree {
         }
     }
 
+    //Kth Level of a Tree (Print). O(n)
+    public static void KthLevel(Node root, int level, int k) {
+        if (root == null) { //Base Case.
+            return;
+        }
+
+        if (level == k) { //If level is equals to K, then print the node data and return.
+            System.out.print(root.data + " ");
+            return;
+        }
+
+        KthLevel(root.left, level + 1, k);
+        KthLevel(root.right, level + 1, k);
+    }
+
     public static void main(String[] args) {
 //        int[] nodes = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
 
@@ -317,6 +332,6 @@ public class BinaryTree {
         subRoot.left = new Node(4);
         subRoot.right = new Node(5);*/
 
-        topView(root);
+        KthLevel(root, 1, 3);
     }
 }
