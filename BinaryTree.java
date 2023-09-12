@@ -292,7 +292,7 @@ public class BinaryTree {
         KthLevel(root.right, level + 1, k);
     }
 
-    //Lowest Common Ancestor (LCA). O(n)
+    //Approach-1: Lowest Common Ancestor (LCA). TC & SC: O(n)
     public static boolean getPath(Node root, int n, ArrayList<Node> path) {
         if (root == null) {
             return false;
@@ -337,6 +337,28 @@ public class BinaryTree {
         return lca;
     }
 
+    //Approach-2: Lowest Common Ancestor (LCA). TC & SC: O(n)
+    public static Node lca2(Node root, int n1, int n2) {
+        //Base Case is included in this sentence.
+        if (root == null || root.data == n1 || root.data == n2) {
+            return root;
+        }
+
+        Node leftLca = lca2(root.left, n1, n2);
+        Node rightLca = lca2(root.right, n1, n2);
+
+        //CASE: leftLCA = value & rightLCA = null
+        if (rightLca == null) {
+            return leftLca;
+        }
+        //CASE: leftLCA = null & rightLCA = value
+        if (leftLca == null) {
+            return rightLca;
+        }
+
+        return root;
+    }
+
     public static void main(String[] args) {
 //        int[] nodes = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
 
@@ -378,8 +400,7 @@ public class BinaryTree {
 
 //        topView(root);
 //        KthLevel(root, 1, 3);
-        int n1 = 4, n2 = 5;
-        System.out.println(lca(root, n1, n2).data);
-
+        int n1 = 4, n2 = 6;
+        System.out.println(lca2(root, n1, n2).data);
     }
 }
