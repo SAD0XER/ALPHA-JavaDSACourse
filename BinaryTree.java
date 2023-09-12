@@ -359,6 +359,37 @@ public class BinaryTree {
         return root;
     }
 
+    //Minimum Distance between Nodes. O(n)
+    public static int lcaDistance(Node root, int n) {
+        if (root == null) { //Base Case.
+            return -1;
+        }
+
+        if (root.data == n) { //If Root.data itself is equals to n.
+            return 0;
+        }
+
+        int leftDistance = lcaDistance(root.left, n); //Searching on Left Subtree.
+        int rightDistance = lcaDistance(root.right, n); //Searching on Right Subtree.
+
+        if (leftDistance == -1 && rightDistance == -1) { //If both subtrees returns -1 -> return -1.
+            return -1;
+        } else if (leftDistance == -1) { //Case: If N found on Left Subtree.
+            return rightDistance + 1;
+        } else { //Case: If N found on Right Subtree.
+            return leftDistance + 1;
+        }
+    }
+
+    public static int minimumDistance(Node root, int n1, int n2) {
+        Node lca = lca2(root, n1, n2); //Calculating Lowest Common Ancestor.
+
+        int distance1 = lcaDistance(lca, n1);
+        int distance2 = lcaDistance(lca, n2);
+
+        return distance1 + distance2;
+    }
+
     public static void main(String[] args) {
 //        int[] nodes = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
 
@@ -400,7 +431,7 @@ public class BinaryTree {
 
 //        topView(root);
 //        KthLevel(root, 1, 3);
-        int n1 = 4, n2 = 6;
-        System.out.println(lca2(root, n1, n2).data);
+        int n1 = 4, n2 = 7;
+        System.out.println(minimumDistance(root, n1, n2));
     }
 }
