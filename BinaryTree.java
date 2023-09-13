@@ -390,6 +390,33 @@ public class BinaryTree {
         return distance1 + distance2;
     }
 
+    //Kth Ancestor of node. O(n)
+    public static int kthAncestor(Node root, int n, int k) {
+        if (root == null) { //Base Case.
+            return -1;
+        }
+
+        if (root.data == n) { //Checking root itself == N or NOT.
+            return 0;
+        }
+
+        //If N not found on root then find it on Left & Right Subtrees.
+        int leftDistance = kthAncestor(root.left, n, k);
+        int rightDistance = kthAncestor(root.right, n, k);
+
+        if (leftDistance == -1 && rightDistance == -1) { //If Left and Right Subtrees return -1 -> return -1
+            return -1;
+        }
+
+        int maximum = Math.max(leftDistance, rightDistance); //Find max distance between Left & Right Subtree.
+
+        if (maximum + 1 == k) { //Checking max & myself count that is 1 == k or NOT.
+            System.out.print(root.data);
+        }
+
+        return maximum + 1;
+    }
+
     public static void main(String[] args) {
 //        int[] nodes = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
 
@@ -431,7 +458,7 @@ public class BinaryTree {
 
 //        topView(root);
 //        KthLevel(root, 1, 3);
-        int n1 = 4, n2 = 7;
-        System.out.println(minimumDistance(root, n1, n2));
+        int n = 4, k = 1;
+        kthAncestor(root, n, k);
     }
 }
