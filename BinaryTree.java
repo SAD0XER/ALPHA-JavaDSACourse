@@ -39,11 +39,12 @@ public class BinaryTree {
     3rd Print Right subtree.*/
     public static void preorder(Node root) { //Taking root of tree as a parameter.
         if (root == null) { //Base Case
-            System.out.print(-1 + " "); //Add this line if you want to print -1 to show NULL node as well.
+//            System.out.print(-1 + " "); //Add this line if you want to print -1 to show NULL node as well.
             return;
         }
 
         System.out.print(root.data + " "); //Printing Data. Rule-1
+
         preorder(root.left); //Printing Left subtree. Rule-2
         preorder(root.right); //Printing Right subtree. Rule-3
     }
@@ -417,6 +418,24 @@ public class BinaryTree {
         return maximum + 1;
     }
 
+    //Transform to Sum Tree. O(n)
+    public static int transformSumTree(Node root) {
+        if (root == null) { //Base Case.
+            return 0;
+        }
+        int leftChild = transformSumTree(root.left); //Old Left Child Value.
+        int rightChild = transformSumTree(root.right); //Old Right Child Value.
+
+        int data = root.data; //Storing value of root in 'data' variable.
+
+        int newLeft = root.left == null ? 0 : root.left.data;
+        int newRight = root.right == null ? 0 : root.right.data;
+
+        root.data = (newLeft + leftChild) + (newRight + rightChild);
+
+        return data;
+    }
+
     public static void main(String[] args) {
 //        int[] nodes = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
 
@@ -436,6 +455,14 @@ public class BinaryTree {
                  2     3
                 / \   / \
                4   5 6   7
+
+        Expected Sum Tree is:
+
+                   27
+                  /  \
+                 9    13
+                / \   / \
+               0   0 0   0
          */
         Node root = new Node(1);
         root.left = new Node(2);
@@ -458,7 +485,9 @@ public class BinaryTree {
 
 //        topView(root);
 //        KthLevel(root, 1, 3);
-        int n = 4, k = 1;
-        kthAncestor(root, n, k);
+//        int n = 4, k = 1;
+//        kthAncestor(root, n, k);
+        transformSumTree(root);
+        preorder(root);
     }
 }
