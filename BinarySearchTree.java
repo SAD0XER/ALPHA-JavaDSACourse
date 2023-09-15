@@ -38,6 +38,21 @@ public class BinarySearchTree {
         inorder(root.right);
     }
 
+    //Search in BST. O(H) (PS: H is a Height of a Tree from Root to Leaf)
+    public static boolean search(Node root, int key) {
+        if (root == null) { //Base Case.
+            return false;
+        }
+
+        if (root.data == key) { //Checking for if Root == Key
+            return true;
+        } else if (root.data > key) { //If Root is > Key
+            return search(root.left, key); //Go To Left Subtree.
+        } else {
+            return search(root.right, key); //Go To Right Subtree.
+        }
+    }
+
     public static void main(String[] args) {
         int[] values = {10, 5, 1, 3, 8, 4, 6, 2, 7, 9};
         Node root = null;
@@ -47,5 +62,12 @@ public class BinarySearchTree {
         }
 
         inorder(root);
+        System.out.println();
+
+        if (search(root, 11)) {
+            System.out.print("Key Found");
+        } else {
+            System.out.print("Key NOT Found");
+        }
     }
 }
