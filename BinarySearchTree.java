@@ -27,7 +27,7 @@ public class BinarySearchTree {
         return root;
     }
 
-    //Inorder function to print BST in order.
+    //Inorder function to print BST in order. [Utility Function for insert() method.]
     public static void inorder(Node root) {
         if (root == null) { //Base Case.
             return;
@@ -53,8 +53,46 @@ public class BinarySearchTree {
         }
     }
 
+    //Delete a Node. (Important Question)
+    public static Node delete(Node root, int value) {
+
+        //Search the value first.
+        if (root.data < value) { //If Root Data is < Value.
+            root.right = delete(root.right, value); //Go To Left Subtree.
+        } else if (root.data > value) { //If Root Data is > Value.
+            root.left = delete(root.left, value); //Go To Left Subtree.
+        } else { //Case: Where root.data == value. #Voila Case.
+
+            //Case 1: Leaf Node (No Child)
+            if (root.left == null && root.right == null) {
+                return null;
+            }
+
+            //Case 2: Single Child.
+            if (root.left == null) { //If Left Child is Null
+                return root.right; //Return Right Child Node.
+            } else if (root.right == null) { //If Right Child is Null
+                return root.left; //Return Left Child Node.
+            }
+
+            //Case 3: Two Child. (Both Children)*
+            Node inorderSuccessor = findInorderSuccessor(root.right); //Step 1: Find Inorder Successor from Right Subtree.
+            root.data = inorderSuccessor.data; //Step 2: Replace value with Root Data with Inorder Successors Data.
+            root.right = delete(root.right, inorderSuccessor.data); //Step 3: Delete Inorder Successor Node.
+        }
+        return root;
+    }
+
+    //Utility Function for delete() method.
+    public static Node findInorderSuccessor(Node root) {
+        while (root.left != null) {
+            root = root.left;
+        }
+        return root;
+    }
+
     public static void main(String[] args) {
-        int[] values = {10, 5, 1, 3, 8, 4, 6, 2, 7, 9};
+        int[] values = {8, 5, 3, 1, 4, 6, 10, 11, 14};
         Node root = null;
 
         for (int i = 0; i < values.length; i++) {
@@ -64,10 +102,14 @@ public class BinarySearchTree {
         inorder(root);
         System.out.println();
 
-        if (search(root, 11)) {
+        /*if (search(root, 11)) {
             System.out.print("Key Found");
         } else {
             System.out.print("Key NOT Found");
-        }
+        }*/
+
+        root = delete(root, 5);
+
+        inorder(root);
     }
 }
