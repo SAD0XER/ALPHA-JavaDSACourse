@@ -91,6 +91,23 @@ public class BinarySearchTree {
         return root;
     }
 
+    //Print in Range.
+    public static void printInRange(Node root, int k1, int k2) {
+        if (root == null) { //Base Case.
+            return;
+        }
+
+        if (root.data >= k1 && root.data <= k2) { //If Root lies between k1 & k2.
+            printInRange(root.left, k1, k2); //Go To Left.
+            System.out.print(root.data + " "); //Print Root Data.
+            printInRange(root.right, k1, k2); //Go To Right.
+        } else if (root.data < k1) { //If Root Data is < than k1
+            printInRange(root.left, k1, k2); //Go To Left.
+        } else {
+            printInRange(root.right, k1, k2); //Go To Right.
+        }
+    }
+
     public static void main(String[] args) {
         int[] values = {8, 5, 3, 1, 4, 6, 10, 11, 14};
         Node root = null;
@@ -108,8 +125,9 @@ public class BinarySearchTree {
             System.out.print("Key NOT Found");
         }*/
 
-        root = delete(root, 5);
+        /*root = delete(root, 5);
 
-        inorder(root);
+        inorder(root);*/
+        printInRange(root, 5, 12);
     }
 }
