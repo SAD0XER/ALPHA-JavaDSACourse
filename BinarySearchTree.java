@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class BinarySearchTree {
 
     //Created Node class for BST.
@@ -108,8 +110,33 @@ public class BinarySearchTree {
         }
     }
 
+    //Root to Leaf path. (Print)
+    public static void printRoot2Leaf(Node root, ArrayList<Integer> path) {
+        if (root == null) { //Base Case.
+            return;
+        }
+
+        path.add(root.data); //Adding Data of Root in ArrayList.
+        if (root.left == null && root.right == null) { //If we reach on Leaf Node
+            printPath(path); //Print the Path.
+        }
+
+        printRoot2Leaf(root.left, path); //Call for Left Subtree.
+        printRoot2Leaf(root.right, path); //Call for Right Subtree.
+        path.remove(path.size() - 1); //Removing Elements while Backtracking.
+    }
+
+    //Utility Function of printRoot2Leaf() method.
+    public static void printPath(ArrayList<Integer> path) {
+        for (int i = 0; i < path.size(); i++) {
+            System.out.print(path.get(i) + "->");
+        }
+        System.out.println("Null");
+    }
+
     public static void main(String[] args) {
-        int[] values = {8, 5, 3, 1, 4, 6, 10, 11, 14};
+//        int[] values = {8, 5, 3, 1, 4, 6, 10, 11, 14};
+        int[] values = {8, 5, 3, 6, 10, 11, 14};
         Node root = null;
 
         for (int i = 0; i < values.length; i++) {
@@ -128,6 +155,7 @@ public class BinarySearchTree {
         /*root = delete(root, 5);
 
         inorder(root);*/
-        printInRange(root, 5, 12);
+//        printInRange(root, 5, 12);
+        printRoot2Leaf(root, new ArrayList<>());
     }
 }
