@@ -35,9 +35,9 @@ public class BinarySearchTree {
             return;
         }
 
-        inorder(root.left);
-        System.out.print(root.data + " ");
-        inorder(root.right);
+        inorder(root.left); //Go To Left Subtree.
+        System.out.print(root.data + " "); //Print the Root.
+        inorder(root.right); //Go To Right Subtree.
     }
 
     //Search in BST. O(H) (PS: H is a Height of a Tree from Root to Leaf)
@@ -150,17 +150,45 @@ public class BinarySearchTree {
         return isValidBST(root.left, min, max) && isValidBST(root.right, root, max);
     }
 
+    //Mirror a BST. (Create/Print) O(n)
+    public static Node createMirrorBST(Node root) {
+        if (root == null) { //Base Case.
+            return null;
+        }
+
+        //Recursive Calling
+        Node leftMirror = createMirrorBST(root.left);
+        Node rightMirror = createMirrorBST(root.right);
+
+        //Recursive Work: Swapping Nodes.
+        root.left = rightMirror;
+        root.right = leftMirror;
+
+        return root;
+    }
+
+    //Preorder function to print BST in order. [Utility Function for createMirrorBST() method.]
+    public static void preorder(Node root) {
+        if (root == null) { //Base Case.
+            return;
+        }
+
+        System.out.print(root.data + " "); //1st Print the Root.
+        preorder(root.left); //2nd Go To Left Subtree.
+        preorder(root.right); //3rd Go To Right Subtree.
+    }
+
     public static void main(String[] args) {
 //        int[] values = {8, 5, 3, 1, 4, 6, 10, 11, 14};
         int[] values = {8, 5, 3, 6, 10, 11, 14, 14};
-        Node root = null;
+        /*Node root = null;
 
         for (int i = 0; i < values.length; i++) {
             root = insert(root, values[i]);
         }
 
         inorder(root);
-        System.out.println();
+        System.out.println();*/
 
         /*if (search(root, 11)) {
             System.out.print("Key Found");
@@ -174,10 +202,37 @@ public class BinarySearchTree {
 //        printInRange(root, 5, 12);
 //        printRoot2Leaf(root, new ArrayList<>());
 
-        if (isValidBST(root, null, null)) {
+        /*if (isValidBST(root, null, null)) {
             System.out.println("BST is Valid.");
         } else {
             System.out.println("BST is NOT a valid.");
-        }
+        }*/
+        /*
+        Main BST:
+                    8
+                  /   \
+                 5    10
+                / \     \
+               3   6    11
+
+         */
+        Node root = new Node (8);
+        root.left = new Node (5);
+        root.right = new Node (10);
+        root.left.left = new Node (3);
+        root.left.right = new Node (6);
+        root.right.right = new Node (11);
+
+        /*
+        Mirror BST:
+                    8
+                  /   \
+                 10    5
+                /     / \
+               11    6   3
+         */
+
+//        root = createMirrorBST(root);
+        preorder(createMirrorBST(root));
     }
 }
