@@ -134,9 +134,25 @@ public class BinarySearchTree {
         System.out.println("Null");
     }
 
+    //Validate BST: BST must satisfy all the properties of BST.
+    public static boolean isValidBST(Node root, Node min, Node max) {
+        if (root == null) { //Base Case.
+            return true;
+        }
+
+        //Checking some Basic Validation Cases.
+        if (min != null && root.data <= min.data) { //For Left Subtree: Min = -∞ & Max = Root/Parent
+            return false;
+        } else if (max != null && root.data >= max.data) { //For Right Subtree: Min = Root/Parent & Max = +∞
+            return false;
+        }
+
+        return isValidBST(root.left, min, max) && isValidBST(root.right, root, max);
+    }
+
     public static void main(String[] args) {
 //        int[] values = {8, 5, 3, 1, 4, 6, 10, 11, 14};
-        int[] values = {8, 5, 3, 6, 10, 11, 14};
+        int[] values = {8, 5, 3, 6, 10, 11, 14, 14};
         Node root = null;
 
         for (int i = 0; i < values.length; i++) {
@@ -156,6 +172,12 @@ public class BinarySearchTree {
 
         inorder(root);*/
 //        printInRange(root, 5, 12);
-        printRoot2Leaf(root, new ArrayList<>());
+//        printRoot2Leaf(root, new ArrayList<>());
+
+        if (isValidBST(root, null, null)) {
+            System.out.println("BST is Valid.");
+        } else {
+            System.out.println("BST is NOT a valid.");
+        }
     }
 }
