@@ -178,9 +178,33 @@ public class BinarySearchTree {
         preorder(root.right); //3rd Go To Right Subtree.
     }
 
+    //Create Balanced BST of Sorted Array. O(n)
+    public static Node createBST(int[] arr, int start, int end) {
+        if (start > end) { //Base Case.
+            return null;
+        }
+
+        //Work: Find mid & Join to Node.
+        int middle = (start + end) / 2; //Calculating Mid of array.
+        Node root = new Node(arr[middle]); //Creating Node using mid as an index of array.
+
+        root.left = createBST(arr, start, middle - 1); //Recursive call for Left Subtree.
+        root.right = createBST(arr, middle + 1, end); //Recursive call for Right Subtree.
+
+        return root;
+    }
+
     public static void main(String[] args) {
 //        int[] values = {8, 5, 3, 1, 4, 6, 10, 11, 14};
-        int[] values = {8, 5, 3, 6, 10, 11, 14, 14};
+        int[] array = {3, 5, 6, 8, 10, 11, 12};
+        /*
+        Expected BST:
+                    8
+                  /   \
+                 5     11
+                / \   /  \
+               3   6 10  12
+         */
         /*Node root = null;
 
         for (int i = 0; i < values.length; i++) {
@@ -207,21 +231,12 @@ public class BinarySearchTree {
         } else {
             System.out.println("BST is NOT a valid.");
         }*/
-        /*
-        Main BST:
-                    8
-                  /   \
-                 5    10
-                / \     \
-               3   6    11
-
-         */
-        Node root = new Node (8);
+        /*Node root = new Node (8);
         root.left = new Node (5);
         root.right = new Node (10);
         root.left.left = new Node (3);
         root.left.right = new Node (6);
-        root.right.right = new Node (11);
+        root.right.right = new Node (11);*/
 
         /*
         Mirror BST:
@@ -233,6 +248,8 @@ public class BinarySearchTree {
          */
 
 //        root = createMirrorBST(root);
-        preorder(createMirrorBST(root));
+//        preorder(createMirrorBST(root));
+        Node root = createBST(array, 0, array.length - 1);
+        preorder(createBST(array, 0, array.length - 1));
     }
 }
