@@ -194,17 +194,52 @@ public class BinarySearchTree {
         return root;
     }
 
+    /* #Utility Function for createBST() method, Step 1.
+    This function will Travers whole given BST in Inorder pattern & it'll create sorted ArrayList.
+    Time Complexity: O(n)*/
+    public static void getInorder(Node root, ArrayList<Integer> inorder) {
+        if (root == null) { //Base Case.
+            return;
+        }
+
+        getInorder(root.left, inorder); //Go To Left Subtree.
+        inorder.add(root.data); //Adding Root Value in a ArrayList.
+        getInorder(root.right, inorder); //Go To Right Subtree.
+    }
+
+    /* #Utility Function for createBST() method, Step 2.
+    This Function Creates Balanced BST of Sorted ArrayList.
+    Time Complexity: O(n)*/
+    public static Node createBST(ArrayList<Integer> inorder, int start, int end) {
+        if (start > end) { //Base Case.
+            return null;
+        }
+
+        //Work: Find middle & Join to the Node.
+        int middle = (start + end) / 2; //Calculating Middle of ArrayList.
+        Node root = new Node(inorder.get(middle)); //Creating Node using 'middle' as an index of ArrayList.
+
+        root.left = createBST(inorder, start, middle - 1); //Recursive call for Left Subtree.
+        root.right = createBST(inorder, middle + 1, end); //Recursive call for Right Subtree.
+
+        return root;
+    }
+
+    //Convert BST to Balanced BST. O(n)
+    public static Node balancedBST(Node root) {
+        //Step 1: Calculate Inorder Sequence of BST.
+        ArrayList<Integer> inorder = new ArrayList<>();
+        getInorder(root, inorder);
+
+        //Step 2: Convert Sorted Inorder to Balanced BST.
+        root = createBST(inorder, 0, inorder.size() - 1);
+
+        return root;
+    }
+
     public static void main(String[] args) {
 //        int[] values = {8, 5, 3, 1, 4, 6, 10, 11, 14};
-        int[] array = {3, 5, 6, 8, 10, 11, 12};
-        /*
-        Expected BST:
-                    8
-                  /   \
-                 5     11
-                / \   /  \
-               3   6 10  12
-         */
+//        int[] array = {3, 5, 6, 8, 10, 11, 12};
         /*Node root = null;
 
         for (int i = 0; i < values.length; i++) {
@@ -231,25 +266,39 @@ public class BinarySearchTree {
         } else {
             System.out.println("BST is NOT a valid.");
         }*/
-        /*Node root = new Node (8);
-        root.left = new Node (5);
-        root.right = new Node (10);
-        root.left.left = new Node (3);
-        root.left.right = new Node (6);
-        root.right.right = new Node (11);*/
+        /*
+        Given BST:
+                   8
+                  / \
+                 6   10
+                /     \
+               5       11
+              /         \
+             3           12
+         */
+        Node root = new Node(8);
+        root.left = new Node(6);
+        root.left.left = new Node(5);
+        root.left.left.left = new Node(3);
+
+        root.right = new Node(10);
+        root.right.right = new Node(11);
+        root.right.right.right = new Node(12);
 
         /*
-        Mirror BST:
+        Expected BST:
                     8
                   /   \
-                 10    5
-                /     / \
-               11    6   3
+                 5     11
+                / \   /  \
+               3   6 10  12
          */
 
 //        root = createMirrorBST(root);
 //        preorder(createMirrorBST(root));
-        Node root = createBST(array, 0, array.length - 1);
-        preorder(createBST(array, 0, array.length - 1));
+        /*Node root = createBST(array, 0, array.length - 1);
+        preorder(createBST(array, 0, array.length - 1));*/
+//        root = balanced(root);
+        preorder(balancedBST(root));
     }
 }
