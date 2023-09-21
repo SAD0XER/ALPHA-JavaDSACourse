@@ -237,6 +237,54 @@ public class BinarySearchTree {
         return root;
     }
 
+    /*Size of Largest BST in BT [Utility Class for largestBST() method.] (size: count of nodes in Largest BST)
+    ALT Q. Alternative Question for this Question is Return the Root Node of Largest BST in BT.
+    ANS. Solve problem by creating static Node variable like mazBST & store the Root Node of Largest BST.*/
+    static class Info {
+        boolean isBST;
+        int size;
+        int minimum;
+        int maximum;
+
+        //Constructor
+        public Info(boolean isBST, int size, int minimum, int maximum) {
+            this.isBST = isBST;
+            this.size = size;
+            this.minimum = minimum;
+            this.maximum = maximum;
+        }
+    }
+
+    public static int maxBST = 0;
+
+    public static Info largestBST(Node root) {
+        if (root == null) { //Base Case.
+            return new Info(true, 0, Integer.MAX_VALUE, Integer.MIN_VALUE);
+        }
+
+        Info leftInfo = largestBST(root.left); //Calculating Information from Left Subtree.
+        Info rightInfo = largestBST(root.right); //Calculating Information from Right Subtree.
+
+        int size = leftInfo.size + rightInfo.size + 1; //Calculating size for Root.
+
+        int minimum = Math.min(root.data, Math.min(leftInfo.minimum, rightInfo.minimum)); //Comparing Minimum Values from Left and Right Subtrees with Root.
+        int maximum = Math.max(root.data, Math.max(leftInfo.maximum, rightInfo.maximum)); //Comparing Maximum Values from Left and Right Subtrees with Root.
+
+        /*For the Root Node: Return False when Data of Root is <= Maximum of Left Subtree OR Data of Root is >= Minimum of Right Subtree.*/
+        if (root.data <= leftInfo.maximum || root.data >= rightInfo.minimum) {
+            return new Info(false, size, minimum, maximum);
+        }
+
+        /*For the Left Subtree & Right Subtree: Is they are a Valid BST?
+        * Return True when Both Left & Right Subtree Returns True.*/
+        if (leftInfo.isBST && rightInfo.isBST) {
+            maxBST = Math.max(maxBST, size); //Before comparing, updating value of maxSizeBST counter.
+            return new Info(true, size, minimum, maximum);
+        }
+
+        return new Info(false, size, minimum, maximum); //From the all the above conditions if none of any condition gets True then finally Return False.
+    }
+
     public static void main(String[] args) {
 //        int[] values = {8, 5, 3, 1, 4, 6, 10, 11, 14};
 //        int[] array = {3, 5, 6, 8, 10, 11, 12};
@@ -276,14 +324,14 @@ public class BinarySearchTree {
               /         \
              3           12
          */
-        Node root = new Node(8);
+        /*Node root = new Node(8);
         root.left = new Node(6);
         root.left.left = new Node(5);
         root.left.left.left = new Node(3);
 
         root.right = new Node(10);
         root.right.right = new Node(11);
-        root.right.right.right = new Node(12);
+        root.right.right.right = new Node(12);*/
 
         /*
         Expected BST:
@@ -299,6 +347,37 @@ public class BinarySearchTree {
         /*Node root = createBST(array, 0, array.length - 1);
         preorder(createBST(array, 0, array.length - 1));*/
 //        root = balanced(root);
-        preorder(balancedBST(root));
+//        preorder(balancedBST(root));
+        /*
+         Given Tree:
+                    50
+                  /    \
+                30      60
+               /  \    /  \
+              5   20  45   70
+                          /  \
+                         65   80
+         */
+        Node root = new Node(50);
+        root.left = new Node(30);
+        root.left.left = new Node(5);
+        root.left.right = new Node(20);
+
+        root.right = new Node(60);
+        root.right.left = new Node(45);
+        root.right.right = new Node(70);
+        root.right.right.left = new Node(65);
+        root.right.right.right = new Node(80);
+        /*
+         Expected BST: Size = 5
+                    60
+                   /   \
+                 45     70
+                       /  \
+                      65   80
+         */
+
+        largestBST(root);
+        System.out.println("Largest BST Size: " + maxBST);
     }
 }
