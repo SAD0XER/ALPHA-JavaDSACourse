@@ -285,6 +285,44 @@ public class BinarySearchTree {
         return new Info(false, size, minimum, maximum); //From the all the above conditions if none of any condition gets True then finally Return False.
     }
 
+    //Merge 2 BSTs. Linear Time Complexity: O(n+m)
+    public static Node mergeBST(Node root1, Node root2) {
+        //Step-1: Get inorder of BST-1.
+        ArrayList<Integer> arr1 = new ArrayList<>();
+        getInorder(root1, arr1);
+
+        //Step-2: Get inorder of BST-2.
+        ArrayList<Integer> arr2 = new ArrayList<>();
+        getInorder(root2, arr2);
+
+        //Step-3: Merge Array-1 and Array-2.
+        ArrayList<Integer> finalArray = new ArrayList<>();
+        int i = 0, j = 0; //Two pointers for tracking.
+        while (i < arr1.size() && j < arr2.size()) {
+            if (arr1.get(i) <= arr2.get(j)) {
+                finalArray.add(arr1.get(i));
+                i++;
+            } else {
+                finalArray.add(arr2.get(j));
+                j++;
+            }
+        }
+
+        //These 2 loops will Run when any 1 Array from both of them will completely get Traversed.
+        while (i < arr1.size()) { //Loop for remaining Elements in Array-1.
+            finalArray.add(arr1.get(i));
+            i++;
+        }
+
+        while (j < arr2.size()) { //Loop for remaining Elements in Array-2.
+            finalArray.add(arr2.get(j));
+            j++;
+        }
+
+        //Step-4: Create Merged Balanced BST from Sorted ArrayList.
+        return createBST(finalArray, 0, finalArray.size() - 1);
+    }
+
     public static void main(String[] args) {
 //        int[] values = {8, 5, 3, 1, 4, 6, 10, 11, 14};
 //        int[] array = {3, 5, 6, 8, 10, 11, 12};
@@ -358,7 +396,7 @@ public class BinarySearchTree {
                           /  \
                          65   80
          */
-        Node root = new Node(50);
+        /*Node root = new Node(50);
         root.left = new Node(30);
         root.left.left = new Node(5);
         root.left.right = new Node(20);
@@ -367,7 +405,7 @@ public class BinarySearchTree {
         root.right.left = new Node(45);
         root.right.right = new Node(70);
         root.right.right.left = new Node(65);
-        root.right.right.right = new Node(80);
+        root.right.right.right = new Node(80);*/
         /*
          Expected BST: Size = 5
                     60
@@ -377,7 +415,37 @@ public class BinarySearchTree {
                       65   80
          */
 
-        largestBST(root);
-        System.out.println("Largest BST Size: " + maxBST);
+//        largestBST(root);
+//        System.out.println("Largest BST Size: " + maxBST);
+        /*
+         Given BST-1:
+                   2
+                 /   \
+                1     4
+         */
+        Node bst1 = new Node(2);
+        bst1.left = new Node(1);
+        bst1.right = new Node(4);
+
+        /*
+         Given BST-2:
+                    9
+                  /   \
+                 3     12
+         */
+        Node bst2 = new Node(9);
+        bst2.left = new Node(3);
+        bst2.right = new Node(12);
+
+        /*
+         Merged BST:
+                    3
+                  /   \
+                 1     9
+                  \   /  \
+                   2 4   12
+         */
+//        Node root = mergeBST(bst1, bst2);
+        preorder(mergeBST(bst1, bst2));
     }
 }
