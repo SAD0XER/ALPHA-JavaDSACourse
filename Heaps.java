@@ -20,6 +20,11 @@ public class Heaps {
                 arr.set(parent, temp);
             }
         }
+
+        //Get Minimum in Heap. (Peek from Heap) Time Complexity: O(1);
+        public int peek() {
+            return arr.get(0);
+        }
     }
 
     public static void main(String[] args) {
