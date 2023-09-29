@@ -15,7 +15,7 @@ public class Heaps {
 
 /*FYI: This is the code for Minimum Heap, If you want to make it for Maximum Heap then change the sign '<' with '>' in while loop.
             Time Complexity of While Loop: O(log N) - Because of the Height of Tree.*/
-            while (arr.get(x) < arr.get(parent)) {
+            while (arr.get(x) > arr.get(parent)) {
                 //Swap child with parent.
                 int temp = arr.get(x);
                 arr.set(x, arr.get(parent));
@@ -36,25 +36,25 @@ public class Heaps {
         private void heapify(int index) {
             int left = (2 * index) + 1;
             int right = (2 * index) + 2;
-            int minIndex = index;
+            int maxIndex = index;
 
 /*FYI: This is the code for Minimum Heap, If you want to make it for Maximum Heap then change the sign '>' with '<' in if condition.
             Checking conditions for is Leaf Node.*/
-            if (left < arr.size() && arr.get(minIndex) > arr.get(left)) { //For Left.
-                minIndex = left;
+            if (left < arr.size() && arr.get(maxIndex) < arr.get(left)) { //For Left.
+                maxIndex = left;
             }
 
-            if (right < arr.size() && arr.get(minIndex) > arr.get(right)) { //For Right.
-                minIndex = right;
+            if (right < arr.size() && arr.get(maxIndex) < arr.get(right)) { //For Right.
+                maxIndex = right;
             }
 
-            if (minIndex != index) { //if Root is NOT Min.
+            if (maxIndex != index) { //if Root is NOT Min.
                 //Swap Root with Min
                 int temp = arr.get(index);
-                arr.set(index, arr.get(minIndex));
-                arr.set(minIndex, temp);
+                arr.set(index, arr.get(maxIndex));
+                arr.set(maxIndex, temp);
 
-                heapify(minIndex);
+                heapify(maxIndex);
             }
         }
 
