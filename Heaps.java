@@ -82,8 +82,51 @@ public class Heaps {
         }
     }
 
+    //Function Work: To sort Heap in an Ascending Order. (Utility Function for heapSort() method.)
+    public static void heapify(int[] arr, int i, int size) { //size: size of the Heap.
+        int left = (2 * i) + 1;
+        int right = (2 * i) + 2;
+        int maxIndex = i;
+
+        if (left < size && arr[left] > arr[maxIndex]) {
+            maxIndex = left;
+        }
+
+        if (right < size && arr[right] > arr[maxIndex]) {
+            maxIndex = right;
+        }
+
+        if (maxIndex != i) {
+            //Swapping
+            int temp = arr[i];
+            arr[i] = arr[maxIndex];
+            arr[maxIndex] = temp;
+
+            heapify(arr, maxIndex, size);
+        }
+    }
+
+    //Heap Sort (Ascending Order Sorting). Time Complexity: O(N*LogN)
+    public static void heapSort(int[] arr) {
+        //Step-1: Build MaxHeap
+        int n = arr.length;
+        for (int i = n / 2; i >= 0; i--) {
+            heapify(arr, i, n);
+        }
+
+        //Step-2: Push the Largest Element at End.
+        for (int i = n - 1; i > 0; i--) {
+            //Swap Largest (1st index) with Last index.
+            int temp = arr[0];
+            arr[0] = arr[i];
+            arr[i] = temp;
+
+            heapify(arr, 0, i);
+        }
+    }
+
     public static void main(String[] args) {
-        Heap pq = new Heap();
+        /*Heap pq = new Heap();
         pq.add(3);
         pq.add(4);
         pq.add(1);
@@ -92,6 +135,14 @@ public class Heaps {
         while (!pq.isEmpty()) { //Heap Sort. O(log N)
             System.out.println(pq.peek());
             pq.remove();
+        }*/
+
+        int[] arr = {1, 2, 4, 5, 3};
+        heapSort(arr);
+
+        for (int i : arr) {
+            System.out.print(i + " ");
         }
+        System.out.println();
     }
 }
