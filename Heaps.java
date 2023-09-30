@@ -82,17 +82,17 @@ public class Heaps {
         }
     }
 
-    //Function Work: To sort Heap in an Ascending Order. (Utility Function for heapSort() method.)
+    //Function Work: To sort Heap in a Descending Order. (Utility Function for heapSort() method.)
     public static void heapify(int[] arr, int i, int size) { //size: size of the Heap.
         int left = (2 * i) + 1;
         int right = (2 * i) + 2;
         int maxIndex = i;
 
-        if (left < size && arr[left] > arr[maxIndex]) {
+        if (left < size && arr[left] < arr[maxIndex]) {
             maxIndex = left;
         }
 
-        if (right < size && arr[right] > arr[maxIndex]) {
+        if (right < size && arr[right] < arr[maxIndex]) {
             maxIndex = right;
         }
 
@@ -106,7 +106,7 @@ public class Heaps {
         }
     }
 
-    //Heap Sort (Ascending Order Sorting). Time Complexity: O(N*LogN)
+    //Heap Sort (Descending Order Sorting). Time Complexity: O(N*LogN)
     public static void heapSort(int[] arr) {
         //Step-1: Build MaxHeap
         int n = arr.length;
